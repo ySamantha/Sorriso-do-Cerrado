@@ -1,0 +1,51 @@
+.cartaoProduto {
+  background-color: #FFFFFF;
+  border: 1px solid #E0DCD1;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.cartaoProduto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+.cartaoProdutoLink {
+  text-decoration: none;
+  color: inherit;
+}
+.cartaoProdutoImagem {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+.cartaoProdutoNome {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #4A3B31;
+}
+.cartaoProdutoPreco {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #556B2F;
+  margin-bottom: 1rem;
+}
+.botaoAdicionar {
+  background-color: #8D5B4C;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+.botaoAdicionar:hover {
+  background-color: #714A3E;
+}

@@ -1,0 +1,60 @@
+.detalheProdutoContainer {
+  display: flex;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 2rem auto;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.detalheProdutoImagem {
+  max-width: 400px; 
+  width: 100%; 
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.detalheProdutoInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.detalheProdutoPreco {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #556B2F;
+  margin: 0.5rem 0;
+}
+
+.detalheProdutoDescricao {
+  font-size: 1rem;
+  line-height: 1.6;
+  flex-grow: 1; 
+}
+
+.botaoComprar {
+  background-color: #8D5B4C;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.botaoComprar:hover {
+  background-color: #714A3E;
+}
+
+@media (max-width: 768px) {
+  .detalheProdutoContainer {
+    flex-direction: column;
+  }
+  .detalheProdutoImagem {
+    max-width: 100%; 
+  }
+}

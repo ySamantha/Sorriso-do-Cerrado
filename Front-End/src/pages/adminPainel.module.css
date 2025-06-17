@@ -1,0 +1,54 @@
+.conteudoGeral {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tabelaAdmin {
+  width: 100%;
+  margin-top: 2rem;
+  border-collapse: collapse;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background-color: #fff;
+}
+
+.tabelaAdmin th, .tabelaAdmin td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabelaAdmin th {
+  background-color: #f7f7f7;
+  font-weight: bold;
+}
+
+.tabelaAdmin tr:hover {
+    background-color: #f1f1f1;
+}
+
+.botaoAcao {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.botaoExcluir {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.botaoExcluir:hover {
+    background-color: #ffcdd2;
+}
+
+.painelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}

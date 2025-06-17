@@ -1,0 +1,74 @@
+.barraNavegacao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.logoNavegacao {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #8D5B4C;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+.logoImagem {
+  height: 40px;
+  width: auto;
+}
+.linksNavegacao {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+}
+.linksNavegacao a {
+  color: #4A3B31;
+  transition: color 0.2s ease-in-out;
+}
+.linksNavegacao a:hover {
+  color: #D2B48C;
+}
+
+.botaoLogout {
+  background: none;
+  border: none;
+  color: #A0522D; 
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: inherit; 
+  padding: 0;
+}
+
+.botaoLogout:hover {
+  color: #D2B48C;
+}
+
+
+.linkCarrinho {
+  position: relative; 
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.iconeCarrinho {
+  stroke: #4A3B31; 
+}
+
+.badgeCarrinho {
+  position: absolute;
+  top: -5px;     
+  right: -8px;    
+  background-color: #c62828; 
+  color: white;
+  border-radius: 50%; 
+  padding: 1px 6px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  line-height: 1;
+}

@@ -1,0 +1,80 @@
+.conteudoGeralCarrinho {
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: 80vh;
+}
+
+.tabelaCarrinho {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.itemCarrinho {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.imagemProdutoCarrinho {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.infoProdutoCarrinho {
+  flex-grow: 1; 
+}
+
+.infoProdutoCarrinho h3 {
+  margin: 0 0 5px 0;
+}
+
+.infoProdutoCarrinho p {
+  margin: 0;
+  color: #555;
+}
+
+.botaoRemover {
+  background-color: #ffebee;
+  color: #c62828;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.resumoCarrinho {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #ddd;
+  text-align: right;
+}
+
+.resumoCarrinho h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.botaoFinalizar, .botaoLimpar {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.botaoFinalizar {
+  background-color: #2E7D32;
+  color: white;
+}
+
+.botaoLimpar {
+  background-color: #eee;
+  color: #333;
+}

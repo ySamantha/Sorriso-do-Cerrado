@@ -1,0 +1,44 @@
+.secaoPrincipal {
+  position: relative;
+  text-align: center;
+  color: white;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.imagemPrincipal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.7);
+}
+
+.conteudoGeral {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.secaoProdutosDestaque {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.secaoProdutosDestaque h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.gradeProdutosDestaque {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+}
