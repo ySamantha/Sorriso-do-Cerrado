@@ -15,18 +15,18 @@
 </p>
 
 ##  Fases do Desenvolvimento
-Fase 1: Desenvolvimento Técnico (MVP)
-    Desenvolvido na disciplina de Programação Web.
-    Nesta fase inicial, o foco foi a construção da infraestrutura técnica e funcional do sistema.
-    - Entregas Técnicas: Criação do Front-end (React), Back-end (Node.js/Express) e Banco de Dados (MySQL).
-    - Funcionalidades Core: Vitrine virtual de produtos e módulo administrativo para CRUD de estoque.
-    Status: Sistema funcional e pronto para operação básica.
+* Fase 1: Desenvolvimento Técnico (MVP)
+    * Desenvolvido na disciplina de Programação Web.
+    * Nesta fase inicial, o foco foi a construção da infraestrutura técnica e funcional do sistema.
+    * Entregas Técnicas: Criação do Front-end (React), Back-end (Node.js/Express) e Banco de Dados (MySQL).
+    * Funcionalidades Core: Vitrine virtual de produtos e módulo administrativo para CRUD de estoque.
+    * Status: Sistema funcional e pronto para operação básica.
 
   Fase 2: Engenharia e Refinamento
-    **Em desenvolvimento** na disciplina de Análise e Desenvolvimento de Software.
-    - Elaboração de documentos
-    - Diagramas e Modelagem
-    - Melhorias e novas funcionaidades
+    ***Em desenvolvimento** na disciplina de Análise e Desenvolvimento de Software.
+    * Elaboração de documentos
+    * Diagramas e Modelagem
+    * Melhorias e novas funcionaidades
 
 ## ✨ Funcionalidades
 
