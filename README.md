@@ -7,12 +7,26 @@
 <p align="center"><img src="https://img.shields.io/static/v1?label=STATUS&message=%20Conclu%C3%ADdo&color=GREEN&style=for-the-badge"/></p>
 
 <p align="center">
-  Sorriso do Cerrado é uma aplicação web de e-commerce, desenvolvida como parte do Projeto de Extensão universitária da Universidade Católica de Brasília.
+  Sorriso do Cerrado é uma aplicação web de e-commerce, desenvolvida por alunos da Universidade Católica de Brasília.
 </p>
 
 <p align="center">
   O objetivo principal é fornecer uma plataforma digital para que Ângela Maria, uma artesã local, possa exibir, divulgar e vender os seus produtos artesanais, conectando a sua arte com um público mais amplo e promovendo a cultura do Cerrado. O projeto inclui uma área pública para clientes e uma área administrativa segura para a gestão completa do catálogo de produtos.
 </p>
+
+##  Fases do Desenvolvimento
+Fase 1: Desenvolvimento Técnico (MVP)
+    Desenvolvido na disciplina de Programação Web.
+    Nesta fase inicial, o foco foi a construção da infraestrutura técnica e funcional do sistema.
+    - Entregas Técnicas: Criação do Front-end (React), Back-end (Node.js/Express) e Banco de Dados (MySQL).
+    - Funcionalidades Core: Vitrine virtual de produtos e módulo administrativo para CRUD de estoque.
+    Status: Sistema funcional e pronto para operação básica.
+
+  Fase 2: Engenharia e Refinamento
+    **Em desenvolvimento** na disciplina de Análise e Desenvolvimento de Software.
+    - Elaboração de documentos
+    - Diagramas e Modelagem
+    - Melhorias e novas funcionaidades
 
 ## ✨ Funcionalidades
 
@@ -90,8 +104,9 @@ npx vite
 > A aplicação front-end estará disponível em `http://localhost:5173`.
 
 ## 👩‍💻 Autores
+* [Pedro Henrique Cavalcante de Sousa](https://github.com/pedrocavati)
+* [Pedro Henrique Nunes de Freitas](https://github.com/henripredo40)
 * [Samantha Yumi Tanaka](https://github.com/ySamantha)
 * [Samuel Batista Rennó](https://github.com/SamuelBati)
-* [Samuel Rodrigues da Silva](https://github.com/Samuelblew)
 * [Vinicios Trindade Costa](https://github.com/Vinhicious)
 * [Wictor Emanoel Ponte Menezes](https://github.com/we-learner)
