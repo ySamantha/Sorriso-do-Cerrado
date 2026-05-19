@@ -38,51 +38,44 @@ function AdicionarProduto() {
   };
 
   const handleSubmit = async (event) => {
-  event.preventDefault();
-  setError('');
+    event.preventDefault();
+    setError('');
 
-  const precoFormatado = parseFloat(preco);
+    try {
+      const token = localStorage.getItem('token');
 
-  if (isNaN(precoFormatado) || precoFormatado <= 0) {
-    setError('O preço do produto deve ser um valor numérico maior que zero.');
-    return;
-  }
-
-  try {
-    const token = localStorage.getItem('token');
-
-    if (!token) {
-      setError('Usuário não autenticado');
-      return;
-    }
-
-    const urlFinal = await handleUploadImagem();
-
-    const novoProduto = {
-      nome,
-      descricao,
-      preco: precoFormatado, 
-      estoque: parseInt(estoque, 10),
-      imagemURL: urlFinal
-    };
-
-    console.log("ENVIANDO PRODUTO:", novoProduto);
-
-    await axios.post('http://localhost:3000/produtos', novoProduto, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
+      if (!token) {
+        setError('Usuário não autenticado');
+        return;
       }
-    });
 
-    alert('Produto adicionado com sucesso!');
-    navigate('/admin');
+      const urlFinal = await handleUploadImagem();
 
-  } catch (err) {
-    console.error("ERRO COMPLETO:", err.response?.data || err.message);
-    setError(err.response?.data?.error || 'Erro ao adicionar produto');
-  }
-};
+      const novoProduto = {
+        nome,
+        descricao,
+        preco: parseFloat(preco),
+        estoque: parseInt(estoque, 10),
+        imagemURL: urlFinal
+      };
+
+      console.log("ENVIANDO PRODUTO:", novoProduto);
+
+      await axios.post('http://localhost:3000/produtos', novoProduto, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      alert('Produto adicionado com sucesso!');
+      navigate('/admin');
+
+    } catch (err) {
+      console.error("ERRO COMPLETO:", err.response?.data || err.message);
+      setError('Erro ao adicionar produto');
+    }
+  };
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
@@ -112,17 +105,16 @@ function AdicionarProduto() {
               />
             </div>
 
-          <div className={styles.campoFormulario}>
-            <label>Preço</label>
-            <input
-              type="number"
-              value={preco}
-              onChange={(e) => setPreco(e.target.value)}
-              required
-              step="0.01"
-              min="0.1" 
-            />
-          </div>
+            <div className={styles.campoFormulario}>
+              <label>Preço</label>
+              <input
+                type="number"
+                value={preco}
+                onChange={(e) => setPreco(e.target.value)}
+                required
+                step="0.01"
+              />
+            </div>
 
             <div className={styles.campoFormulario}>
               <label>Estoque</label>

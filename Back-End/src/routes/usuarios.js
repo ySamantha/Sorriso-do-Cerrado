@@ -2,41 +2,28 @@ import express from 'express';
 import conexao from '../database/conexao.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { autenticar } from '../middleware/authMiddleware.js';
+import { autenticar, autorizar } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 const secret = process.env.JWT_SECRET || 'segredo';
 
+// LOGIN - público
 router.post('/login', async (req, res) => {
   const { email, senha } = req.body;
 
   try {
-    const [usuarios] = await conexao.query(
-      'SELECT * FROM usuarios WHERE email = ?',
-      [email]
-    );
-
-    if (!usuarios.length) {
+    const [usuarios] = await conexao.query('SELECT * FROM usuarios WHERE email = ?', [email]);
+    if (usuarios.length === 0) {
       return res.status(400).json({ error: 'Usuário ou senha inválidos' });
     }
 
     const usuario = usuarios[0];
-
     const senhaValida = await bcrypt.compare(senha, usuario.senha);
-
     if (!senhaValida) {
       return res.status(400).json({ error: 'Usuário ou senha inválidos' });
     }
 
-    const token = jwt.sign(
-      {
-        id: usuario.id,
-        papel: usuario.papel
-      },
-      secret,
-      { expiresIn: '8h' }
-    );
-
+    const token = jwt.sign({ id: usuario.id, papel: usuario.papel }, secret, { expiresIn: '8h' });
     res.json({
       token,
       id: usuario.id,
@@ -44,109 +31,77 @@ router.post('/login', async (req, res) => {
       email: usuario.email,
       papel: usuario.papel
     });
-
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro no login' });
   }
 });
 
+// REGISTER - só admin pode
 router.post('/register', async (req, res) => {
   const { nome, email, senha } = req.body;
-
+  const role = 'cliente';
   try {
-    const [emailExistente] = await conexao.query(
-      'SELECT id FROM usuarios WHERE email = ?',
-      [email]
-    );
-
-    if (emailExistente.length > 0) {
+    const [existe] = await conexao.query('SELECT id FROM usuarios WHERE email = ?', [email]);
+    if (existe.length > 0) {
       return res.status(400).json({ error: 'E-mail já cadastrado' });
     }
 
     const hashSenha = await bcrypt.hash(senha, 10);
-
     const [result] = await conexao.query(
       'INSERT INTO usuarios (nome, email, senha, papel) VALUES (?, ?, ?, ?)',
-      [nome, email, hashSenha, 'cliente']
+      [nome, email, hashSenha, papel || 'artesa']
     );
-
-    res.status(201).json({
-      id: result.insertId,
-      nome,
-      email,
-      papel: 'cliente'
-    });
-
-  } catch (error) {
-    console.error(error);
+    res.status(201).json({ id: result.insertId, nome, email, papel: papel || 'artesa' });
+  } catch {
     res.status(500).json({ error: 'Erro ao criar usuário' });
   }
 });
 
-router.put('/me', autenticar, async (req, res) => {
-  const { nome, email } = req.body;
-
+// GET /usuarios/:id - admin apenas
+router.get('/:id', autenticar, autorizar('admin'), async (req, res) => {
+  const { id } = req.params;
   try {
-    const userId = req.usuario.id;
-
-    const [userExists] = await conexao.query(
-      'SELECT id FROM usuarios WHERE id = ?',
-      [userId]
+    const [usuarios] = await conexao.query(
+      'SELECT id, nome, email, papel FROM usuarios WHERE id = ?',
+      [id]
     );
-
-    if (!userExists.length) {
-      return res.status(404).json({ error: 'Usuário não encontrado' });
-    }
-
-    await conexao.query(
-      'UPDATE usuarios SET nome = ?, email = ? WHERE id = ?',
-      [nome, email, userId]
-    );
-
-    res.json({ message: 'Dados atualizados com sucesso' });
-
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Erro ao atualizar dados' });
+    if (usuarios.length === 0) return res.status(404).json({ error: 'Usuário não encontrado' });
+    res.json(usuarios[0]);
+  } catch {
+    res.status(500).json({ error: 'Erro ao buscar usuário' });
   }
 });
 
-router.put('/mudar-senha', autenticar, async (req, res) => {
-  const { senhaAtual, novaSenha } = req.body;
+// PUT /usuarios/:id - admin apenas
+router.put('/:id', autenticar, autorizar('admin'), async (req, res) => {
+  const { id } = req.params;
+  const { nome, email, senha, papel } = req.body;
 
   try {
-    const userId = req.usuario.id;
-
-    const [usuarios] = await conexao.query(
-      'SELECT * FROM usuarios WHERE id = ?',
-      [userId]
+    const hashSenha = senha ? await bcrypt.hash(senha, 10) : undefined;
+    const [result] = await conexao.query(
+      'UPDATE usuarios SET nome = ?, email = ?, senha = COALESCE(?, senha), papel = ? WHERE id = ?',
+      [nome, email, hashSenha, papel, id]
     );
+    if (result.affectedRows === 0) return res.status(404).json({ error: 'Usuário não encontrado' });
 
-    if (!usuarios.length) {
-      return res.status(404).json({ error: 'Usuário não encontrado' });
-    }
+    res.json({ id, nome, email, papel });
+  } catch {
+    res.status(500).json({ error: 'Erro ao atualizar usuário' });
+  }
+});
 
-    const usuario = usuarios[0];
+// DELETE /usuarios/:id - admin apenas
+router.delete('/:id', autenticar, autorizar('admin'), async (req, res) => {
+  const { id } = req.params;
+  try {
+    const [result] = await conexao.query('DELETE FROM usuarios WHERE id = ?', [id]);
+    if (result.affectedRows === 0) return res.status(404).json({ error: 'Usuário não encontrado' });
 
-    const senhaCorreta = await bcrypt.compare(senhaAtual, usuario.senha);
-
-    if (!senhaCorreta) {
-      return res.status(400).json({ error: 'Senha atual incorreta' });
-    }
-
-    const novaSenhaHash = await bcrypt.hash(novaSenha, 10);
-
-    await conexao.query(
-      'UPDATE usuarios SET senha = ? WHERE id = ?',
-      [novaSenhaHash, userId]
-    );
-
-    res.json({ message: 'Senha alterada com sucesso' });
-
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Erro ao alterar senha' });
+    res.json({ message: 'Usuário deletado com sucesso' });
+  } catch {
+    res.status(500).json({ error: 'Erro ao deletar usuário' });
   }
 });
 
