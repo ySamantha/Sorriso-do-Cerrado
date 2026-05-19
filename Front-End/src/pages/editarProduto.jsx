@@ -65,6 +65,13 @@ function EditarProduto() {
     event.preventDefault();
     setError('');
 
+    const precoFormatado = parseFloat(preco);
+
+    if (isNaN(precoFormatado) || precoFormatado <= 0) {
+      setError('O preço do produto deve ser maior que zero.');
+      return; 
+    }
+
     try {
       const token = localStorage.getItem('token');
 
@@ -73,7 +80,7 @@ function EditarProduto() {
       const produtoAtualizado = {
         nome,
         descricao,
-        preco: parseFloat(preco),
+        preco: precoFormatado,
         estoque: parseInt(estoque, 10),
         imagemURL: urlFinal
       };
@@ -89,7 +96,7 @@ function EditarProduto() {
 
     } catch (err) {
       console.error(err);
-      setError('Falha ao atualizar o produto.');
+      setError(err.response?.data?.error || 'Falha ao atualizar o produto.');
     }
   };
 
@@ -117,7 +124,8 @@ function EditarProduto() {
 
             <div className={styles.campoFormulario}>
               <label>Preço</label>
-              <input type="number" value={preco} onChange={(e) => setPreco(e.target.value)} required step="0.01" />
+              <input 
+                type="number" value={preco} onChange={(e) => setPreco(e.target.value)} required step="0.01" min="0.1" />
             </div>
 
             <div className={styles.campoFormulario}>

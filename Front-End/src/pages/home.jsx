@@ -38,11 +38,13 @@ function Home() {
 
   const buscarFavoritos = async () => {
     const token = localStorage.getItem('token');
+
     if (token) {
       try {
         const response = await axios.get('http://localhost:3000/favoritos', {
           headers: { Authorization: `Bearer ${token}` }
         });
+
         setFavoritosIds(response.data.map(fav => fav.id));
       } catch (error) {
         console.error('Erro ao buscar favoritos:', error);
@@ -54,6 +56,7 @@ function Home() {
     try {
       const formData = new FormData();
       formData.append('imagem', arquivo);
+
       const token = localStorage.getItem('token');
 
       await axios.put(`http://localhost:3000/banners/${bannerId}`, formData, {
@@ -62,6 +65,7 @@ function Home() {
           Authorization: `Bearer ${token}`,
         },
       });
+
       await buscarBanners();
     } catch (error) {
       console.error('Erro ao atualizar banner:', error);
@@ -74,6 +78,7 @@ function Home() {
       await buscarProdutos();
       await buscarBanners();
     };
+
     carregarDadosIniciais();
   }, []);
 
