@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-05-17T21:27:21.838Z",
+    "end": "2026-05-17T21:27:30.973Z",
+    "duration": 9135,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "91e9d59b-d5cf-4ae4-9f7b-aea2055c2b37",
+      "title": "",
+      "fullFile": "cypress\\e2e\\carrinho.cy.js",
+      "file": "cypress\\e2e\\carrinho.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "96c7d242-04b8-4f56-a193-369d73add2e5",
+          "title": "CT-002 - Consistência no cálculo e soma do carrinho de compras",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve adicionar produtos com quantidades variadas e calcular o total correto",
+              "fullTitle": "CT-002 - Consistência no cálculo e soma do carrinho de compras Deve adicionar produtos com quantidades variadas e calcular o total correto",
+              "timedOut": null,
+              "duration": 6150,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('Vaso de Barro').click();\ncy.get('input[type=\"number\"]').clear().type('2');\ncy.contains('Adicionar ao Carrinho').click();\ncy.visit('http://localhost:5173');\ncy.contains('Tapete de Tear').click();\ncy.contains('Adicionar ao Carrinho').click();\ncy.visit('http://localhost:5173/carrinho');\ncy.contains('R$ 90,00').should('be.visible');\ncy.contains('R$ 130,00').should('be.visible');\ncy.get('.total-geral').should('contain', 'R$ 220,00');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Vaso de Barro' but never did.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Vaso de Barro' but never did.\n    at Context.eval (webpack://sorrisocerrado-vite/./cypress/e2e/carrinho.cy.js:8:7)",
+                "diff": null
+              },
+              "uuid": "138a7d36-3972-4cf5-acb0-f75b315bf675",
+              "parentUUID": "96c7d242-04b8-4f56-a193-369d73add2e5",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "138a7d36-3972-4cf5-acb0-f75b315bf675"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 6150,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

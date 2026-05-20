@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-05-17T21:30:37.049Z",
+    "end": "2026-05-17T21:30:44.994Z",
+    "duration": 7945,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "738cdcbb-3362-4096-b79c-06e38055b428",
+      "title": "",
+      "fullFile": "cypress\\e2e\\carrinho.cy.js",
+      "file": "cypress\\e2e\\carrinho.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "0938e435-bf5c-424d-92e4-a230131b1135",
+          "title": "CT-002 - Consistência no cálculo e soma do carrinho de compras",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve adicionar produtos clicando múltiplas vezes e calcular o total correto",
+              "fullTitle": "CT-002 - Consistência no cálculo e soma do carrinho de compras Deve adicionar produtos clicando múltiplas vezes e calcular o total correto",
+              "timedOut": null,
+              "duration": 5706,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// --- PRODUTO 1: Vaso de Barro (Adicionar 2 unidades) ---\n// ATENÇÃO: Ajuste o texto 'Vaso de Barro' para o nome exato que aparece na sua vitrine!\ncy.contains('Vaso de Barro').click();\n// Como seu sistema adiciona por cliques, simulamos 2 cliques seguidos no botão\ncy.contains('Adicionar ao Carrinho').click();\ncy.contains('Adicionar ao Carrinho').click();\n// Volta para a vitrine para buscar o segundo item\ncy.visit('http://localhost:5173');\n// --- PRODUTO 2: Tapete de Tear (Adicionar 1 unidade) ---\n// ATENÇÃO: Ajuste o texto 'Tapete de Tear' para o nome exato que aparece na sua vitrine!\ncy.contains('Tapete de Tear').click();\n// Clica apenas 1 vez para adicionar uma unidade\ncy.contains('Adicionar ao Carrinho').click();\n// --- VALIDAÇÃO NO CARRINHO ---\n// Navega até a tela onde a soma é exibida\ncy.visit('http://localhost:5173/carrinho');\n// EXIGÊNCIA DO CT-002: Verifica se a somatória final calculada é exatamente R$ 220,00\n// O Cypress vai varrer a tela procurando pelo texto do valor total\ncy.contains('R$ 220,00').should('be.visible');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Vaso de Barro' but never did.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Vaso de Barro' but never did.\n    at Context.eval (webpack://sorrisocerrado-vite/./cypress/e2e/carrinho.cy.js:12:7)",
+                "diff": null
+              },
+              "uuid": "df980bb2-fec2-4b92-a348-46963f77493f",
+              "parentUUID": "0938e435-bf5c-424d-92e4-a230131b1135",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "df980bb2-fec2-4b92-a348-46963f77493f"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 5706,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}
