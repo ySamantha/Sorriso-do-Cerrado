@@ -26,18 +26,23 @@ router.post('/', autenticar, async (req: RequisicaoAutenticada, res: Response) =
       return res.status(401).json({ error: 'Não autenticado' });
     }
 
-    const { produto_id } = req.body;
+    const id_produto = req.body.id_produto ?? req.body.produto_id;
 
-    await FavoritoModel.adicionar(req.usuario.id, Number(produto_id));
+    if (!id_produto || isNaN(Number(id_produto))) {
+      return res.status(400).json({ error: 'id_produto é obrigatório e deve ser numérico' });
+    }
+
+    await FavoritoModel.adicionar(req.usuario.id, Number(id_produto));
 
     res.status(201).json({ message: 'Favorito adicionado' });
   } catch (err) {
+    console.error('Erro ao adicionar favorito:', err);
     res.status(500).json({ error: 'Erro ao adicionar favorito' });
   }
 });
 
 router.delete(
-  '/:produto_id',
+  '/:id_produto',
   autenticar,
   async (req: RequisicaoAutenticada, res: Response) => {
     try {
@@ -45,13 +50,16 @@ router.delete(
         return res.status(401).json({ error: 'Não autenticado' });
       }
 
-      const produtoId = Array.isArray(req.params.produto_id)
-        ? req.params.produto_id[0]
-        : req.params.produto_id;
+      const paramId = req.params.id_produto ?? req.params.produto_id;
+      const id = Array.isArray(paramId) ? paramId[0] : paramId;
+
+      if (!id || isNaN(Number(id))) {
+        return res.status(400).json({ error: 'id_produto é obrigatório e deve ser numérico' });
+      }
 
       await FavoritoModel.remover(
         req.usuario.id,
-        Number(produtoId)
+        Number(id)
       );
 
       res.json({ message: 'Favorito removido' });

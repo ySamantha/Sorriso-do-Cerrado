@@ -123,7 +123,7 @@ def rodar_fluxo_completo():
 
         # --- ETAPA 4: COMPRA E FAVORITOS ---
         print("\n❤️ [USUÁRIO] 6. Adicionando item aos favoritos...")
-        status, res = requisicao("/favoritos", method="POST", body={"produto_id": id_produto}, token=token_user)
+        status, res = requisicao("/favoritos", method="POST", body={"id_produto": id_produto}, token=token_user)
         assert status == 201, f"Erro ao favoritar: {res}"
         print("   ✔ Item favoritado!")
 
