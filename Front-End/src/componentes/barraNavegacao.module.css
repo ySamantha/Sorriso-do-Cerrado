@@ -150,28 +150,26 @@
 
 .menuUsuario {
   position: relative;
-
   list-style: none;
+  display: flex;
+  align-items: center;
 }
 
 /* BOTÃO CONFIGURAÇÕES */
 
 .botaoMenu {
   background: transparent;
-
   border: none;
-
   color: #4A3B31;
-
   cursor: pointer;
-
-  font-size: 16px;
-
-  font-weight: 600;
-
-  padding: 8px 12px;
-
-  transition: 0.2s;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: normal;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  line-height: inherit;
+  transition: color 0.2s ease-in-out;
 }
 
 .botaoMenu:hover {
@@ -182,24 +180,15 @@
 
 .menuDropdown {
   position: absolute;
-
-  top: 45px;
+  top: calc(100% + 12px);
   right: 0;
-
   background: white;
-
   border-radius: 12px;
-
   min-width: 220px;
-
   display: flex;
-
   flex-direction: column;
-
   overflow: hidden;
-
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-
   z-index: 1000;
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { imagens } from '../imagens';
 import { useAuth } from '../auth/authContext';
@@ -11,6 +11,22 @@ function BarraNavegacao() {
   const navigate = useNavigate();
 
   const [menuAberto, setMenuAberto] = useState(false);
+  const menuRef = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    const handleClickFora = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMenuAberto(false);
+      }
+    };
+
+    if (menuAberto) {
+      document.addEventListener('mousedown', handleClickFora);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickFora);
+    };
+  }, [menuAberto]);
 
   const handleLogout = () => {
     logout();
@@ -38,12 +54,12 @@ function BarraNavegacao() {
         <li><Link to="/produtos">Produtos</Link></li>
 
         {isAuthenticated ? (
-          <li className={styles.menuUsuario}>
+          <li className={styles.menuUsuario} ref={menuRef}>
             <button
               className={styles.botaoMenu}
               onClick={() => setMenuAberto(!menuAberto)}
             >
-              Configurações ▼
+              Configurações
             </button>
 
             {menuAberto && (
@@ -55,12 +71,18 @@ function BarraNavegacao() {
                   Editar Dados
                 </Link>
 
-                <Link to="/mudar-senha">
+                <Link
+                  to="/mudar-senha"
+                  onClick={() => setMenuAberto(false)}
+                >
                   Mudar Senha
                 </Link>
 
                 {isAdmin && (
-                  <Link to="/admin">
+                  <Link
+                    to="/admin"
+                    onClick={() => setMenuAberto(false)}
+                  >
                     Painel Admin
                   </Link>
                 )}
