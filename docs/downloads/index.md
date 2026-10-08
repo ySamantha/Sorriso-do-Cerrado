@@ -4,7 +4,7 @@ Nesta página você pode baixar os documentos originais elaborados pela equipe a
 
 ---
 
-## 📄 Documentos de Análise e Projeto de Software
+## Documentos de Análise e Projeto de Software
 
 | Documento | Versão | Formato PDF | Formato DOCX |
 | :--- | :---: | :---: | :---: |
@@ -17,7 +17,7 @@ Nesta página você pode baixar os documentos originais elaborados pela equipe a
 
 ---
 
-## 🧪 Documentos de Teste e Garantia da Qualidade
+## Documentos de Teste e Garantia da Qualidade
 
 | Documento | Descrição | Formato PDF | Formato DOCX / CSV |
 | :--- | :--- | :---: | :---: |
@@ -31,14 +31,14 @@ Nesta página você pode baixar os documentos originais elaborados pela equipe a
 
 ---
 
-## 📽️ Apresentações de Slides
+## Apresentações de Slides
 
 * [Baixar Slides — Apresentação de Análise & Projeto (Pitch)](../assets/apresentacoes/apresentacao-analise_projeto-pitch.pdf)
 * [Baixar Slides — Apresentação de Teste de Software](../assets/apresentacoes/apresentacao-teste-de-software.pdf)
 
 ---
 
-## 📐 Diagramas Editáveis (.drawio)
+## Diagramas Editáveis (.drawio)
 
 * [Casos de Uso Geral](../assets/diagramas/1-casos-de-uso/1-CasosdeUso.drawio)
 * [Fluxo Geral de Navegação](../assets/diagramas/2-fluxos-de-navegacao/1-FluxoGeral.drawio)

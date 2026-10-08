@@ -4,7 +4,7 @@ A modelagem estática e comportamental do sistema aprofunda o funcionamento téc
 
 ---
 
-## 1. Diagrama de Classes — Autenticação e Login (UC001)
+## 1. Diagrama de Classes Autenticação e Login (UC001)
 
 O Diagrama de Classes abaixo mapeia as entidades, componentes React, rotas Express, middlewares de segurança e estruturas de persistência que tornam viável o processo de login seguro e controle de acesso por papéis.
 
@@ -19,7 +19,7 @@ O Diagrama de Classes abaixo mapeia as entidades, componentes React, rotas Expre
 
 ---
 
-## 2. Diagrama de Sequência — Autenticação e Login (UC001)
+## 2. Diagrama de Sequência Autenticação e Login (UC001)
 
 O Diagrama de Sequência ilustra a troca de mensagens ao longo do tempo entre o usuário, os módulos front-end, a API back-end e o banco de dados durante a operação de login.
 

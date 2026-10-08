@@ -5,7 +5,7 @@
 
 ---
 
-## 🔐 Módulo de Autenticação
+## Módulo de Autenticação
 
 ### HU01 — Login no Sistema
 * **Descrição:** Como usuário (cliente ou administrador), eu quero realizar login utilizando meu e-mail e senha cadastrados para acessar as funcionalidades exclusivas da plataforma de acordo com o meu perfil.
@@ -24,7 +24,7 @@
 
 ---
 
-## 🛍️ Módulo de Catálogo e Produtos
+## Módulo de Catálogo e Produtos
 
 ### HU03 — Visualização do Catálogo
 * **Descrição:** Como consumidor, eu quero visualizar todas as peças artesanais em uma grade organizada para conhecer as opções disponíveis para compra.
@@ -46,7 +46,7 @@
 
 ---
 
-## ❤️ Módulo de Favoritos
+## Módulo de Favoritos
 
 ### HU06 — Favoritar Produto
 * **Descrição:** Como cliente autenticado, eu quero clicar no ícone de coração de um produto para adicioná-lo à minha lista pessoal de favoritos.
@@ -57,7 +57,7 @@
 
 ---
 
-## 🛒 Módulo de Carrinho e Checkout
+## Módulo de Carrinho e Checkout
 
 ### HU07 — Adicionar ao Carrinho
 * **Descrição:** Como cliente, eu quero adicionar produtos ao carrinho de compras para acumular várias peças em uma mesma compra.

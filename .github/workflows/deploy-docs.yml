@@ -29,3 +29,4 @@ jobs:
 
       - name: Publicar no GitHub Pages
         run: mkdocs gh-deploy --force
+
