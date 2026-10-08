@@ -1,0 +1,152 @@
+:root {
+  /* Identidade Visual Sorriso do Cerrado */
+  --sorriso-creme: #FAF3E0;        /* Fundo geral da aplicação */
+  --sorriso-marrom-texto: #4A3B31; /* Cor do texto padrão e rodapé */
+  --sorriso-terracota: #8D5B4C;    /* Cor primária: Títulos h1/h2/h3 e botões */
+  --sorriso-terracota-dark: #714A3E; /* Hover de botões primários */
+  --sorriso-sienna: #A0522D;       /* Links e detalhes de destaque */
+  --sorriso-dourado: #D2B48C;      /* Hover de navegação (capim dourado) */
+  --sorriso-verde: #2E7D32;        /* Sucesso / Finalizar compra */
+  --sorriso-vermelho: #C62828;     /* Erros / Alertas / Badges */
+
+  /* Mapeamento para variáveis do Material for MkDocs */
+  --md-primary-fg-color:            var(--sorriso-terracota);
+  --md-primary-fg-color--light:     var(--sorriso-sienna);
+  --md-primary-fg-color--dark:      var(--sorriso-marrom-texto);
+  --md-accent-fg-color:             var(--sorriso-sienna);
+  --md-accent-fg-color--transparent: rgba(160, 82, 45, 0.1);
+}
+
+[data-md-color-scheme="default"] {
+  /* Fundo principal em creme suave (#FAF3E0) */
+  --md-default-bg-color:          #FAF3E0;
+  --md-default-bg-color--light:   #FFFFFF;
+  --md-default-bg-color--lighter: #F5ECD4;
+  --md-default-bg-color--lightest:#EFE2C5;
+
+  /* Texto principal em marrom terroso (#4A3B31) */
+  --md-default-fg-color:          #4A3B31;
+  --md-default-fg-color--light:   #635144;
+  --md-default-fg-color--lighter: #7D695B;
+  --md-default-fg-color--lightest:#B8A899;
+
+  /* Tipografia e links */
+  --md-typeset-color:             #4A3B31;
+  --md-typeset-a-color:           #A0522D;
+
+  /* Barra de navegação e cabeçalho */
+  --md-primary-fg-color:          #8D5B4C;
+  --md-primary-fg-color--light:   #A0522D;
+  --md-primary-fg-color--dark:    #4A3B31;
+  --md-primary-bg-color:          #FAF3E0;
+  --md-primary-bg-color--light:   #FFFFFF;
+
+  --md-accent-fg-color:           #A0522D;
+
+  /* Código e caixas */
+  --md-code-bg-color:             #F5ECD4;
+  --md-code-fg-color:             #4A3B31;
+}
+
+
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color:          #251E19;
+  --md-default-bg-color--light:   #2F2620;
+  --md-default-bg-color--lighter: #3B3029;
+  --md-default-bg-color--lightest:#4A3C33;
+
+  --md-default-fg-color:          #FAF3E0;
+  --md-default-fg-color--light:   #EAE0CE;
+  --md-default-fg-color--lighter: #D2B48C;
+  --md-default-fg-color--lightest:#7D695B;
+
+  --md-typeset-color:             #FAF3E0;
+  --md-typeset-a-color:           #D2B48C;
+
+  --md-primary-fg-color:          #4A3B31;
+  --md-primary-fg-color--light:   #8D5B4C;
+  --md-primary-fg-color--dark:    #1F1914;
+
+  --md-accent-fg-color:           #D2B48C;
+
+  --md-code-bg-color:             #1F1914;
+  --md-code-fg-color:             #FAF3E0;
+}
+
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
+  color: var(--sorriso-terracota) !important;
+  font-weight: 700;
+}
+
+.md-typeset a {
+  color: var(--sorriso-sienna);
+  transition: color 0.2s ease-in-out;
+}
+
+.md-typeset a:hover {
+  color: var(--sorriso-dourado) !important;
+}
+
+
+.md-tabs {
+  background-color: var(--sorriso-terracota-dark) !important;
+}
+
+.md-tabs__link {
+  color: #FAF3E0 !important;
+  opacity: 0.85;
+  transition: opacity 0.2s, color 0.2s;
+}
+
+.md-tabs__link:hover,
+.md-tabs__item--active .md-tabs__link {
+  opacity: 1 !important;
+  color: #FFFFFF !important;
+  border-bottom: 2px solid var(--sorriso-dourado);
+}
+
+.md-header {
+  background-color: var(--sorriso-terracota) !important;
+  box-shadow: 0 2px 8px rgba(74, 59, 49, 0.25) !important;
+}
+
+.md-typeset .admonition.note,
+.md-typeset details.note {
+  border-color: var(--sorriso-terracota);
+}
+
+.md-typeset .admonition.success,
+.md-typeset details.success {
+  border-color: var(--sorriso-verde);
+}
+
+/* Cards e Tabelas */
+.md-typeset table:not([class]) {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(74, 59, 49, 0.08);
+  overflow: hidden;
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) {
+  background-color: #2F2620;
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--sorriso-terracota);
+  color: #FFFFFF !important;
+}
+
+.md-footer {
+  background-color: var(--sorriso-marrom-texto) !important;
+  color: #FAF3E0 !important;
+}
+
+.md-footer-meta {
+  background-color: #382D25 !important;
+}
+
