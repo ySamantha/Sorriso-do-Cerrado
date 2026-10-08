@@ -80,25 +80,34 @@ function Home() {
     arquivo: File
   ) => {
     try {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        alert('Você precisa estar autenticado como administrador para alterar o banner.');
+        return;
+      }
+
       const formData = new FormData();
       formData.append('imagem', arquivo);
-
-      const token = localStorage.getItem('token');
 
       await axios.put(
         `http://localhost:3000/banners/${bannerId}`,
         formData,
         {
           headers: {
-            'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${token}`,
           },
         }
       );
 
       await buscarBanners();
-    } catch (error) {
+      alert('Banner atualizado com sucesso!');
+    } catch (error: unknown) {
       console.error('Erro ao atualizar banner:', error);
+      const mensagem = axios.isAxiosError(error)
+        ? error.response?.data?.error
+        : undefined;
+      alert(mensagem || 'Erro ao atualizar banner.');
     }
   };
 
@@ -158,6 +167,7 @@ function Home() {
                       if (arquivo) {
                         alterarBanner(banner.id, arquivo);
                       }
+                      e.target.value = '';
                     }}
                   />
                 </>

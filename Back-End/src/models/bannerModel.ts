@@ -27,6 +27,15 @@ const BannerModel = {
       .orderBy(asc(banners.ordem));
   },
 
+  buscarPorId: async (id: string | number): Promise<Banner | null> => {
+    const resultado = await db
+      .select()
+      .from(banners)
+      .where(eq(banners.id, Number(id)));
+
+    return resultado[0] ?? null;
+  },
+
   criar: async (banner: Banner): Promise<Banner> => {
     const { titulo, imagemURL, link, ordem } = banner;
 
@@ -41,6 +50,27 @@ const BannerModel = {
       id: Number(resultado[0].insertId),
       ...banner,
     };
+  },
+
+  atualizar: async (
+    id: string | number,
+    dados: Partial<Banner>
+  ): Promise<boolean> => {
+    const bannerExistente = await db
+      .select()
+      .from(banners)
+      .where(eq(banners.id, Number(id)));
+
+    if (bannerExistente.length === 0) {
+      return false;
+    }
+
+    await db
+      .update(banners)
+      .set(dados)
+      .where(eq(banners.id, Number(id)));
+
+    return true;
   },
 
   deletar: async (id: string | number): Promise<boolean> => {

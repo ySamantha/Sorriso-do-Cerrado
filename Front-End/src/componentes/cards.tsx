@@ -50,7 +50,7 @@ function CartaoProduto({
         const token = localStorage.getItem('token');
 
         if (!token) {
-            alert("Sessão expirada.");
+            alert("Você precisa fazer login para favoritar produtos.");
             return;
         }
 
@@ -83,6 +83,7 @@ function CartaoProduto({
             }
         } catch (err: unknown) {
             console.error("Erro na API:", err);
+            alert("Não foi possível atualizar os favoritos. Tente novamente.");
         }
     };
 
