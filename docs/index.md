@@ -17,7 +17,6 @@ graph LR
 
 ### Equipe de Engenharia de Software
 * **Pedro Henrique Cavalcante de Sousa**
-* **Pedro Henrique Nunes de Freitas**
 * **Samantha Yumi Tanaka** 
 * **Samuel Batista Rennó**
 * **Vinicios Trindade Costa**
