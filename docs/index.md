@@ -1,4 +1,4 @@
-# Sorriso do Cerrado — Documentação do Sistema
+# Sorriso do Cerrado - Documentação do Sistema
 
 Bem-vindo à documentação oficial do projeto **Sorriso do Cerrado**, uma plataforma de comércio eletrônico (*e-commerce*) desenvolvida com foco no artesanato regional e sustentável, promovendo a autonomia digital e a inclusão produtiva de artesãos do Cerrado brasileiro.
 
@@ -18,13 +18,12 @@ graph LR
 ### Equipe de Engenharia de Software
 * **Pedro Henrique Cavalcante de Sousa**
 * **Pedro Henrique Nunes de Freitas**
-* **Samantha Yumi Tanaka** (Gestora do Projeto)
+* **Samantha Yumi Tanaka** 
 * **Samuel Batista Rennó**
-* **Vinicios Trindade Costa** (Gerente de Projeto)
+* **Vinicios Trindade Costa**
 * **Wictor Emanoel Ponte Menezes**
 
-**Orientador Acadêmico:** Prof. Alexandre Silva dos Santos  
-**Instituição:** Universidade Católica de Brasília (UCB) — Pró-Reitoria Acadêmica
+**Instituição:** Universidade Católica de Brasília (UCB) 
 
 ---
 
