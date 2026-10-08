@@ -2,7 +2,7 @@
 
 **Versão:** 1.0  
 **Data:** 18/04/2026  
-**Autores:** Samantha Yumi Tanaka (Gestora), Vinicios Trindade Costa (Gerente), Pedro Henrique Cavalcante, Pedro Henrique Nunes, Samuel Batista Rennó, Wictor Emanoel Ponte Menezes.  
+**Autores:** Samantha Yumi Tanaka, Vinicios Trindade Costa, Pedro Henrique Cavalcante, Samuel Batista Rennó, Wictor Emanoel Ponte Menezes.  
 **Modelo Teórico Adotado:** Modelo de Visões Arquiteturais "4+1" de Philippe Kruchten.
 
 ---
