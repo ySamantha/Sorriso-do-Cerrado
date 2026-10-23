@@ -25,13 +25,14 @@ export const buscarProdutoPorId = async (req: Request, res: Response) => {
 
 export const criarProduto = async (req: Request, res: Response) => {
   try {
-    const { nome, descricao, preco, estoque, imagemURL } = req.body;
+    const { nome, descricao, preco, estoque, imagemURL, idCategoria } = req.body;
     const novoProduto = await ProdutoModel.criar({
       nome,
       descricao,
       preco,
       estoque,
-      imagemURL
+      imagemURL,
+      idCategoria
     });
     res.status(201).json(novoProduto);
   } catch (err) {
@@ -42,13 +43,14 @@ export const criarProduto = async (req: Request, res: Response) => {
 export const atualizarProduto = async (req: Request, res: Response) => {
   try {
     const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
-    const { nome, descricao, preco, estoque, imagemURL } = req.body;
+    const { nome, descricao, preco, estoque, imagemURL, idCategoria } = req.body;
     const atualizado = await ProdutoModel.atualizar(id, {
       nome,
       descricao,
       preco,
       estoque,
-      imagemURL
+      imagemURL,
+      idCategoria
     });
 
     if (!atualizado) {

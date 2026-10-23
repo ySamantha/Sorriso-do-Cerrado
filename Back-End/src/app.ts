@@ -5,6 +5,7 @@ import cors from 'cors';
 
 import { migrate } from 'drizzle-orm/mysql2/migrator'; // <--- 1. IMPORTAR MIGRATE
 
+import categoriasRoutes from "./routes/categorias.js";
 import produtosRoutes from './routes/produtos.js';
 import usuariosRoutes from './routes/usuarios.js';
 import vendasRoutes from './routes/vendas.js';
@@ -30,6 +31,7 @@ app.use(cors({
 
 app.use(express.json());
 
+app.use("/categorias", categoriasRoutes);
 app.use('/produtos', produtosRoutes);
 app.use('/usuarios', usuariosRoutes);
 app.use('/vendas', vendasRoutes);

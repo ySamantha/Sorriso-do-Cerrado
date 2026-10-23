@@ -18,6 +18,11 @@ export const usuarios = mysqlTable("usuarios", {
   papel: mysqlEnum("papel", ["admin", "artesa", "cliente"]).default("cliente"),
 });
 
+export const categorias = mysqlTable("categorias", {
+  id: int("id").autoincrement().primaryKey(),
+  nome: varchar("nome", { length: 100 }).notNull().unique(),
+});
+
 export const produtos = mysqlTable("produtos", {
   id: int("id").autoincrement().primaryKey(),
   nome: varchar("nome", { length: 100 }).notNull(),
@@ -25,6 +30,11 @@ export const produtos = mysqlTable("produtos", {
   preco: decimal("preco", { precision: 10, scale: 2 }).notNull(),
   estoque: int("estoque").default(0),
   imagemURL: varchar("imagemURL", { length: 255 }),
+  
+  idCategoria: int("id_categoria").references(
+    () => categorias.id,
+    { onDelete: "set null" }
+  ),
 });
 
 export const vendas = mysqlTable("vendas", {
