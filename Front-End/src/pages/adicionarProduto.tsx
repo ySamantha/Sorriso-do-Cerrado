@@ -23,38 +23,21 @@ function AdicionarProduto() {
       const formData = new FormData();
       formData.append('imagem', arquivoImagem);
 
-      const res = await axios.post(
-        'http://localhost:3000/upload',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }
-      );
-
-      console.log("UPLOAD OK:", res.data.url);
+      const res = await axios.post('http://localhost:3000/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        withCredentials: true,
+      });
 
       return res.data.url;
     } catch (err: unknown) {
-      const detalhes = axios.isAxiosError(err)
-        ? err.response?.data
-        : err instanceof Error
-          ? err.message
-          : err;
-
-      console.error(
-        "Erro no upload:",
-        detalhes
-      );
-
+      console.error('Erro no upload:', err);
       throw new Error('Falha no upload da imagem');
     }
   };
 
-  const handleSubmit = async (
-    event: React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError('');
 
@@ -68,13 +51,6 @@ function AdicionarProduto() {
     }
 
     try {
-      const token = localStorage.getItem('token');
-
-      if (!token) {
-        setError('Usuário não autenticado');
-        return;
-      }
-
       const urlFinal = await handleUploadImagem();
 
       const novoProduto = {
@@ -82,69 +58,38 @@ function AdicionarProduto() {
         descricao,
         preco: precoFormatado,
         estoque: parseInt(estoque, 10),
-        imagemURL: urlFinal
+        imagemURL: urlFinal,
       };
 
-      console.log("ENVIANDO PRODUTO:", novoProduto);
-
-      await axios.post(
-        'http://localhost:3000/produtos',
-        novoProduto,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
-        }
-      );
+      await axios.post('http://localhost:3000/produtos', novoProduto, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true,
+      });
 
       alert('Produto adicionado com sucesso!');
       navigate('/admin');
-
     } catch (err: unknown) {
-      const detalhes = axios.isAxiosError(err)
-        ? err.response?.data
-        : err instanceof Error
-          ? err.message
-          : err;
-
-      console.error(
-        "ERRO COMPLETO:",
-        detalhes
-      );
-
       const mensagem = axios.isAxiosError(err)
         ? err.response?.data?.error
         : undefined;
 
-      setError(
-        mensagem ||
-        'Erro ao adicionar produto'
-      );
+      setError(mensagem || 'Erro ao adicionar produto');
     }
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        minHeight: '100vh'
-      }}
-    >
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <BarraNavegacao />
 
-      <main
-        className="conteudo-geral"
-        style={{ padding: '2rem', flex: 1 }}
-      >
+      <main className="conteudo-geral" style={{ padding: '2rem', flex: 1 }}>
         <div className={styles.formularioContainer}>
           <form onSubmit={handleSubmit}>
             <h2>Adicionar Novo Produto</h2>
 
             <div className={styles.campoFormulario}>
               <label>Nome do Produto</label>
-
               <input
                 type="text"
                 value={nome}
@@ -155,7 +100,6 @@ function AdicionarProduto() {
 
             <div className={styles.campoFormulario}>
               <label>Descrição</label>
-
               <textarea
                 value={descricao}
                 onChange={(e) => setDescricao(e.target.value)}
@@ -165,7 +109,6 @@ function AdicionarProduto() {
 
             <div className={styles.campoFormulario}>
               <label>Preço</label>
-
               <input
                 type="number"
                 value={preco}
@@ -178,7 +121,6 @@ function AdicionarProduto() {
 
             <div className={styles.campoFormulario}>
               <label>Estoque</label>
-
               <input
                 type="number"
                 value={estoque}
@@ -189,7 +131,6 @@ function AdicionarProduto() {
 
             <div className={styles.campoFormulario}>
               <label>Upload de imagem</label>
-
               <input
                 type="file"
                 accept="image/*"
@@ -203,7 +144,6 @@ function AdicionarProduto() {
 
             <div className={styles.campoFormulario}>
               <label>URL da imagem</label>
-
               <input
                 type="text"
                 value={imagemURL}
@@ -211,16 +151,9 @@ function AdicionarProduto() {
               />
             </div>
 
-            {error && (
-              <p className={styles.mensagemErro}>
-                {error}
-              </p>
-            )}
+            {error && <p className={styles.mensagemErro}>{error}</p>}
 
-            <button
-              type="submit"
-              className={styles.botaoSubmit}
-            >
+            <button type="submit" className={styles.botaoSubmit}>
               Salvar Produto
             </button>
           </form>

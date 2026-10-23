@@ -1,21 +1,70 @@
 import {
   mysqlTable,
-  int,
   varchar,
   text,
-  decimal,
-  mysqlEnum,
-  datetime,
+  int,
   boolean,
+  datetime,
+  mysqlEnum,
+  decimal,
   unique,
 } from "drizzle-orm/mysql-core";
 
-export const usuarios = mysqlTable("usuarios", {
-  id: int("id").autoincrement().primaryKey(),
-  nome: varchar("nome", { length: 100 }).notNull(),
-  email: varchar("email", { length: 100 }).notNull().unique(),
-  senha: varchar("senha", { length: 255 }).notNull(),
+// ==========================================
+// TABELAS DO BETTER AUTH
+// ==========================================
+
+export const user = mysqlTable("user", {
+  id: varchar("id", { length: 36 }).primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 255 }).notNull().unique(),
+  emailVerified: boolean("email_verified").notNull().default(false),
+  image: text("image"),
+  createdAt: datetime("created_at").notNull(),
+  updatedAt: datetime("updated_at").notNull(),
   papel: mysqlEnum("papel", ["admin", "artesa", "cliente"]).default("cliente"),
+});
+
+export const usuarios = user;
+
+export const session = mysqlTable("session", {
+  id: varchar("id", { length: 36 }).primaryKey(),
+  expiresAt: datetime("expires_at").notNull(),
+  token: varchar("token", { length: 255 }).notNull().unique(),
+  createdAt: datetime("created_at").notNull(),
+  updatedAt: datetime("updated_at").notNull(),
+  ipAddress: text("ip_address"),
+  userAgent: text("user_agent"),
+  userId: varchar("user_id", { length: 36 })
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+});
+
+export const account = mysqlTable("account", {
+  id: varchar("id", { length: 36 }).primaryKey(),
+  accountId: text("account_id").notNull(),
+  providerId: text("provider_id").notNull(),
+  userId: varchar("user_id", { length: 36 })
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  accessToken: text("access_token"),
+  refreshToken: text("refresh_token"),
+  idToken: text("id_token"),
+  accessTokenExpiresAt: datetime("access_token_expires_at"),
+  refreshTokenExpiresAt: datetime("refresh_token_expires_at"),
+  scope: text("scope"),
+  password: text("password"),
+  createdAt: datetime("created_at").notNull(),
+  updatedAt: datetime("updated_at").notNull(),
+});
+
+export const verification = mysqlTable("verification", {
+  id: varchar("id", { length: 36 }).primaryKey(),
+  identifier: text("identifier").notNull(),
+  value: text("value").notNull(),
+  expiresAt: datetime("expires_at").notNull(),
+  createdAt: datetime("created_at"),
+  updatedAt: datetime("updated_at"),
 });
 
 export const produtos = mysqlTable("produtos", {
@@ -53,9 +102,9 @@ export const favoritos = mysqlTable(
   "favoritos",
   {
     id: int("id").autoincrement().primaryKey(),
-    usuarioId: int("id_usuario")
+    usuarioId: varchar("id_usuario", { length: 36 })
       .notNull()
-      .references(() => usuarios.id, { onDelete: "cascade" }),
+      .references(() => user.id, { onDelete: "cascade" }),
     produtoId: int("id_produto")
       .notNull()
       .references(() => produtos.id, { onDelete: "cascade" }),
@@ -74,3 +123,4 @@ export const banners = mysqlTable("banners", {
   ativo: boolean("ativo").default(true),
   ordem: int("ordem").default(0),
 });
+

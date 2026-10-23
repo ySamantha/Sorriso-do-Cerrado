@@ -1,102 +1,109 @@
-import type { Request, Response } from 'express';
+import type { FastifyReply, FastifyRequest } from "fastify";
+import BannerModel, { type Banner } from "../models/bannerModel.js";
+import { parseUploadRequest } from "../middleware/uploadRequest.js";
 
-import BannerModel, { type Banner } from '../models/bannerModel.js';
+type BannerParams = { id: string };
 
-export const listarBanners = async (req: Request, res: Response) => {
+export const listarBanners = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
-    const banners = await BannerModel.listarTodos();
-
-    res.json(banners);
-  } catch (err) {
-    res.status(500).json({ error: 'Erro ao buscar banners' });
+    return reply.send(await BannerModel.listarTodos());
+  } catch (error) {
+    request.log.error({ err: error }, "Erro ao buscar banners");
+    return reply.code(500).send({ error: "Erro ao buscar banners" });
   }
 };
 
-export const listarBannersAtivos = async (req: Request, res: Response) => {
+export const listarBannersAtivos = async (
+  request: FastifyRequest,
+  reply: FastifyReply,
+) => {
   try {
-    const banners = await BannerModel.listarAtivos();
-
-    res.json(banners);
-  } catch (err) {
-    res.status(500).json({ error: 'Erro ao buscar banners ativos' });
+    return reply.send(await BannerModel.listarAtivos());
+  } catch (error) {
+    request.log.error({ err: error }, "Erro ao buscar banners ativos");
+    return reply.code(500).send({ error: "Erro ao buscar banners ativos" });
   }
 };
 
-export const criarBanner = async (req: Request, res: Response) => {
+export const criarBanner = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
-    let { titulo, imagemURL, link, ordem } = req.body;
+    const { fields, file } = await parseUploadRequest(request, "imagem");
+    const { titulo, imagemURL, link, ordem } = fields;
+    const imageUrl = file
+      ? `${request.protocol}://${request.headers.host}/uploads/${file.filename}`
+      : imagemURL;
 
-    if (req.file) {
-      imagemURL = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
-    }
-
-    if (!imagemURL) {
-      return res.status(400).json({ error: 'Imagem é obrigatória para criar o banner' });
+    if (!imageUrl) {
+      return reply.code(400).send({ error: "Imagem é obrigatória para criar o banner" });
     }
 
     const novoBanner = await BannerModel.criar({
       titulo,
-      imagemURL,
+      imagemURL: imageUrl,
       link,
       ordem: ordem ? Number(ordem) : 0,
     });
 
-    res.status(201).json(novoBanner);
-  } catch (err) {
-    res.status(500).json({ error: 'Erro ao criar banner' });
+    return reply.code(201).send(novoBanner);
+  } catch (error) {
+    request.log.error({ err: error }, "Erro ao criar banner");
+    return reply.code(500).send({ error: "Erro ao criar banner" });
   }
 };
 
-export const atualizarBanner = async (req: Request, res: Response) => {
+export const atualizarBanner = async (
+  request: FastifyRequest<{ Params: BannerParams; Body: Record<string, string> }>,
+  reply: FastifyReply,
+) => {
   try {
-    const id = Array.isArray(req.params.id)
-      ? req.params.id[0]
-      : req.params.id;
-
-    let { titulo, imagemURL, link, ordem, ativo } = req.body;
-
-    if (req.file) {
-      imagemURL = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
-    }
+    const { fields, file } = await parseUploadRequest(request, "imagem");
+    const { titulo, imagemURL, link, ordem, ativo } = fields;
+    const imageUrl = file
+      ? `${request.protocol}://${request.headers.host}/uploads/${file.filename}`
+      : imagemURL;
 
     const dadosParaAtualizar: Partial<Banner> = {};
     if (titulo !== undefined) dadosParaAtualizar.titulo = titulo;
-    if (imagemURL !== undefined) dadosParaAtualizar.imagemURL = imagemURL;
+    if (imageUrl !== undefined) dadosParaAtualizar.imagemURL = imageUrl;
     if (link !== undefined) dadosParaAtualizar.link = link;
     if (ordem !== undefined) dadosParaAtualizar.ordem = Number(ordem);
-    if (ativo !== undefined) dadosParaAtualizar.ativo = ativo === 'true' || ativo === true;
+    if (ativo !== undefined) dadosParaAtualizar.ativo = ativo === "true";
 
     if (Object.keys(dadosParaAtualizar).length === 0) {
-      return res.status(400).json({ error: 'Nenhum dado fornecido para atualização' });
+      return reply.code(400).send({ error: "Nenhum dado fornecido para atualização" });
     }
 
-    const atualizado = await BannerModel.atualizar(id, dadosParaAtualizar);
-
+    const atualizado = await BannerModel.atualizar(
+      request.params.id,
+      dadosParaAtualizar,
+    );
     if (!atualizado) {
-      return res.status(404).json({ error: 'Banner não encontrado' });
+      return reply.code(404).send({ error: "Banner não encontrado" });
     }
 
-    const bannerAtualizado = await BannerModel.buscarPorId(id);
-    res.json({ message: 'Banner atualizado com sucesso', banner: bannerAtualizado });
-  } catch (err) {
-    res.status(500).json({ error: 'Erro ao atualizar banner' });
+    const bannerAtualizado = await BannerModel.buscarPorId(request.params.id);
+    return reply.send({
+      message: "Banner atualizado com sucesso",
+      banner: bannerAtualizado,
+    });
+  } catch (error) {
+    request.log.error({ err: error }, "Erro ao atualizar banner");
+    return reply.code(500).send({ error: "Erro ao atualizar banner" });
   }
 };
 
-export const deletarBanner = async (req: Request, res: Response) => {
+export const deletarBanner = async (
+  request: FastifyRequest<{ Params: BannerParams }>,
+  reply: FastifyReply,
+) => {
   try {
-    const id = Array.isArray(req.params.id)
-      ? req.params.id[0]
-      : req.params.id;
-
-    const deletado = await BannerModel.deletar(id);
-
+    const deletado = await BannerModel.deletar(request.params.id);
     if (!deletado) {
-      return res.status(404).json({ error: 'Banner não encontrado' });
+      return reply.code(404).send({ error: "Banner não encontrado" });
     }
-
-    res.json({ message: 'Banner deletado com sucesso' });
-  } catch (err) {
-    res.status(500).json({ error: 'Erro ao deletar banner' });
+    return reply.send({ message: "Banner deletado com sucesso" });
+  } catch (error) {
+    request.log.error({ err: error }, "Erro ao deletar banner");
+    return reply.code(500).send({ error: "Erro ao deletar banner" });
   }
 };

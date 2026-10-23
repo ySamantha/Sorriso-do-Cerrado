@@ -1,40 +1,47 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BarraNavegacao from '../componentes/barraNavegacao';
 import Rodape from '../componentes/rodape';
+import { authClient } from '../auth/auth-client';
+import { useAuth } from '../auth/authContext';
 import styles from './editarDados.module.css';
 
 function EditarDados() {
+  const { user } = useAuth();
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
 
-  const handleSubmit = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
+  useEffect(() => {
+    if (user) {
+      setNome(user.name);
+      setEmail(user.email);
+    }
+  }, [user]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      const token = localStorage.getItem('token');
-
-      const resposta = await fetch('http://localhost:3000/usuarios/me', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({ nome, email })
+    if (email !== user?.email) {
+      const { error } = await authClient.changeEmail({
+        newEmail: email,
+        callbackURL: window.location.href,
       });
 
-      const dados = await resposta.json();
-
-      if (!resposta.ok) {
-        alert(dados.error);
+      if (error) {
+        alert(error.message || 'Erro ao atualizar e-mail');
         return;
       }
-
-      alert('Dados atualizados com sucesso!');
-    } catch (error) {
-      alert('Erro ao atualizar dados');
     }
+
+    const { error } = await authClient.updateUser({
+      name: nome,
+    });
+
+    if (error) {
+      alert(error.message || 'Erro ao atualizar dados');
+      return;
+    }
+
+    alert('Dados atualizados com sucesso! Se solicitado, confirme a alteração do e-mail pelo link enviado.');
   };
 
   return (
@@ -44,10 +51,7 @@ function EditarDados() {
       <div className={styles.container}>
         <div className={styles.card}>
           <h1 className={styles.titulo}>Editar Dados</h1>
-
-          <p className={styles.subtitulo}>
-            Atualize suas informações pessoais
-          </p>
+          <p className={styles.subtitulo}>Atualize suas informações pessoais</p>
 
           <form onSubmit={handleSubmit} className={styles.form}>
             <input
@@ -62,7 +66,7 @@ function EditarDados() {
             <input
               className={styles.input}
               type="email"
-              placeholder="Novo email"
+              placeholder="Novo e-mail"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

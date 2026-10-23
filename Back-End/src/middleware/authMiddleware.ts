@@ -1,58 +1,42 @@
-import type { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
+import type { FastifyReply, FastifyRequest, preHandlerHookHandler } from "fastify";
+import { fromNodeHeaders } from "better-auth/node";
+import { auth } from "../auth/better-auth.js";
 
-const secret = process.env.JWT_SECRET || 'segredo';
-
-export interface UsuarioDecodificado {
-  id: number;
-  papel: string;
-}
-
-export interface RequisicaoAutenticada extends Request {
-  usuario?: UsuarioDecodificado;
-}
-
-export const autenticar = (
-  req: RequisicaoAutenticada,
-  res: Response,
-  next: NextFunction
+export const autenticar: preHandlerHookHandler = async (
+  request: FastifyRequest,
+  reply: FastifyReply,
 ) => {
-  const authHeader = req.headers.authorization;
-
-  if (!authHeader) {
-    return res.status(401).json({ error: 'Token não fornecido' });
-  }
-
-  const token = authHeader.split(' ')[1];
-
   try {
-    const decoded = jwt.verify(token, secret) as UsuarioDecodificado;
+    const session = await auth.api.getSession({
+      headers: fromNodeHeaders(request.headers),
+    });
 
-    req.usuario = {
-      id: decoded.id,
-      papel: decoded.papel?.trim().toLowerCase()
+    if (!session) {
+      return reply.code(401).send({ error: "Não autenticado" });
+    }
+
+    request.usuario = {
+      id: session.user.id,
+      email: session.user.email,
+      papel: (session.user as typeof session.user & { papel?: string }).papel || "cliente",
     };
-
-    next();
-  } catch (err) {
-    return res.status(401).json({ error: 'Token inválido ou expirado' });
+  } catch (error) {
+    request.log.error({ err: error }, "Falha ao validar sessão");
+    return reply.code(401).send({ error: "Sessão inválida ou expirada" });
   }
 };
 
-export const autorizar = (...papeis: string[]) => {
-  const papeisNormalizados = papeis.map(p => p.trim().toLowerCase());
+export const autorizar = (...papeis: string[]): preHandlerHookHandler => {
+  const papeisNormalizados = papeis.map((papel) => papel.trim().toLowerCase());
 
-  return (req: RequisicaoAutenticada, res: Response, next: NextFunction) => {
-    if (!req.usuario) {
-      return res.status(401).json({ error: 'Não autenticado' });
+  return async (request: FastifyRequest, reply: FastifyReply) => {
+    if (!request.usuario) {
+      return reply.code(401).send({ error: "Não autenticado" });
     }
 
-    const papelUsuario = req.usuario.papel?.trim().toLowerCase();
-
+    const papelUsuario = request.usuario.papel?.trim().toLowerCase();
     if (!papelUsuario || !papeisNormalizados.includes(papelUsuario)) {
-      return res.status(403).json({ error: 'Acesso negado' });
+      return reply.code(403).send({ error: "Acesso negado" });
     }
-
-    next();
   };
 };

@@ -35,13 +35,13 @@ function EditarProduto() {
           setEstoque(produto.estoque);
           setImagemURL(produto.imagemURL || '');
         } else {
-          setError("Produto não encontrado.");
+          setError('Produto não encontrado.');
         }
 
         setLoading(false);
       } catch (err: unknown) {
         console.error(err);
-        setError("Não foi possível carregar os dados do produto.");
+        setError('Não foi possível carregar os dados do produto.');
         setLoading(false);
       }
     };
@@ -55,22 +55,17 @@ function EditarProduto() {
     const formData = new FormData();
     formData.append('imagem', arquivoImagem);
 
-    const res = await axios.post(
-      'http://localhost:3000/upload',
-      formData,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }
-    );
+    const res = await axios.post('http://localhost:3000/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      withCredentials: true,
+    });
 
     return res.data.url;
   };
 
-  const handleSubmit = async (
-    event: React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError('');
 
@@ -82,8 +77,6 @@ function EditarProduto() {
     }
 
     try {
-      const token = localStorage.getItem('token');
-
       const urlFinal = await handleUploadImagem();
 
       const produtoAtualizado = {
@@ -91,22 +84,19 @@ function EditarProduto() {
         descricao,
         preco: precoFormatado,
         estoque: parseInt(estoque, 10),
-        imagemURL: urlFinal
+        imagemURL: urlFinal,
       };
 
       await axios.put(
         `http://localhost:3000/produtos/${id}`,
         produtoAtualizado,
         {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
+          withCredentials: true,
         }
       );
 
       alert('Produto atualizado com sucesso!');
       navigate('/admin');
-
     } catch (err: unknown) {
       console.error(err);
 
@@ -114,9 +104,7 @@ function EditarProduto() {
         ? err.response?.data?.error
         : undefined;
 
-      setError(
-        mensagem || 'Falha ao atualizar o produto.'
-      );
+      setError(mensagem || 'Falha ao atualizar o produto.');
     }
   };
 
@@ -127,17 +115,13 @@ function EditarProduto() {
     <div>
       <BarraNavegacao />
 
-      <main
-        className="conteudo-geral"
-        style={{ padding: '2rem' }}
-      >
+      <main className="conteudo-geral" style={{ padding: '2rem' }}>
         <div className={styles.formularioContainer}>
           <form onSubmit={handleSubmit}>
             <h2>Editar Produto</h2>
 
             <div className={styles.campoFormulario}>
               <label>Nome do Produto</label>
-
               <input
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
@@ -147,7 +131,6 @@ function EditarProduto() {
 
             <div className={styles.campoFormulario}>
               <label>Descrição</label>
-
               <textarea
                 value={descricao}
                 onChange={(e) => setDescricao(e.target.value)}
@@ -156,7 +139,6 @@ function EditarProduto() {
 
             <div className={styles.campoFormulario}>
               <label>Preço</label>
-
               <input
                 type="number"
                 value={preco}
@@ -169,7 +151,6 @@ function EditarProduto() {
 
             <div className={styles.campoFormulario}>
               <label>Estoque</label>
-
               <input
                 type="number"
                 value={estoque}
@@ -180,7 +161,6 @@ function EditarProduto() {
 
             <div className={styles.campoFormulario}>
               <label>Alterar imagem</label>
-
               <input
                 type="file"
                 accept="image/*"
@@ -192,7 +172,6 @@ function EditarProduto() {
 
             <div className={styles.campoFormulario}>
               <label>URL atual (opcional)</label>
-
               <input
                 type="text"
                 value={imagemURL}
@@ -200,16 +179,9 @@ function EditarProduto() {
               />
             </div>
 
-            {error && (
-              <p className={styles.mensagemErro}>
-                {error}
-              </p>
-            )}
+            {error && <p className={styles.mensagemErro}>{error}</p>}
 
-            <button
-              type="submit"
-              className={styles.botaoSubmit}
-            >
+            <button type="submit" className={styles.botaoSubmit}>
               Salvar Alterações
             </button>
           </form>

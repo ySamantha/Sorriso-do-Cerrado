@@ -17,29 +17,16 @@ function AdminPainel() {
 
   const fetchProdutos = async () => {
     try {
-      const token = localStorage.getItem('token');
-
-      const response = await axios.get(
-        'http://localhost:3000/produtos',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      );
+      const response = await axios.get('http://localhost:3000/produtos', {
+        withCredentials: true,
+      });
 
       setProdutos(response.data);
     } catch (error: unknown) {
-      console.error("Erro ao buscar produtos:", error);
+      console.error('Erro ao buscar produtos:', error);
 
-      if (
-        axios.isAxiosError(error) &&
-        error.response?.status === 401
-      ) {
-        alert(
-          'Sessão expirada ou não autorizada. Faça login novamente.'
-        );
-
+      if (axios.isAxiosError(error) && error.response?.status === 401) {
+        alert('Sessão expirada ou não autorizada. Faça login novamente.');
         navigate('/login');
       }
     }
@@ -51,50 +38,29 @@ function AdminPainel() {
 
   const handleExcluir = async (id: number) => {
     const confirmar = window.confirm(
-      "Tem certeza que deseja excluir este produto?"
+      'Tem certeza que deseja excluir este produto?'
     );
 
     if (confirmar) {
       try {
-        const token = localStorage.getItem('token');
-
-        await axios.delete(
-          `http://localhost:3000/produtos/${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          }
-        );
+        await axios.delete(`http://localhost:3000/produtos/${id}`, {
+          withCredentials: true,
+        });
 
         alert('Produto excluído com sucesso!');
-
         fetchProdutos();
       } catch (error) {
-        console.error(
-          "Erro ao excluir o produto:",
-          error
-        );
-
+        console.error('Erro ao excluir o produto:', error);
         alert('Falha ao excluir o produto.');
       }
     }
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        minHeight: '100vh'
-      }}
-    >
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <BarraNavegacao />
 
-      <main
-        className={styles.conteudoGeral}
-        style={{ flex: 1 }}
-      >
+      <main className={styles.conteudoGeral} style={{ flex: 1 }}>
         <div className={styles.painelHeader}>
           <h2>Painel de Controle Administrativo</h2>
 
@@ -125,12 +91,8 @@ function AdminPainel() {
                 <td>R$ {produto.preco}</td>
 
                 <td>
-                  <Link
-                    to={`/admin/editar-produto/${produto.id}`}
-                  >
-                    <button className={styles.botaoAcao}>
-                      Editar
-                    </button>
+                  <Link to={`/admin/editar-produto/${produto.id}`}>
+                    <button className={styles.botaoAcao}>Editar</button>
                   </Link>
 
                   <button

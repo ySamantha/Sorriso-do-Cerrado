@@ -3,6 +3,7 @@ import axios from 'axios';
 import BarraNavegacao from '../componentes/barraNavegacao';
 import Rodape from '../componentes/rodape';
 import CartaoProduto from '../componentes/cards';
+import { useAuth } from '../auth/authContext';
 import styles from './produtos.module.css';
 
 interface Produto {
@@ -16,46 +17,31 @@ function Produtos() {
   const [listaDeProdutos, setListaDeProdutos] = useState<Produto[]>([]);
   const [termoDeBusca, setTermoDeBusca] = useState('');
   const [favoritosIds, setFavoritosIds] = useState<number[]>([]);
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     const carregarDados = async () => {
       try {
-        // Busca produtos
-        const resProdutos = await axios.get(
-          'http://localhost:3000/produtos'
-        );
-
+        const resProdutos = await axios.get('http://localhost:3000/produtos');
         setListaDeProdutos(resProdutos.data);
 
-        // Busca favoritos
-        const token = localStorage.getItem('token');
-
-        if (token) {
+        if (isAuthenticated) {
           const resFavoritos = await axios.get(
             'http://localhost:3000/favoritos',
-            {
-              headers: {
-                Authorization: `Bearer ${token}`
-              }
-            }
+            { withCredentials: true }
           );
-
-          setFavoritosIds(
-            resFavoritos.data.map((fav: Produto) => fav.id)
-          );
+          setFavoritosIds(resFavoritos.data.map((fav: Produto) => fav.id));
         }
       } catch (error) {
-        console.error("Erro ao carregar dados:", error);
+        console.error('Erro ao carregar dados:', error);
       }
     };
 
     carregarDados();
-  }, []);
+  }, [isAuthenticated]);
 
-  const produtosFiltrados = listaDeProdutos.filter(produto =>
-    produto.nome
-      .toLowerCase()
-      .includes(termoDeBusca.toLowerCase())
+  const produtosFiltrados = listaDeProdutos.filter((produto) =>
+    produto.nome.toLowerCase().includes(termoDeBusca.toLowerCase())
   );
 
   return (
@@ -65,10 +51,7 @@ function Produtos() {
       <main className={styles.conteudoGeral}>
         <div className={styles.titulos}>
           <h2>Nosso Catálogo</h2>
-
-          <p>
-            Explore todos os nossos produtos feitos à mão com carinho.
-          </p>
+          <p>Explore todos os nossos produtos feitos à mão com carinho.</p>
         </div>
 
         <input
@@ -76,11 +59,11 @@ function Produtos() {
           className={styles.campoBusca}
           placeholder="Buscar por nome..."
           value={termoDeBusca}
-          onChange={e => setTermoDeBusca(e.target.value)}
+          onChange={(e) => setTermoDeBusca(e.target.value)}
         />
 
         <div className={styles.gradeProdutosDestaque}>
-          {produtosFiltrados.map(produto => (
+          {produtosFiltrados.map((produto) => (
             <CartaoProduto
               key={produto.id}
               product={produto}

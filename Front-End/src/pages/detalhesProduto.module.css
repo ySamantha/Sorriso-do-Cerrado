@@ -1,3 +1,14 @@
+.pagina {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.conteudo {
+  flex: 1;
+  padding: 2rem;
+}
+
 .detalheProdutoContainer {
   display: flex;
   gap: 2rem;

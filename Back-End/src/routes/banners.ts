@@ -1,20 +1,33 @@
-import { Router } from 'express';
+import type { FastifyPluginAsync } from "fastify";
 import {
   listarBanners,
   listarBannersAtivos,
   criarBanner,
   atualizarBanner,
-  deletarBanner
-} from '../controllers/bannerController.js';
-import { autenticar, autorizar } from '../middleware/authMiddleware.js';
-import upload from '../middleware/uploadMiddleware.js';
+  deletarBanner,
+} from "../controllers/bannerController.js";
+import { autenticar, autorizar } from "../middleware/authMiddleware.js";
 
-const router = Router();
+const bannersRoutes: FastifyPluginAsync = async (app) => {
+  type BannerParams = { id: string };
 
-router.get('/', listarBanners);
-router.get('/ativos', listarBannersAtivos);
-router.post('/', autenticar, autorizar('admin'), upload.single('imagem'), criarBanner);
-router.put('/:id', autenticar, autorizar('admin'), upload.single('imagem'), atualizarBanner);
-router.delete('/:id', autenticar, autorizar('admin'), deletarBanner);
+  app.get("/", listarBanners);
+  app.get("/ativos", listarBannersAtivos);
+  app.post(
+    "/",
+    { preHandler: [autenticar, autorizar("admin")] },
+    criarBanner,
+  );
+  app.put<{ Params: BannerParams; Body: Record<string, string> }>(
+    "/:id",
+    { preHandler: [autenticar, autorizar("admin")] },
+    atualizarBanner,
+  );
+  app.delete<{ Params: BannerParams }>(
+    "/:id",
+    { preHandler: [autenticar, autorizar("admin")] },
+    deletarBanner,
+  );
+};
 
-export default router;
+export default bannersRoutes;

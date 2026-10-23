@@ -58,10 +58,10 @@ function DetalheProduto() {
   if (error) return <div>Erro: {error}</div>;
 
   return (
-    <div>
+    <div className={styles.pagina}>
       <BarraNavegacao />
 
-      <main className="conteudo-geral" style={{ padding: '2rem' }}>
+      <main className={styles.conteudo}>
         {produto && (
           <div className={styles.detalheProdutoContainer}>
             <img

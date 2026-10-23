@@ -1,16 +1,21 @@
-import { Router } from 'express';
-import type { Request, Response } from 'express';
-import upload from '../middleware/uploadMiddleware.js';
+import type { FastifyPluginAsync } from "fastify";
+import { parseUploadRequest } from "../middleware/uploadRequest.js";
 
-const router = Router();
+const uploadRoutes: FastifyPluginAsync = async (app) => {
+  app.post("/", async (request, reply) => {
+    try {
+      const { file } = await parseUploadRequest(request, "imagem");
+      if (!file) {
+        return reply.code(400).send({ error: "Nenhum arquivo enviado" });
+      }
 
-router.post('/', upload.single('imagem'), (req: Request, res: Response) => {
-  if (!req.file) {
-    return res.status(400).json({ error: 'Nenhum arquivo enviado' });
-  }
+      const url = `${request.protocol}://${request.headers.host}/uploads/${file.filename}`;
+      return reply.send({ url });
+    } catch (error) {
+      request.log.error({ err: error }, "Erro ao enviar arquivo");
+      return reply.code(500).send({ error: "Erro ao enviar arquivo" });
+    }
+  });
+};
 
-  const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
-  res.json({ url: fileUrl });
-});
-
-export default router;
+export default uploadRoutes;

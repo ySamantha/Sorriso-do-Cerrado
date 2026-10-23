@@ -1,9 +1,15 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
+import { useAuth } from './authContext';
 
-function RotaProtegida({ children }: { children: React.ReactNode }) {  const token = localStorage.getItem('token');
+function RotaProtegida({ children }: { children: React.ReactNode }) {
+  const { isAuthenticated, isPending } = useAuth();
 
-  if (!token) {
+  if (isPending) {
+    return <div>A carregar sessão...</div>;
+  }
+
+  if (!isAuthenticated) {
     return <Navigate to="/login" />;
   }
 

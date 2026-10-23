@@ -1,23 +1,50 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { useCart } from '../context/carrinhoContext';
+import { useAuth } from '../auth/authContext';
 import BarraNavegacao from '../componentes/barraNavegacao';
 import Rodape from '../componentes/rodape';
 import styles from './carrinho.module.css';
 
 function Carrinho() {
   const { cartItems, removeFromCart, clearCart } = useCart();
+  const { user, isAuthenticated } = useAuth();
   const [compraFinalizada, setCompraFinalizada] = useState(false);
+  const [carregando, setCarregando] = useState(false);
 
   const precoTotal = cartItems.reduce((total, item) => {
     const precoNumerico = parseFloat(String(item.price)) || 0;
-
     return total + precoNumerico * item.quantity;
   }, 0);
 
-  const handleFinalizarCompra = () => {
-    setCompraFinalizada(true);
-    clearCart();
+  const handleFinalizarCompra = async () => {
+    if (!isAuthenticated) {
+      alert('Precisa fazer login para finalizar a compra!');
+      return;
+    }
+
+    setCarregando(true);
+    try {
+      await axios.post(
+        'http://localhost:3000/vendas',
+        {
+          nomeCliente: user?.name || 'Cliente',
+          emailCliente: user?.email,
+          telefoneCliente: 'Não informado',
+          total: precoTotal,
+        },
+        { withCredentials: true }
+      );
+
+      setCompraFinalizada(true);
+      clearCart();
+    } catch (error) {
+      console.error('Erro ao registrar venda:', error);
+      alert('Falha ao registrar pedido. Tente novamente.');
+    } finally {
+      setCarregando(false);
+    }
   };
 
   return (
@@ -33,7 +60,7 @@ function Carrinho() {
 
             <p>
               Obrigada por escolher o artesanato do Sorriso do Cerrado.
-              O seu pedido foi registado.
+              O seu pedido foi registrado no sistema.
             </p>
 
             <p>
@@ -50,10 +77,7 @@ function Carrinho() {
               Contactar via WhatsApp
             </a>
 
-            <Link
-              to="/produtos"
-              className={styles.botaoVoltar}
-            >
+            <Link to="/produtos" className={styles.botaoVoltar}>
               Continuar a comprar
             </Link>
           </div>
@@ -65,10 +89,7 @@ function Carrinho() {
               <>
                 <div className={styles.tabelaCarrinho}>
                   {cartItems.map((item) => (
-                    <div
-                      key={item.id}
-                      className={styles.itemCarrinho}
-                    >
+                    <div key={item.id} className={styles.itemCarrinho}>
                       <img
                         src={item.imageUrl}
                         alt={item.name}
@@ -77,23 +98,15 @@ function Carrinho() {
 
                       <div className={styles.infoProdutoCarrinho}>
                         <h3>{item.name}</h3>
-
-                        <p>
-                          Quantidade: {item.quantity}
-                        </p>
-
+                        <p>Quantidade: {item.quantity}</p>
                         <p>
                           Preço: R${' '}
-                          {parseFloat(
-                            String(item.price)
-                          ).toFixed(2)}
+                          {parseFloat(String(item.price)).toFixed(2)}
                         </p>
                       </div>
 
                       <button
-                        onClick={() =>
-                          removeFromCart(item.id)
-                        }
+                        onClick={() => removeFromCart(item.id)}
                         className={styles.botaoRemover}
                       >
                         Remover
@@ -103,21 +116,17 @@ function Carrinho() {
                 </div>
 
                 <div className={styles.resumoCarrinho}>
-                  <h3>
-                    Total: R$ {precoTotal.toFixed(2)}
-                  </h3>
+                  <h3>Total: R$ {precoTotal.toFixed(2)}</h3>
 
                   <button
                     onClick={handleFinalizarCompra}
+                    disabled={carregando}
                     className={styles.botaoFinalizar}
                   >
-                    Finalizar Compra
+                    {carregando ? 'A processar...' : 'Finalizar Compra'}
                   </button>
 
-                  <button
-                    onClick={clearCart}
-                    className={styles.botaoLimpar}
-                  >
+                  <button onClick={clearCart} className={styles.botaoLimpar}>
                     Limpar Carrinho
                   </button>
                 </div>

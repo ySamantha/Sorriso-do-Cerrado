@@ -3,6 +3,7 @@ import axios from 'axios';
 import CardProduto from '../componentes/cards';
 import BarraNavegacao from '../componentes/barraNavegacao';
 import Rodape from '../componentes/rodape';
+import { useAuth } from '../auth/authContext';
 import styles from './favoritos.module.css';
 
 interface Produto {
@@ -14,34 +15,28 @@ interface Produto {
 
 function Favoritos() {
   const [favoritos, setFavoritos] = useState<Produto[]>([]);
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     const buscarFavoritos = async () => {
-      const token = localStorage.getItem('token');
+      if (isAuthenticated) {
+        try {
+          const res = await axios.get('http://localhost:3000/favoritos', {
+            withCredentials: true,
+          });
 
-      try {
-        const res = await axios.get(
-          'http://localhost:3000/favoritos',
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          }
-        );
-
-        setFavoritos(res.data);
-      } catch (err) {
-        console.error("Erro ao buscar favoritos", err);
+          setFavoritos(res.data);
+        } catch (err) {
+          console.error('Erro ao buscar favoritos', err);
+        }
       }
     };
 
     buscarFavoritos();
-  }, []);
+  }, [isAuthenticated]);
 
   const removerDaListaLocal = (idProduto: number) => {
-    setFavoritos(prev =>
-      prev.filter(item => item.id !== idProduto)
-    );
+    setFavoritos((prev) => prev.filter((item) => item.id !== idProduto));
   };
 
   return (
@@ -57,14 +52,12 @@ function Favoritos() {
 
           <div className={styles.gradeProdutos}>
             {favoritos.length > 0 ? (
-              favoritos.map(produto => (
+              favoritos.map((produto) => (
                 <CardProduto
                   key={produto.id}
                   product={produto}
                   favoritadoInicial={true}
-                  onToggleFavorite={() =>
-                    removerDaListaLocal(produto.id)
-                  }
+                  onToggleFavorite={() => removerDaListaLocal(produto.id)}
                 />
               ))
             ) : (

@@ -3,7 +3,7 @@ import { db } from "../database/db.js";
 import { favoritos, produtos } from "../database/schema.js";
 
 const FavoritoModel = {
-  listarPorUsuario: async (usuarioId: number) => {
+  listarPorUsuario: async (usuarioId: string) => {
     return await db
       .select({
         id: produtos.id,
@@ -18,7 +18,7 @@ const FavoritoModel = {
       .where(eq(favoritos.usuarioId, usuarioId));
   },
 
-  adicionar: async (usuarioId: number, produtoId: number) => {
+  adicionar: async (usuarioId: string, produtoId: number) => {
     const existente = await db
       .select()
       .from(favoritos)
@@ -41,7 +41,7 @@ const FavoritoModel = {
     return true;
   },
 
-  remover: async (usuarioId: number, produtoId: number) => {
+  remover: async (usuarioId: string, produtoId: number) => {
     const resultado = await db
       .delete(favoritos)
       .where(

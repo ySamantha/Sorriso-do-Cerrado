@@ -1,27 +1,44 @@
-import { Router } from 'express';
+import type { FastifyPluginAsync } from "fastify";
 import {
-  criarUsuario,
-  loginUsuario,
   listarUsuarios,
   atualizarUsuario,
-  deletarUsuario
-} from '../controllers/usuarioController.js';
-import { autenticar, autorizar } from '../middleware/authMiddleware.js';
-import type { RequisicaoAutenticada } from '../middleware/authMiddleware.js';
+  atualizarMeuUsuario,
+  deletarUsuario,
+} from "../controllers/usuarioController.js";
+import { autenticar, autorizar } from "../middleware/authMiddleware.js";
 
-const router = Router();
+const usuariosRoutes: FastifyPluginAsync = async (app) => {
+  app.post("/", async (_request, reply) => {
+    return reply.code(410).send({
+      error: "Use o endpoint oficial do Better Auth em /api/auth/sign-up/email para criar uma conta.",
+    });
+  });
 
-router.post('/', criarUsuario);
-router.post('/login', loginUsuario);
-router.get('/', autenticar, autorizar('admin'), listarUsuarios);
+  app.post("/login", async (_request, reply) => {
+    return reply.code(410).send({
+      error: "Utilize o endpoint oficial do Better Auth em /api/auth/sign-in/email para efetuar login.",
+    });
+  });
 
-router.put('/me', autenticar, (req, res) => {
-  req.params.id = String((req as RequisicaoAutenticada).usuario?.id);
-  return atualizarUsuario(req, res);
-});
+  app.get("/", { preHandler: [autenticar, autorizar("admin")] }, listarUsuarios);
 
-router.put('/:id', autenticar, atualizarUsuario);
+  app.put<{ Body: { nome?: string; email?: string } }>(
+    "/me",
+    { preHandler: [autenticar] },
+    atualizarMeuUsuario,
+  );
 
-router.delete('/:id', autenticar, autorizar('admin'), deletarUsuario);
+  app.put<{ Params: { id: string }; Body: { nome?: string; email?: string } }>(
+    "/:id",
+    { preHandler: [autenticar] },
+    atualizarUsuario,
+  );
 
-export default router;
+  app.delete<{ Params: { id: string } }>(
+    "/:id",
+    { preHandler: [autenticar, autorizar("admin")] },
+    deletarUsuario,
+  );
+};
+
+export default usuariosRoutes;

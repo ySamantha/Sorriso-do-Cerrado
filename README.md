@@ -40,7 +40,7 @@ O projeto é dividido em duas experiências principais: a do cliente visitante e
 * Finalização de compra simulada através de um link para o WhatsApp.
 
 ### **Para a Artesã (Área Administrativa)**
-* Sistema de autenticação seguro com JWT (JSON Web Tokens) para proteger as rotas de gestão.
+* Autenticação com Better Auth e sessões em cookies para proteger as rotas de gestão.
 * Painel de controle para visualizar todos os produtos registados.
 * Funcionalidade **CRUD** (Criar, Ler, Atualizar, Apagar) completa para os produtos:
     * **Adicionar** novos produtos através de um formulário.
@@ -55,9 +55,9 @@ Este projeto foi construído com as seguintes tecnologias:
 | Área | Tecnologia |
 | :--- | :--- |
 | **Front-End** | React (com Vite), `react-router-dom`, `axios`, CSS Modules |
-| **Back-End** | Node.js, Express.js |
+| **Back-End** | Node.js, Fastify |
 | **Banco de Dados** | MySQL (com a biblioteca `mysql2`) |
-| **Autenticação** | JWT (JSON Web Tokens), `bcryptjs` |
+| **Autenticação** | Better Auth, sessões em cookies |
 
 ## 🚀 Como Rodar o Projeto Localmente
 
@@ -84,10 +84,16 @@ DB_PORT=3306
 # Instale as dependências
 npm install
 
-# Inicie o servidor 
-npx nodemon src/app.js
+# Inicie o servidor
+npm run dev
 ```
 > O servidor back-end vai rodar na porta 3000.
+
+### Autenticação
+
+O cadastro e o login usam os endpoints do Better Auth (`/api/auth/sign-up/email` e `/api/auth/sign-in/email`). O papel é atribuído pelo servidor; cadastros públicos sempre recebem o papel de cliente. Usuários com e-mail ainda não verificado podem alterá-lo sem confirmação, pois o projeto ainda não configura envio de e-mails. Em desenvolvimento, o seed cria o administrador `admin@email.com` com senha `admin123`. Não use essas credenciais fora do ambiente local.
+
+Em produção, configure `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL`, `FRONTEND_URL`, `ADMIN_EMAIL` e `ADMIN_PASSWORD` no ambiente do back-end, e `VITE_API_URL` com a URL pública da API no front-end. O servidor recusa iniciar sem as variáveis do back-end quando `NODE_ENV=production`.
 
 ### **2. Front-End**
 ```bash

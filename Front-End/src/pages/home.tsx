@@ -28,14 +28,31 @@ function Home() {
   const [banners, setBanners] = useState<Banner[]>([]);
   const [favoritosIds, setFavoritosIds] = useState<number[]>([]);
 
-  const { isAdmin } = useAuth();
+  const { isAdmin, isAuthenticated } = useAuth();
 
-  const inputRefs = useRef<Record<number, HTMLInputElement | null>>({});
+  const carrosselRef = useRef<HTMLDivElement>(null);
+
+  const navegarBanners = (direcao: number) => {
+    const carrossel = carrosselRef.current;
+    const primeiroBanner = carrossel?.querySelector<HTMLElement>(
+      '[data-banner-card]',
+    );
+    const faixa = primeiroBanner?.parentElement;
+
+    if (!carrossel || !primeiroBanner || !faixa) {
+      return;
+    }
+
+    const espacamento = Number.parseFloat(getComputedStyle(faixa).columnGap) || 0;
+    carrossel.scrollBy({
+      left: direcao * (primeiroBanner.offsetWidth + espacamento),
+      behavior: 'smooth',
+    });
+  };
 
   const buscarProdutos = async () => {
     try {
       const response = await axios.get('http://localhost:3000/produtos');
-
       setProdutosDestaque(response.data.slice(0, 3));
     } catch (error) {
       console.error('Erro ao buscar produtos:', error);
@@ -45,7 +62,6 @@ function Home() {
   const buscarBanners = async () => {
     try {
       const response = await axios.get('http://localhost:3000/banners');
-
       setBanners(response.data);
     } catch (error) {
       console.error('Erro ao buscar banners:', error);
@@ -53,52 +69,27 @@ function Home() {
   };
 
   const buscarFavoritos = async () => {
-    const token = localStorage.getItem('token');
-
-    if (token) {
+    if (isAuthenticated) {
       try {
-        const response = await axios.get(
-          'http://localhost:3000/favoritos',
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          }
-        );
+        const response = await axios.get('http://localhost:3000/favoritos', {
+          withCredentials: true,
+        });
 
-        setFavoritosIds(
-          response.data.map((fav: Produto) => fav.id)
-        );
+        setFavoritosIds(response.data.map((fav: Produto) => fav.id));
       } catch (error) {
         console.error('Erro ao buscar favoritos:', error);
       }
     }
   };
 
-  const alterarBanner = async (
-    bannerId: number,
-    arquivo: File
-  ) => {
+  const alterarBanner = async (bannerId: number, arquivo: File) => {
     try {
-      const token = localStorage.getItem('token');
-
-      if (!token) {
-        alert('Você precisa estar autenticado como administrador para alterar o banner.');
-        return;
-      }
-
       const formData = new FormData();
       formData.append('imagem', arquivo);
 
-      await axios.put(
-        `http://localhost:3000/banners/${bannerId}`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await axios.put(`http://localhost:3000/banners/${bannerId}`, formData, {
+        withCredentials: true,
+      });
 
       await buscarBanners();
       alert('Banner atualizado com sucesso!');
@@ -119,7 +110,7 @@ function Home() {
     };
 
     carregarDadosIniciais();
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <div className={styles.containerPaginaInicial}>
@@ -133,47 +124,78 @@ function Home() {
         />
 
         <div className={styles.bannersContainer}>
-          {banners.map((banner) => (
+          {banners.length > 0 && (
             <div
-              key={banner.id}
-              className={styles.banner}
+              className={styles.carrossel}
+              ref={carrosselRef}
+              role="region"
+              aria-label="Banners em destaque"
+              aria-roledescription="carrossel"
             >
-              <img
-                src={banner.imagemURL}
-                alt={banner.titulo}
-              />
-
-              {isAdmin && (
-                <>
-                  <button
-                    className={styles.botaoEditarBanner}
-                    onClick={() =>
-                      inputRefs.current[banner.id]?.click()
-                    }
+              <div className={styles.faixaCarrossel}>
+                {banners.map((banner) => (
+                  <div
+                    className={styles.banner}
+                    key={banner.id}
+                    data-banner-card
                   >
-                    Editar
-                  </button>
+                    <img src={banner.imagemURL} alt={banner.titulo} />
 
-                  <input
-                    type="file"
-                    accept="image/*"
-                    style={{ display: 'none' }}
-                    ref={(el) => {
-                      inputRefs.current[banner.id] = el;
-                    }}
-                    onChange={(e) => {
-                      const arquivo = e.target.files?.[0];
+                    {isAdmin && (
+                      <>
+                        <button
+                          className={styles.botaoEditarBanner}
+                          onClick={(event) =>
+                            event.currentTarget.parentElement
+                              ?.querySelector<HTMLInputElement>(
+                                'input[type="file"]',
+                              )
+                              ?.click()
+                          }
+                        >
+                          Editar
+                        </button>
 
-                      if (arquivo) {
-                        alterarBanner(banner.id, arquivo);
-                      }
-                      e.target.value = '';
-                    }}
-                  />
-                </>
-              )}
+                        <input
+                          type="file"
+                          accept="image/*"
+                          style={{ display: 'none' }}
+                          onChange={(e) => {
+                            const arquivo = e.target.files?.[0];
+
+                            if (arquivo) {
+                              alterarBanner(banner.id, arquivo);
+                            }
+                            e.target.value = '';
+                          }}
+                        />
+                      </>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
+          )}
+          {banners.length > 1 && (
+            <>
+              <button
+                type="button"
+                className={`${styles.controleCarrossel} ${styles.anterior}`}
+                onClick={() => navegarBanners(-1)}
+                aria-label="Rolar para os banners anteriores"
+              >
+                &#10094;
+              </button>
+              <button
+                type="button"
+                className={`${styles.controleCarrossel} ${styles.proximo}`}
+                onClick={() => navegarBanners(1)}
+                aria-label="Rolar para os próximos banners"
+              >
+                &#10095;
+              </button>
+            </>
+          )}
         </div>
       </header>
 
@@ -186,9 +208,7 @@ function Home() {
               <CartaoProduto
                 key={produto.id}
                 product={produto}
-                favoritadoInicial={favoritosIds.includes(
-                  produto.id
-                )}
+                favoritadoInicial={favoritosIds.includes(produto.id)}
               />
             ))}
           </div>

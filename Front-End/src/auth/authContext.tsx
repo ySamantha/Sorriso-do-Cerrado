@@ -1,57 +1,47 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useContext } from 'react';
+import { useSession, signOut } from './auth-client';
 
 interface User {
+  id: string;
+  email: string;
+  name: string;
   papel?: string;
-  [key: string]: unknown;
 }
 
 interface AuthContextType {
   user: User | null;
-  login: (token: string) => void;
   logout: () => void;
   isAuthenticated: boolean;
   isAdmin: boolean;
-}
-
-function parseJwt(token: string): User | null {
-  try {
-    return JSON.parse(atob(token.split('.')[1]));
-  } catch {
-    return null;
-  }
+  isPending: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+  const { data: session, isPending } = useSession();
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
+  const user = session?.user
+    ? {
+        id: session.user.id,
+        email: session.user.email,
+        name: session.user.name,
+        papel: (session.user as any).papel || 'cliente',
+      }
+    : null;
 
-    if (token) {
-      setUser(parseJwt(token));
-    }
-  }, []);
-
-  const login = (token: string) => {
-    localStorage.setItem('token', token);
-    setUser(parseJwt(token));
-  };
-
-  const logout = () => {
-    localStorage.removeItem('token');
-    setUser(null);
+  const logout = async () => {
+    await signOut();
   };
 
   return (
     <AuthContext.Provider
       value={{
         user,
-        login,
         logout,
         isAuthenticated: !!user,
-        isAdmin: user?.papel === 'admin'
+        isAdmin: user?.papel === 'admin',
+        isPending,
       }}
     >
       {children}
@@ -61,10 +51,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
 export function useAuth() {
   const context = useContext(AuthContext);
-
   if (!context) {
     throw new Error('useAuth deve ser usado dentro de um AuthProvider');
   }
-
   return context;
 }

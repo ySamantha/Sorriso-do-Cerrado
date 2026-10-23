@@ -1,54 +1,46 @@
-import { Router } from 'express';
-import type { Response } from 'express';
-import { autenticar, autorizar } from '../middleware/authMiddleware.js';
-import type { RequisicaoAutenticada } from '../middleware/authMiddleware.js';
-import VendaModel from '../models/vendaModel.js';
+import type { FastifyPluginAsync } from "fastify";
+import type { FastifyReply, FastifyRequest } from "fastify";
+import { autenticar, autorizar } from "../middleware/authMiddleware.js";
+import VendaModel from "../models/vendaModel.js";
 
-const router = Router();
+type CreateSaleBody = {
+  nomeCliente: string;
+  emailCliente?: string;
+  telefoneCliente?: string;
+  total: number;
+};
 
-router.get(
-  '/',
-  autenticar,
-  autorizar('admin'),
-  async (req: RequisicaoAutenticada, res: Response) => {
-    try {
-      const vendas = await VendaModel.listarTodas();
-
-      res.json(vendas);
-    } catch (err) {
-      res.status(500).json({ error: 'Erro ao buscar vendas' });
-    }
-  }
-);
-
-router.post(
-  '/',
-  autenticar,
-  async (req: RequisicaoAutenticada, res: Response) => {
-    try {
-      if (!req.usuario) {
-        return res.status(401).json({ error: 'Não autenticado' });
+const vendasRoutes: FastifyPluginAsync = async (app) => {
+  app.get(
+    "/",
+    { preHandler: [autenticar, autorizar("admin")] },
+    async (_request: FastifyRequest, reply: FastifyReply) => {
+      try {
+        return reply.send(await VendaModel.listarTodas());
+      } catch (error) {
+        reply.log.error({ err: error }, "Erro ao buscar vendas");
+        return reply.code(500).send({ error: "Erro ao buscar vendas" });
       }
+    },
+  );
 
-      const {
-        nomeCliente,
-        emailCliente,
-        telefoneCliente,
-        total,
-      } = req.body;
+  app.post<{ Body: CreateSaleBody }>(
+    "/",
+    { preHandler: [autenticar] },
+    async (request, reply) => {
+      try {
+        if (!request.usuario) {
+          return reply.code(401).send({ error: "Não autenticado" });
+        }
 
-      const venda = await VendaModel.criar({
-        nomeCliente,
-        emailCliente,
-        telefoneCliente,
-        total,
-      });
+        const venda = await VendaModel.criar(request.body);
+        return reply.code(201).send(venda);
+      } catch (error) {
+        request.log.error({ err: error }, "Erro ao registrar venda");
+        return reply.code(500).send({ error: "Erro ao registrar venda" });
+      }
+    },
+  );
+};
 
-      res.status(201).json(venda);
-    } catch (err) {
-      res.status(500).json({ error: 'Erro ao registrar venda' });
-    }
-  }
-);
-
-export default router;
+export default vendasRoutes;

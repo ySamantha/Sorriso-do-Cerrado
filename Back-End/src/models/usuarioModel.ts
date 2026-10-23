@@ -1,80 +1,41 @@
 import { eq } from "drizzle-orm";
 import { db } from "../database/db.js";
-import { usuarios } from "../database/schema.js";
+import { user } from "../database/schema.js";
 
-export interface Usuario {
-  id?: number;
-  nome: string;
-  email: string;
-  senha: string;
-  papel?: "admin" | "artesa" | "cliente" | null;
-}
-
-const UsuarioModel = {
-  buscarPorEmail: async (email: string): Promise<Usuario | null> => {
+export const UsuarioModel = {
+  buscarPorEmail: async (email: string) => {
     const resultado = await db
       .select()
-      .from(usuarios)
-      .where(eq(usuarios.email, email));
+      .from(user)
+      .where(eq(user.email, email));
 
     return resultado[0] ?? null;
   },
 
-  buscarPorId: async (id: string | number): Promise<Usuario | null> => {
+  buscarPorId: async (id: string) => {
     const resultado = await db
       .select()
-      .from(usuarios)
-      .where(eq(usuarios.id, Number(id)));
+      .from(user)
+      .where(eq(user.id, id));
 
     return resultado[0] ?? null;
   },
 
-  listarTodos: async (): Promise<Omit<Usuario, "senha">[]> => {
-    const resultado = await db
+  listarTodos: async () => {
+    return await db
       .select({
-        id: usuarios.id,
-        nome: usuarios.nome,
-        email: usuarios.email,
-        papel: usuarios.papel,
+        id: user.id,
+        nome: user.name,
+        email: user.email,
+        papel: user.papel,
       })
-      .from(usuarios);
-
-    return resultado;
+      .from(user);
   },
 
-  criar: async (usuario: Usuario): Promise<Usuario> => {
-    const resultado = await db.insert(usuarios).values({
-      nome: usuario.nome,
-      email: usuario.email,
-      senha: usuario.senha,
-      papel: usuario.papel ?? "cliente",
-    });
-
-    return {
-      id: Number(resultado[0].insertId),
-      ...usuario,
-    };
-  },
-
-  atualizar: async (
-    id: string | number,
-    usuario: { nome: string; email: string }
-  ): Promise<boolean> => {
+  deletar: async (id: string) => {
     const resultado = await db
-      .update(usuarios)
-      .set({
-        nome: usuario.nome,
-        email: usuario.email,
-      })
-      .where(eq(usuarios.id, Number(id)));
-
-    return resultado[0].affectedRows > 0;
-  },
-
-  deletar: async (id: string | number): Promise<boolean> => {
-    const resultado = await db
-      .delete(usuarios)
-      .where(eq(usuarios.id, Number(id)));
+      .delete(user)
+      .where(eq(user.id, id));
 
     return resultado[0].affectedRows > 0;
   },
