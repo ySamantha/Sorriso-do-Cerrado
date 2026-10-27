@@ -1,0 +1,17 @@
+CT,Tipo,Status,Severidade,Observacao
+CT 001,Segurança,Reprovado,Alta,Acesso indevido à rota administrativa
+CT 002,API / Caixa-Preta,Aprovado,-,Produto inexistente retornou 404 corretamente
+CT 003,Exploratório,Aprovado,-,Favoritos consistentes após remoção
+CT 004,API,Aprovado,-,Criação de banner com multipart/form-data
+CT 005,Segurança,Aprovado,-,Bloqueio de endpoints sem token ou com token inválido
+CT 006,Autenticação,Aprovado,-,Persistência de login via localStorage
+CT 007,Unitário,Aprovado,-,Validação de e-mail inválido
+CT 008,Negócio,Aprovado,-,Validação de preço positivo
+CT 009,Segurança API,Aprovado,-,Controle de acesso por perfil (admin/cliente)
+CT 010,Funcional,Aprovado,-,Atualização de usuário com validação de unicidade
+CT 011,Funcional,Aprovado,-,Persistência de favoritos após login
+CT 012,Funcional,Aprovado,-,Cálculo correto do carrinho
+CT 013,E2E (Cypress),Aprovado,-,Listagem de produtos via interface
+CT 014,E2E (Cypress),Aprovado,-,Fluxo de carrinho via interface
+CT 015,Unitário (Jest),Aprovado,-,Adição e incremento no carrinho
+CT 016,Unitário (Jest),Aprovado,-,Identificação de admin via token

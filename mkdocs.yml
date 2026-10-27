@@ -1,0 +1,91 @@
+site_name: Sorriso do Cerrado
+site_description: Documentação Completa de Engenharia de Software, Arquitetura, Requisitos e Testes do E-Commerce Sorriso do Cerrado
+site_author: Equipe Sorriso do Cerrado - Engenharia de Software UCB
+repo_name: ySamantha/Sorriso-do-Cerrado
+repo_url: https://github.com/ySamantha/Sorriso-do-Cerrado
+edit_uri: ""
+
+theme:
+  name: material
+  language: pt-BR
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Alternar para modo escuro
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Alternar para modo claro
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - tables
+  - attr_list
+  - md_in_html
+  - def_list
+
+nav:
+  - Início: index.md
+  - Engenharia de Software:
+      - Documento de Visão: engenharia/visao.md
+      - Requisitos de Software: engenharia/requisitos.md
+      - Histórias de Usuário: engenharia/historias-de-usuario.md
+      - Especificação de Casos de Uso: engenharia/casos-de-uso.md
+      - Arquitetura de Software: engenharia/arquitetura.md
+      - Interfaces & Usabilidade: engenharia/interfaces.md
+  - Diagramas do Sistema:
+      - Casos de Uso (Geral): diagramas/casos-de-uso.md
+      - Fluxos de Navegação: diagramas/fluxos-de-navegacao.md
+      - Diagramas de Atividades: diagramas/atividades.md
+      - Classes e Sequência: diagramas/classes-e-sequencia.md
+      - Diagramas de Arquitetura: diagramas/arquitetura.md
+  - Protótipos & Telas:
+      - Protótipos de Alta Fidelidade: prototipos/mockups.md
+      - Telas Implementadas: prototipos/telas-implementadas.md
+  - Testes de Software:
+      - Plano e Estratégia de Testes: testes/plano-e-estrategia.md
+      - Casos de Teste: testes/casos-de-teste.md
+      - Relatório e Defeitos: testes/relatorio-de-testes.md
+      - Evidências dos Testes: testes/evidencias.md
+      - Códigos dos Testes: testes/codigos-testes.md
+  - Central de Downloads: downloads/index.md
+
