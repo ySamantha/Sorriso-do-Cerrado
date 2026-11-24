@@ -55,7 +55,7 @@ O **Sorriso do Cerrado** nasceu como uma vitrine digital para apoiar o trabalho 
 
 ## Como Rodar o Projeto
 
-### Opção 1 — Com Docker Compose (Recomendado)
+### Opção 1 - Com Docker Compose (Recomendado)
 
 **Pré-requisitos:** [Docker](https://www.docker.com/), [Node.js](https://nodejs.org/) e [Git](https://git-scm.com/).
 
@@ -82,7 +82,7 @@ docker compose up --build
 
 ---
 
-### Opção 2 — Localmente (sem Docker)
+### Opção 2 - Localmente (sem Docker)
 
 **Pré-requisitos:** [Node.js](https://nodejs.org/), [Git](https://git-scm.com/) e um servidor **MySQL** rodando localmente.
 
