@@ -146,4 +146,4 @@ npm run dev
 
 * Matéria: Soluções Computacionais
 * Turma: GPE17M80081
-* [Apresentação disponível no YouTube do projeto Sorriso do Cerrado](https://youtu.be/uac34t2DagU) 
+* [Apresentação do projeto Sorriso do Cerrado disponível no YouTube](https://youtu.be/uac34t2DagU) 
