@@ -2,7 +2,7 @@
   <img src="https://i.imgur.com/CGdLk4r.png" width="550" alt="Logo Sorriso do Cerrado">
 </p>
 
-<h1 align="center">Sorriso do Cerrado — Marketplace de Artesanato</h1>
+<h1 align="center">Sorriso do Cerrado - Marketplace de Artesanato</h1>
 
 <p align="center">
   Plataforma web de marketplace colaborativo desenvolvida por estudantes de Engenharia de Software da Universidade Católica de Brasília (UCB) para conectar artesãos locais a clientes em todo o Brasil.
@@ -29,7 +29,7 @@ O **Sorriso do Cerrado** nasceu como uma vitrine digital para apoiar o trabalho 
 ### Para Artesãos
 - **Cadastro Profissional:** solicitação e ativação do perfil de artesão com criação de subconta na AbacatePay e dados pessoais/financeiros cifrados (AES-256-GCM).
 - **Painel do Artesão (`/admin`):**
-  - **Resumo:** indicadores de vendas no mês, produtos ativos, mensagens não lidas, saldo AbacatePay, gráfico de faturamento (6 meses / 30 dias) e **alerta de estoque** baixo/esgotado.
+  - **Resumo:** indicadores de vendas no mês, produtos ativos, mensagens não lidas, saldo AbacatePay e gráfico de faturamento (6 meses / 30 dias).
   - **Catálogo e Pedidos:** CRUD completo de produtos isolados por loja e acompanhamento de vendas e repasses.
   - **Configurações da Loja e Recebimentos:** personalização de nome público, descrição, imagens e dados financeiros.
 - **Comunicação:** atendimento a clientes e conversa com outras lojas pela Central de Mensagens.
@@ -71,7 +71,6 @@ node setup-env.mjs
 ```
 > Sem esse passo, o Docker Compose não sobe porque a variável `ARTESAO_DADOS_ENCRYPTION_KEY` é obrigatória. Após gerada, **não altere nem versione** essa chave - trocá-la impede a leitura de perfis já salvos no banco.
 >
-> *(Opcional)* Se quiser testar criação automática de Super Admin ou checkout da AbacatePay, adicione também no `.env` da raiz variáveis como `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ABACATEPAY_MODE=test` e `ABACATEPAY_API_KEY_DEV`.
 
 3. Suba os containers (MySQL, Back-End e Front-End):
 ```bash
