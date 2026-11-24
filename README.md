@@ -1,129 +1,142 @@
 <p align="center">
-  <img src="https://i.imgur.com/CGdLk4r.png" width="550">
+  <img src="https://i.imgur.com/CGdLk4r.png" width="550" alt="Logo Sorriso do Cerrado">
 </p>
 
-<h1 align="center"> Sorriso do Cerrado - Loja de Artesanato</h1>
+<h1 align="center">Sorriso do Cerrado — Marketplace de Artesanato</h1>
 
 <p align="center">
-  Sorriso do Cerrado é uma aplicação web de e-commerce, desenvolvida por alunos da Universidade Católica de Brasília.
+  Plataforma web de marketplace colaborativo desenvolvida por estudantes de Engenharia de Software da Universidade Católica de Brasília (UCB) para conectar artesãos locais a clientes em todo o Brasil.
 </p>
 
-<p align="center">
-  O objetivo principal é fornecer uma plataforma digital para que Ângela Maria, uma artesã local, possa exibir, divulgar e vender os seus produtos artesanais, conectando a sua arte com um público mais amplo e promovendo a cultura do Cerrado. O projeto inclui uma área pública para clientes e uma área administrativa segura para a gestão completa do catálogo de produtos.
-</p>
+---
 
-##  Fases do Desenvolvimento
-* Fase 1: Desenvolvimento Técnico (MVP)
-    * Desenvolvido na disciplina de Programação Web.
-    * Nesta fase inicial, o foco foi a construção da infraestrutura técnica e funcional do sistema.
-    * Entregas Técnicas: Criação do Front-end (React), Back-end (Node.js/Express) e Banco de Dados (MySQL).
-    * Funcionalidades Core: Vitrine virtual de produtos e módulo administrativo para CRUD de estoque.
-    * Status: Sistema funcional e pronto para operação básica.
+## Sobre o Projeto
 
-  Fase 2: Engenharia e Refinamento
-    ***Em desenvolvimento** na disciplina de Análise e Desenvolvimento de Software.
-    * Elaboração de documentos
-    * Diagramas e Modelagem
-    * Melhorias e novas funcionaidades
+O **Sorriso do Cerrado** nasceu como uma vitrine digital para apoiar o trabalho artesanal local e evoluiu para um **marketplace multi-artesãos completo**, permitindo que cada artesão tenha sua própria loja pública, gerencie catálogo e estoque, converse diretamente com clientes e receba pagamentos com divisão automática via **AbacatePay**.
 
-## Funcionalidades
+---
 
-O projeto é dividido em duas experiências principais: a do cliente visitante e a da artesã administradora.
+## Principais Funcionalidades
 
-### **Para Clientes (Público)**
-* Visualização da página inicial com produtos em destaque.
-* Catálogo completo de produtos com funcionalidade de busca em tempo real. 
-* Página de detalhe para cada produto.
-* Um carrinho de compras funcional, que persiste no navegador (`localStorage`).
-* Finalização de compra simulada através de um link para o WhatsApp.
+### Para Clientes
+- **Vitrine e Busca:** página inicial com banners e produtos em destaque, além de catálogo (`/explorar`) com busca e filtros.
+- **Lojas Públicas de Artesãos:** página dedicada para cada artesão (`/loja-artesao/:id`) com apresentação, produtos e acesso direto a partir dos detalhes do produto.
+- **Favoritos e Carrinho:** lista de favoritos persistida no banco de dados e carrinho com cálculo dinâmico de totais.
+- **Checkout com AbacatePay:** pagamento integrado com validação de estoque e registro de pedidos.
+- **Central de Mensagens:** chat direto entre clientes e lojas para tirar dúvidas sobre peças e encomendas.
+- **Perfil Unificado:** abas para visão geral, histórico de pedidos, edição de dados e alteração de senha.
 
-### **Para a Artesã (Área Administrativa)**
-* Autenticação com Better Auth e sessões em cookies para proteger as rotas de gestão.
-* Painel de controle para visualizar todos os produtos registados.
-* Funcionalidade **CRUD** (Criar, Ler, Atualizar, Apagar) completa para os produtos:
-    * **Adicionar** novos produtos através de um formulário.
-    * **Editar** as informações de produtos existentes.
-    * **Excluir** produtos do catálogo.
-* Função de Logout para sair da área administrativa com segurança.
+### Para Artesãos
+- **Cadastro Profissional:** solicitação e ativação do perfil de artesão com criação de subconta na AbacatePay e dados pessoais/financeiros cifrados (AES-256-GCM).
+- **Painel do Artesão (`/admin`):**
+  - **Resumo:** indicadores de vendas no mês, produtos ativos, mensagens não lidas, saldo AbacatePay, gráfico de faturamento (6 meses / 30 dias) e **alerta de estoque** baixo/esgotado.
+  - **Catálogo e Pedidos:** CRUD completo de produtos isolados por loja e acompanhamento de vendas e repasses.
+  - **Configurações da Loja e Recebimentos:** personalização de nome público, descrição, imagens e dados financeiros.
+- **Comunicação:** atendimento a clientes e conversa com outras lojas pela Central de Mensagens.
+
+### Para Administradores
+- Gestão de banners promocionais na página inicial.
+- **Painel Administrativo (`/painel-administrativo`):** acompanhamento de indicadores, gerenciamento de contas de clientes/artesãos e controle hierárquico (`admin` e `super_admin`) com auditoria e exclusão lógica (*soft delete*).
+
+---
 
 ## Tecnologias Utilizadas
 
-Este projeto foi construído com as seguintes tecnologias:
-
-| Área | Tecnologia |
+| Área | Tecnologias |
 | :--- | :--- |
-| **Front-End** | React (com Vite), `react-router-dom`, `axios`, CSS Modules |
-| **Back-End** | Node.js, Fastify |
-| **Banco de Dados** | MySQL (com a biblioteca `mysql2`) |
-| **Autenticação** | Better Auth, sessões em cookies |
+| **Front-End** | React 19, TypeScript, Vite, React Router, Axios, CSS Modules |
+| **Back-End** | Node.js, TypeScript, Fastify |
+| **Banco de Dados & ORM** | MySQL (`mysql2`), Drizzle ORM |
+| **Autenticação** | Better Auth (sessões via cookies e controle por papéis) |
+| **Pagamentos** | AbacatePay API v2 (subcontas, split e webhooks HMAC) |
+| **Infraestrutura** | Docker & Docker Compose |
 
-## Como Rodar o Projeto Localmente
+---
 
-Para executar este projeto no seu ambiente de desenvolvimento, serão necessários dois terminais, um para o back-end e um para o front-end.
+## Como Rodar o Projeto
 
-### **Pré-requisitos**
-* [Node.js](https://nodejs.org/en/)
-* [Git](https://git-scm.com/)
-* Um servidor MySQL a correr localmente.
+### Opção 1 — Com Docker Compose (Recomendado)
 
-### **1. Back-End**
+**Pré-requisitos:** [Docker](https://www.docker.com/), [Node.js](https://nodejs.org/) e [Git](https://git-scm.com/).
+
+1. Clone o repositório:
 ```bash
-# Clone o repositório do back-end
+git clone https://github.com/ySamantha/Sorriso-do-Cerrado.git
+cd Sorriso-do-Cerrado
+```
 
-# Entre na pasta do projeto
+2. **(Obrigatório)** Gere o arquivo `.env` na raiz com a chave de criptografia dos perfis de artesão:
+```bash
+node setup-env.mjs
+```
+> Sem esse passo, o Docker Compose não sobe porque a variável `ARTESAO_DADOS_ENCRYPTION_KEY` é obrigatória. Após gerada, **não altere nem versione** essa chave - trocá-la impede a leitura de perfis já salvos no banco.
+>
+> *(Opcional)* Se quiser testar criação automática de Super Admin ou checkout da AbacatePay, adicione também no `.env` da raiz variáveis como `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ABACATEPAY_MODE=test` e `ABACATEPAY_API_KEY_DEV`.
 
-# Crie um ficheiro .env na raiz e configure as suas credenciais do banco de dados
+3. Suba os containers (MySQL, Back-End e Front-End):
+```bash
+docker compose up --build
+```
+- **Front-End:** `http://localhost:5173`
+- **Back-End:** `http://localhost:3000`
+- **MySQL (porta externa):** `localhost:3307` (banco `sorrisodb`, usuário/senha `root`)
+
+---
+
+### Opção 2 — Localmente (sem Docker)
+
+**Pré-requisitos:** [Node.js](https://nodejs.org/), [Git](https://git-scm.com/) e um servidor **MySQL** rodando localmente.
+
+1. Crie o arquivo `.env` dentro da pasta `Back-End/` configurando o banco e a chave obrigatória:
+```env
+# Banco de Dados
 DB_HOST=localhost
+DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=suasenha
 DB_NAME=sorrisodb
-DB_PORT=3306
 
-# Instale as dependências
+# Autenticação e URLs
+BETTER_AUTH_SECRET=sua_chave_secreta_longa
+BETTER_AUTH_URL=http://localhost:3000
+FRONTEND_URL=http://localhost:5173
+ADMIN_EMAIL=admin@exemplo.com
+ADMIN_PASSWORD=sua_senha_admin
+
+# Criptografia de dados do artesão (mínimo 32 caracteres estáveis)
+ARTESAO_DADOS_ENCRYPTION_KEY=sua_chave_de_criptografia_com_32_ou_mais_caracteres
+
+# AbacatePay (modo teste padrão)
+ABACATEPAY_MODE=test
+ABACATEPAY_API_KEY_DEV=abc_dev_sua_chave
+ABACATEPAY_COMMISSION_TEST=10
+ABACATEPAY_SPLIT_HABILITADO=true
+ABACATEPAY_WEBHOOK_SECRET=seu_webhook_secret_com_32_caracteres
+```
+
+2. Inicie o Back-End:
+```bash
+cd Back-End
 npm install
-
-# Inicie o servidor
 npm run dev
 ```
-> O servidor back-end vai rodar na porta 3000.
 
-### Autenticação e administração
-
-O cadastro e o login usam os endpoints do Better Auth (`/api/auth/sign-up/email` e `/api/auth/sign-in/email`). O papel é atribuído pelo servidor; cadastros públicos sempre recebem o papel de cliente. Usuários com e-mail ainda não verificado podem alterá-lo sem confirmação, pois o projeto ainda não configura envio de e-mails.
-
-O papel `admin` identifica administradores comuns e `super_admin` identifica o Super Admin. O Super Admin inicial é reconhecido pelo `ADMIN_EMAIL`; se essa variável não estiver definida, o servidor promove automaticamente o único administrador ativo existente. Se houver mais de um administrador e nenhum Super Admin, configure `ADMIN_EMAIL` para a conta correta antes de iniciar. Contas já existentes são promovidas sem alterar nome, e-mail ou senha. Em uma instalação sem conta administrativa, defina `ADMIN_EMAIL` e `ADMIN_PASSWORD` para criar explicitamente o Super Admin inicial. Para o Docker Compose, forneça essas variáveis no ambiente.
-
-Administradores comuns podem acessar as funções administrativas existentes e consultar o Painel Administrativo (`/painel-administrativo`), incluindo as listas de contas. Tanto `admin` quanto `super_admin` podem editar dados de clientes e artesãos; essa permissão não inclui editar contas administrativas. Somente o Super Admin pode cadastrar, editar, desativar, reativar ou excluir logicamente administradores, ou desativar contas de clientes e artesãos. As desativações e exclusões são registradas na auditoria e preservam os históricos; exclusões lógicas impedem novos logins sem apagar permanentemente as contas. A migração `0007_super_admin_soft_delete` é aplicada automaticamente na inicialização.
-
-As operações administrativas disponíveis no backend incluem `GET /usuarios/indicadores`, `GET /usuarios/administradores` e `GET /usuarios/clientes-vendedores` para administradores autenticados; `PUT /usuarios/:id` permite a `admin` e `super_admin` editar dados de clientes e artesãos, mas não de outras contas administrativas. `POST /usuarios/administradores` (cadastro com `{ "nome": "...", "email": "...", "senha": "..." }`), `PATCH /usuarios/administradores/:id` (edição de e-mail e/ou senha), `PATCH /usuarios/administradores/:id/estado` (reativação ou desativação com `{ "ativo": true }` ou `{ "ativo": false }`) e `DELETE /usuarios/administradores/:id` (exclusão lógica) são exclusivas do Super Admin. A exclusão lógica de uma conta não administrativa usa `DELETE /usuarios/:id` com `{ "confirmacao": true }` e também é exclusiva do Super Admin.
-
-Em produção, configure `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL`, `FRONTEND_URL` e `ADMIN_EMAIL` no ambiente do back-end; `ADMIN_PASSWORD` é necessário somente para criar a conta inicial quando ela ainda não existir. Configure `VITE_API_URL` com a URL pública da API no front-end. O servidor recusa iniciar sem as variáveis de autenticação quando `NODE_ENV=production`.
-
-### Cadastro de artesãos e AbacatePay
-
-O cadastro profissional está disponível para usuários autenticados em **Torne-se um artesão**. A subconta da AbacatePay é criada somente na confirmação do cadastro; o papel `artisan` é atribuído pelo back-end após o provedor confirmar a criação. Os dados pessoais e financeiros do cadastro são cifrados no banco com AES-256-GCM. Configure `ARTESAO_DADOS_ENCRYPTION_KEY` no ambiente do back-end (no `.env` raiz para Docker Compose) com pelo menos 32 caracteres. A chave é obrigatória na inicialização e deve permanecer estável: trocar a chave impede a leitura dos perfis já cifrados. Mantenha uma cópia segura; não a versione nem a gere novamente a cada deploy.
-
-O modo padrão da AbacatePay é teste. Use `ABACATEPAY_MODE=test` e uma chave `abc_dev_...` em `ABACATEPAY_API_KEY_DEV` (ou `ABACATEPAY_API_KEY` para compatibilidade local). A comissão de teste padrão é 10%, ajustável por `ABACATEPAY_COMMISSION_TEST`. Cobranças continuam na API v2 e, para produtos de artesãos, o backend envia os splits em centavos após calcular o repasse no servidor. Nenhuma simulação usa fundos reais.
-
-Enquanto as subcontas e o split não estiverem liberados na conta da AbacatePay, defina `ABACATEPAY_SPLIT_HABILITADO=false` no `.env`: a cobrança PIX fica integralmente com a plataforma, o repasse de cada item continua registrado em `itens_venda` (aparece como "Você recebe" nos pedidos do artesão) e o saldo e o saque automáticos ficam indisponíveis. O padrão é `true`.
-
-Para produção, a troca exige configuração explícita de `ABACATEPAY_MODE=production`, `ABACATEPAY_API_KEY_PROD` com chave `abc_prod_...` e `ABACATEPAY_COMMISSION_PROD`. Não configure a chave de produção em ambientes de teste. A criação de subcontas e splits exige as permissões `SUB_ACCOUNT:CREATE`, `SUB_ACCOUNT:READ` e `TRANSPARENT:CREATE`, além da liberação do recurso de subcontas pela AbacatePay. A API informa `devMode` e saldo da subconta, mas não expõe neste fluxo um estado de verificação individual; a verificação da conta principal para operar em produção é feita no painel da AbacatePay. Saques de subcontas são exclusivos da produção e não são iniciados pelo cadastro.
-
-Para receber eventos, configure `ABACATEPAY_WEBHOOK_SECRET` com pelo menos 32 caracteres e cadastre no painel da AbacatePay o endpoint HTTPS público `/webhooks/abacatepay`, versão v2, para eventos de checkout transparente. O webhook valida o secret e a assinatura HMAC, ignora reentregas e atualiza o status do pedido. Em desenvolvimento local, use um túnel HTTPS público ou a CLI da AbacatePay; cadastre um webhook separado em Modo Teste. Para simular um Pix no desenvolvimento, a tela de pagamento exibe **Simular pagamento (Dev Mode)**, que chama o endpoint de simulação do provedor. A chave precisa da permissão `TRANSPARENT:CREATE`.
-
-### **2. Front-End**
+3. Em outro terminal, a partir da raiz do projeto, inicie o Front-End:
 ```bash
-# Em um novo terminal, clone o repositório do front-end
-
-# Entre na pasta do projeto
-
-# Instale as dependências
+cd Front-End
 npm install
-
-# Inicie a aplicação 
-npx vite
+npm run dev
 ```
-> A aplicação front-end estará disponível em `http://localhost:5173`.
+
+---
+
+## Segurança, Administração e Pagamentos
+
+- **Papéis de Usuário:** cadastros públicos recebem o papel `cliente`. O papel `artisan` é atribuído após confirmação do cadastro profissional. Contas administrativas usam `admin` ou `super_admin` (com trilha de auditoria e exclusão lógica).
+- **Produção (`NODE_ENV=production`):** configure obrigatoriamente `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL`, `FRONTEND_URL`, `ADMIN_EMAIL`, `ARTESAO_DADOS_ENCRYPTION_KEY` e `VITE_API_URL` (no Front-End).
+- **AbacatePay:** em modo teste (`ABACATEPAY_MODE=test`), a tela de pagamento disponibiliza **Simular pagamento (Dev Mode)**. Caso as subcontas ainda não estejam habilitadas na conta, defina `ABACATEPAY_SPLIT_HABILITADO=false`. Para webhooks, configure o endpoint `/webhooks/abacatepay` (API v2).
+
+---
 
 ## 👩‍💻 Autores
 * [Gabriel Cézar Peres Matos](https://github.com/gbrielzera) - UC23102346
@@ -132,5 +145,6 @@ npx vite
 * [Samuel Batista Rennó](https://github.com/SamuelBati) - UC23102986
 * [Vinicios Trindade Costa](https://github.com/Vinhicious) - UC23102647
 
-* TURMA: GPE17M80081
-* [Apresentação do projeto Sorriso do Cerrado](https://youtu.be/uac34t2DagU) 
+* Matéria: Soluções Computacionais
+* Turma: GPE17M80081
+* [Apresentação disponível no YouTube do projeto Sorriso do Cerrado](https://youtu.be/uac34t2DagU) 
