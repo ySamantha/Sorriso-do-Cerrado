@@ -2,56 +2,14 @@
 
 O **Diagrama de Casos de Uso Geral (v2.0)** consolida todos os **19 casos de uso** do marketplace **Sorriso do Cerrado** e as interações entre seus cinco atores: **Cliente**, **Artesão**, **Administrador**, **Super Admin** (que herda as permissões do Administrador) e o sistema externo **AbacatePay**.
 
-!!! info "Diagrama Completo no Documento de Arquitetura (v2.0)"
-    A figura vetorial oficial (`Figura 2 — Diagrama de Casos de Uso Geral do Sistema Sorriso do Cerrado v2.0`) encontra-se na página 7 do [Documento de Arquitetura de Software v2.0 (PDF)](../assets/v2/documentos/Documento_de_Arquitetura_de_Software_-_v2.0.pdf).
-
 ---
 
-## Mapa Interativo dos 19 Casos de Uso (v2.0)
+## Diagrama UML de Casos de Uso Geral (v2.0)
 
-```mermaid
-flowchart LR
-    CLI((Cliente))
-    ART((Artesão))
-    ADM((Administrador))
-    SUP((Super Admin))
-    ABA((AbacatePay\n«sistema externo»))
+![Diagrama de Casos de Uso Geral do Sistema Sorriso do Cerrado (v2.0)](../assets/v2/diagramas/casos-de-uso/Casos_de_Uso_Geral_v2.png)
 
-    SUP -->|herda| ADM
-
-    subgraph SYS["Sistema Sorriso do Cerrado (Marketplace v2.0)"]
-        UC001([UC001 - Fazer Login])
-        UC002([UC002 - Cadastrar Conta de Cliente])
-        UC003([UC003 - Acessar Painel de Controle])
-        UC004([UC004 - Navegar no Catálogo])
-        UC005([UC005 - Pesquisar e Filtrar Produtos])
-        UC006([UC006 - Gerenciar Carrinho])
-        UC007([UC007 - Finalizar Compra Pix])
-        UC008([UC008 - Adicionar Produto])
-        UC009([UC009 - Favoritar Produto])
-        UC010([UC010 - Manter Catálogo])
-        UC011([UC011 - Cadastrar Perfil de Artesão])
-        UC012([UC012 - Configurar Loja e Recebimentos])
-        UC013([UC013 - Trocar Mensagens])
-        UC014([UC014 - Visitar Loja do Artesão])
-        UC015([UC015 - Acompanhar Pedidos e Sacar Saldo])
-        UC016([UC016 - Gerenciar Banners])
-        UC017([UC017 - Gerenciar Contas de Usuários])
-        UC018([UC018 - Gerenciar Administradores])
-        UC019([UC019 - Gerenciar Perfil e Pedidos])
-    end
-
-    CLI --- UC001 & UC002 & UC004 & UC005 & UC006 & UC007 & UC009 & UC011 & UC013 & UC014 & UC019
-    UC007 -. "<<include>>" .-> UC006
-
-    ART --- UC001 & UC003 & UC008 & UC010 & UC012 & UC013 & UC015
-    ADM --- UC001 & UC003 & UC016 & UC017
-    SUP --- UC018
-
-    UC007 --- ABA
-    UC011 --- ABA
-    UC015 --- ABA
-```
+[:material-download: Abrir imagem em alta resolução (PNG)](../assets/v2/diagramas/casos-de-uso/Casos_de_Uso_Geral_v2.png){ .md-button .md-button--primary }
+[:material-file-pdf-box: Ver no Documento de Arquitetura v2.0 (PDF)](../assets/v2/documentos/Documento_de_Arquitetura_de_Software_-_v2.0.pdf){ .md-button }
 
 ---
 

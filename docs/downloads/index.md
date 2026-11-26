@@ -48,6 +48,7 @@ Nesta página estão disponíveis **todos os documentos oficiais, arquivos edit�
 
 | Diagrama | Imagem / PDF | Editável (Draw.io) |
 | :--- | :---: | :---: |
+| **Diagrama de Casos de Uso Geral (v2.0)** | [Abrir PNG](../assets/v2/diagramas/casos-de-uso/Casos_de_Uso_Geral_v2.png) | — |
 | **Diagrama de Arquitetura (v2.0)** | [Abrir JPG](../assets/v2/diagramas/arquitetura/Diagrama_de_Arquitetura.jpg) | — |
 | **Diagrama de Pacotes (v2.0)** | [Abrir JPG](../assets/v2/diagramas/arquitetura/Diagrama_de_Pacotes.jpg) | — |
 | **Diagrama de Implantação UML (v2.0)** | [Baixar PDF](../assets/v2/diagramas/arquitetura/Diagrama_de_Implantacao_UML.pdf) | — |
