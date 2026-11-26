@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Documentação Completa de Engenharia de Software, Arquitetura, Requisitos e Testes do E-Commerce Sorriso do Cerrado">
+        <meta name="description" content="Documentação Oficial do Marketplace Sorriso do Cerrado — Soluções Computacionais 2026/2 (UCB)">
       
       
-        <meta name="author" content="Equipe Sorriso do Cerrado - Engenharia de Software UCB">
+        <meta name="author" content="Equipe Sorriso do Cerrado — Engenharia de Software UCB">
       
       
       
         <link rel="prev" href="../casos-de-uso/">
       
       
-        <link rel="next" href="../interfaces/">
+        <link rel="next" href="../modelo-de-dados/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Arquitetura de Software - Sorriso do Cerrado</title>
+        <title>Arquitetura de Software (v2.0) - Sorriso do Cerrado</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#documento-de-arquitetura-de-software" class="md-skip">
+        <a href="#arquitetura-de-software-v20" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Arquitetura de Software
+              Arquitetura de Software (v2.0)
             
           </span>
         </div>
@@ -254,7 +254,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../visao/" class="md-tabs__link">
+        <a href="../bmc/" class="md-tabs__link">
           
   
   
@@ -342,6 +342,26 @@
 
       </a>
     </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../semestre-anterior/" class="md-tabs__link">
+          
+  
+  
+  Material do Semestre Anterior
+
+        </a>
+      </li>
+    
   
 
       
@@ -480,6 +500,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../bmc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Model Canvas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../visao/" class="md-nav__link">
         
   
@@ -487,7 +535,7 @@
   <span class="md-ellipsis">
     
   
-    Documento de Visão
+    Documento de Visão (v2.1)
   
 
     
@@ -515,7 +563,7 @@
   <span class="md-ellipsis">
     
   
-    Requisitos de Software
+    Requisitos de Software (v3.0)
   
 
     
@@ -608,7 +656,7 @@
   <span class="md-ellipsis">
     
   
-    Arquitetura de Software
+    Arquitetura de Software (v2.0)
   
 
     
@@ -626,7 +674,7 @@
   <span class="md-ellipsis">
     
   
-    Arquitetura de Software
+    Arquitetura de Software (v2.0)
   
 
     
@@ -652,10 +700,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-representacao-arquitetural-modelo-41" class="md-nav__link">
+  <a href="#1-modelo-arquitetural-41-de-kruchten" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Representação Arquitetural (Modelo 4+1)
+        1. Modelo Arquitetural 4+1 de Kruchten
       
     </span>
   </a>
@@ -663,10 +711,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-padrao-arquitetural-em-camadas-layered-architecture" class="md-nav__link">
+  <a href="#2-requisitos-e-restricoes-arquiteturais" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Padrão Arquitetural em Camadas (Layered Architecture)
+        2. Requisitos e Restrições Arquiteturais
       
     </span>
   </a>
@@ -674,10 +722,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-mecanismos-arquiteturais" class="md-nav__link">
+  <a href="#3-visao-logica-camadas-e-pacotes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Mecanismos Arquiteturais
+        3. Visão Lógica (Camadas e Pacotes)
       
     </span>
   </a>
@@ -685,10 +733,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-visao-de-implantacao-fisica" class="md-nav__link">
+  <a href="#4-visao-de-processo-concorrencia-e-assincronismo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Visão de Implantação Física
+        4. Visão de Processo (Concorrência e Assincronismo)
       
     </span>
   </a>
@@ -696,10 +744,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-atributos-de-qualidade-de-servico-qos" class="md-nav__link">
+  <a href="#5-visao-de-implantacao-dimensionamento-e-performance" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Atributos de Qualidade de Serviço (QoS)
+        5. Visão de Implantação, Dimensionamento e Performance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Visão de Implantação, Dimensionamento e Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-conteineres-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Contêineres Docker Compose
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-estimativas-de-volume-e-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Estimativas de Volume e Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-matriz-de-qualidade-avaliacao-frente-ao-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Matriz de Qualidade (Avaliação frente ao Código)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-riscos-e-pendencias-arquiteturais-identificados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Riscos e Pendências Arquiteturais Identificados
       
     </span>
   </a>
@@ -710,6 +808,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelo-de-dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo de Dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -818,7 +944,7 @@
   <span class="md-ellipsis">
     
   
-    Casos de Uso (Geral)
+    Casos de Uso (v2.0)
   
 
     
@@ -874,7 +1000,7 @@
   <span class="md-ellipsis">
     
   
-    Diagramas de Atividades
+    Diagramas de Atividades (12)
   
 
     
@@ -895,14 +1021,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../../diagramas/classes-e-sequencia/" class="md-nav__link">
+      <a href="../../diagramas/classes/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Classes e Sequência
+    Diagramas de Classes (6)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../diagramas/sequencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagramas de Sequência (4)
   
 
     
@@ -930,7 +1084,7 @@
   <span class="md-ellipsis">
     
   
-    Diagramas de Arquitetura
+    Arquitetura, Pacotes & Implantação
   
 
     
@@ -1192,7 +1346,7 @@
   <span class="md-ellipsis">
     
   
-    Relatório e Defeitos
+    Relatório, Qualidade & Defeitos
   
 
     
@@ -1296,6 +1450,903 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Material do Semestre Anterior
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Material do Semestre Anterior
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sobre o Acervo Anterior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/visao-geral/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão Geral (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engenharia (Semestre Anterior)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engenharia (Semestre Anterior)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/engenharia/visao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documento de Visão (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/engenharia/requisitos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos de Software (v2.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/engenharia/historias-de-usuario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Histórias de Usuário (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/engenharia/casos-de-uso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Casos de Uso (v2.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/engenharia/arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura de Software (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/engenharia/interfaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interfaces & Usabilidade (v1.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagramas (Semestre Anterior)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Diagramas (Semestre Anterior)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/diagramas/casos-de-uso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Casos de Uso (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/diagramas/fluxos-de-navegacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fluxos de Navegação (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/diagramas/atividades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagramas de Atividades (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/diagramas/classes-e-sequencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes e Sequência (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/diagramas/arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protótipos & Telas (Semestre Anterior)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protótipos & Telas (Semestre Anterior)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/prototipos/mockups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protótipos de Alta Fidelidade (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/prototipos/telas-implementadas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telas Implementadas (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testes (Semestre Anterior)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Testes (Semestre Anterior)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/testes/plano-e-estrategia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plano e Estratégia (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/testes/casos-de-teste/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Casos de Teste (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/testes/relatorio-de-testes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Relatório e Defeitos (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/testes/evidencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidências (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/testes/codigos-testes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Códigos dos Testes (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/downloads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Downloads (Semestre Anterior)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1323,10 +2374,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-representacao-arquitetural-modelo-41" class="md-nav__link">
+  <a href="#1-modelo-arquitetural-41-de-kruchten" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Representação Arquitetural (Modelo 4+1)
+        1. Modelo Arquitetural 4+1 de Kruchten
       
     </span>
   </a>
@@ -1334,10 +2385,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-padrao-arquitetural-em-camadas-layered-architecture" class="md-nav__link">
+  <a href="#2-requisitos-e-restricoes-arquiteturais" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Padrão Arquitetural em Camadas (Layered Architecture)
+        2. Requisitos e Restrições Arquiteturais
       
     </span>
   </a>
@@ -1345,10 +2396,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-mecanismos-arquiteturais" class="md-nav__link">
+  <a href="#3-visao-logica-camadas-e-pacotes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Mecanismos Arquiteturais
+        3. Visão Lógica (Camadas e Pacotes)
       
     </span>
   </a>
@@ -1356,10 +2407,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-visao-de-implantacao-fisica" class="md-nav__link">
+  <a href="#4-visao-de-processo-concorrencia-e-assincronismo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Visão de Implantação Física
+        4. Visão de Processo (Concorrência e Assincronismo)
       
     </span>
   </a>
@@ -1367,10 +2418,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-atributos-de-qualidade-de-servico-qos" class="md-nav__link">
+  <a href="#5-visao-de-implantacao-dimensionamento-e-performance" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Atributos de Qualidade de Serviço (QoS)
+        5. Visão de Implantação, Dimensionamento e Performance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Visão de Implantação, Dimensionamento e Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-conteineres-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Contêineres Docker Compose
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-estimativas-de-volume-e-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Estimativas de Volume e Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-matriz-de-qualidade-avaliacao-frente-ao-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Matriz de Qualidade (Avaliação frente ao Código)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-riscos-e-pendencias-arquiteturais-identificados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Riscos e Pendências Arquiteturais Identificados
       
     </span>
   </a>
@@ -1394,160 +2495,218 @@
 
 
 
-<h1 id="documento-de-arquitetura-de-software">Documento de Arquitetura de Software</h1>
-<p><strong>Versão:</strong> 1.0<br />
-<strong>Data:</strong> 18/04/2026<br />
-<strong>Autores:</strong> Samantha Yumi Tanaka, Vinicios Trindade Costa, Pedro Henrique Cavalcante, Samuel Batista Rennó, Wictor Emanoel Ponte Menezes.<br />
-<strong>Modelo Teórico Adotado:</strong> Modelo de Visões Arquiteturais "4+1" de Philippe Kruchten.</p>
+<h1 id="arquitetura-de-software-v20">Arquitetura de Software (v2.0)</h1>
+<p><strong>Versão:</strong> 2.0 (Marketplace Multi-Artesãos)<br />
+<strong>Data:</strong> 24/11/2026<br />
+<strong>Gestora do Projeto:</strong> Samantha Yumi Tanaka | <strong>Gerente de Projeto:</strong> Vinicios Trindade Costa<br />
+<strong>Equipe:</strong> Gabriel Cézar Peres Matos, Pedro Henrique Cavalcante de Sousa, Samantha Yumi Tanaka, Samuel Batista Rennó e Vinicios Trindade Costa.</p>
+<p><a class="md-button md-button--primary" href="../../assets/v2/documentos/Documento_de_Arquitetura_de_Software_-_v2.0.pdf">:material-file-pdf-box: Baixar Documento de Arquitetura v2.0 (PDF — 29 págs.)</a>
+<a class="md-button" href="../../assets/v2/documentos/Diagrama_de_Implantacao_UML.pdf">:material-file-pdf-box: Baixar Diagrama de Implantação UML (PDF)</a></p>
 <hr />
-<h2 id="1-representacao-arquitetural-modelo-41">1. Representação Arquitetural (Modelo 4+1)</h2>
-<p>A documentação arquitetural do <strong>Sorriso do Cerrado</strong> está estruturada de acordo com o consagrado modelo 4+1, garantindo que diferentes partes interessadas (<em>stakeholders</em>) compreendam o sistema sob suas perspectivas específicas:</p>
-<pre class="mermaid"><code>graph TD
-    UC((Visão de Casos de Uso
-Requisitos e Cenários))
-    L[Visão Lógica
-Camadas, Classes e Pacotes]
-    I[Visão de Implementação
-Componentes e Módulos de Código]
-    P[Visão de Processo
-Fluxos de Execução e Concorrência]
-    D[Visão de Implantação
-Nós Físicos e Redes]
-
-    UC --- L
-    UC --- I
-    UC --- P
-    UC --- D</code></pre>
+<h2 id="1-modelo-arquitetural-41-de-kruchten">1. Modelo Arquitetural 4+1 de Kruchten</h2>
+<p>A arquitetura do <strong>Sorriso do Cerrado v2.0</strong> é documentada segundo o modelo de visões <strong>4+1 de Philippe Kruchten</strong> complementado pela <strong>Visão de Dados</strong>, garantindo rastreabilidade completa entre requisitos, código-fonte e infraestrutura:</p>
 <table>
 <thead>
 <tr>
 <th style="text-align: left;">Visão</th>
-<th style="text-align: left;">Público Principal</th>
-<th style="text-align: left;">Foco Principal</th>
-<th style="text-align: left;">Artefatos Gerados</th>
+<th style="text-align: left;">Público-Alvo</th>
+<th style="text-align: left;">Foco Arquitetural</th>
+<th style="text-align: left;">Artefatos Principais</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>Casos de Uso</strong></td>
+<td style="text-align: left;"><strong>Casos de Uso (+1)</strong></td>
 <td style="text-align: left;">Todos os stakeholders</td>
-<td style="text-align: left;">Requisitos funcionais e comportamento externo</td>
-<td style="text-align: left;">Diagrama Geral de Casos de Uso e especificações</td>
+<td style="text-align: left;">Requisitos funcionais e cenários reais</td>
+<td style="text-align: left;"><a href="../../diagramas/casos-de-uso/">Diagrama de Casos de Uso (19 UCs)</a> e <a href="../../diagramas/atividades/">12 Diagramas de Atividades</a></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Lógica</strong></td>
-<td style="text-align: left;">Analistas e Arquitetos</td>
-<td style="text-align: left;">Estrutura estática de classes, camadas e pacotes</td>
-<td style="text-align: left;">Diagrama de Camadas e Diagrama de Pacotes</td>
+<td style="text-align: left;">Analistas e arquitetos</td>
+<td style="text-align: left;">Camadas, pacotes e responsabilidades</td>
+<td style="text-align: left;"><a href="../../diagramas/arquitetura/">Diagrama de Arquitetura e Pacotes</a></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Implementação</strong></td>
-<td style="text-align: left;">Desenvolvedores</td>
-<td style="text-align: left;">Módulos de código, arquivos fonte e componentes</td>
-<td style="text-align: left;">Diagrama de Classes (UC001) e Componentes</td>
+<td style="text-align: left;">Programadores</td>
+<td style="text-align: left;">Classes, módulos e interações estáticas/dinâmicas</td>
+<td style="text-align: left;"><a href="../../diagramas/classes/">6 Diagramas de Classes</a> e <a href="../../diagramas/sequencia/">4 Diagramas de Sequência</a></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Processo</strong></td>
-<td style="text-align: left;">Integradores e DevOps</td>
-<td style="text-align: left;">Ciclo temporal de mensagens e concorrência</td>
-<td style="text-align: left;">Diagrama de Sequência (Login / JWT)</td>
+<td style="text-align: left;">Integradores</td>
+<td style="text-align: left;">Concorrência, polling assíncrono e webhooks</td>
+<td style="text-align: left;"><a href="../../diagramas/sequencia/#2-uc007-finalizar-compra-pix-com-split-e-webhook">Sequência Checkout Pix + Webhook (UC007)</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Dados</strong></td>
+<td style="text-align: left;">Especialistas / DBAs</td>
+<td style="text-align: left;">Esquema relacional, integridade e criptografia</td>
+<td style="text-align: left;"><a href="../modelo-de-dados/">Modelo de Dados (<code>DADOS.pdf</code>)</a></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Implantação</strong></td>
-<td style="text-align: left;">Administradores de Infra</td>
-<td style="text-align: left;">Nós físicos, contêineres e topologia de rede</td>
-<td style="text-align: left;">Diagrama de Implantação Física</td>
+<td style="text-align: left;">DevOps / Config.</td>
+<td style="text-align: left;">Contêineres Docker Compose, rede e serviços externos</td>
+<td style="text-align: left;"><a href="../../diagramas/arquitetura/#3-diagrama-de-implantacao-uml-docker-compose">Diagrama de Implantação UML</a></td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="2-padrao-arquitetural-em-camadas-layered-architecture">2. Padrão Arquitetural em Camadas (Layered Architecture)</h2>
-<p>A aplicação adota o padrão arquitetural em camadas bem delimitadas com responsabilidades desacopladas:</p>
-<ol>
-<li><strong>Camada de Apresentação (Client Side / SPA):</strong><ul>
-<li>Desenvolvida em <strong>React</strong> com <strong>TypeScript</strong> e empacotador <strong>Vite</strong>.</li>
-<li>Responsável pela renderização reativa, captura de eventos do usuário, validação inicial de formulários e gerenciamento de estado local (<code>AuthContext</code>, <code>CartContext</code>).</li>
-</ul>
-</li>
-<li><strong>Camada de Serviços e Roteamento (API REST / Back-End):</strong><ul>
-<li>Desenvolvida em <strong>Node.js</strong> com <strong>Express</strong>.</li>
-<li>Expõe endpoints RESTful com formato JSON.</li>
-<li>Middlewares dedicados realizam validação de payloads, tratamento global de erros, suporte a upload de arquivos (<em>Multer</em>) e segurança via JWT (<code>authMiddleware</code>).</li>
-</ul>
-</li>
-<li><strong>Camada de Regras de Negócio e Controladores:</strong><ul>
-<li>Isola a lógica operacional do e-commerce (cálculo de descontos, conferência de estoque, geração de tokens e hashes criptográficos).</li>
-</ul>
-</li>
-<li><strong>Camada de Persistência de Dados:</strong><ul>
-<li>Gerenciada pelo <strong>MySQL Server 8.0</strong>.</li>
-<li>Tabelas relacionais com chaves primárias e estrangeiras garantindo a integridade transacional de produtos, categorias, usuários e favoritos.</li>
-</ul>
-</li>
-</ol>
-<hr />
-<h2 id="3-mecanismos-arquiteturais">3. Mecanismos Arquiteturais</h2>
+<h2 id="2-requisitos-e-restricoes-arquiteturais">2. Requisitos e Restrições Arquiteturais</h2>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Mecanismo de Análise</th>
-<th style="text-align: left;">Mecanismo de Design</th>
-<th style="text-align: left;">Mecanismo de Implementação</th>
+<th style="text-align: left;">Requisito</th>
+<th style="text-align: left;">Decisão Arquitetural Implementada</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>Interface do Usuário</strong></td>
-<td style="text-align: left;">Single Page Application (SPA)</td>
-<td style="text-align: left;">React.js com TypeScript, CSS Modules e React Router</td>
+<td style="text-align: left;"><strong>Linguagem</strong></td>
+<td style="text-align: left;">TypeScript de ponta a ponta — Front-End em <strong>React 19 + Vite 6</strong> e Back-End em <strong>Node.js 22 + Fastify 5</strong> (executado com <code>tsx</code>).</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Processamento Servidor</strong></td>
-<td style="text-align: left;">RESTful Micro-Services / API</td>
-<td style="text-align: left;">Node.js com Express e TypeScript</td>
+<td style="text-align: left;"><strong>Plataforma</strong></td>
+<td style="text-align: left;">Aplicação web responsiva (Chrome/Edge) servida por 3 contêineres orquestrados com <strong>Docker Compose</strong> (<code>sorriso_frontend</code>, <code>sorriso_backend</code> e <code>sorriso_mysql</code>).</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Persistência de Dados</strong></td>
-<td style="text-align: left;">Banco de Dados Relacional</td>
-<td style="text-align: left;">MySQL 8.0 com conexões gerenciadas (<code>mysql2/promise</code>)</td>
+<td style="text-align: left;"><strong>Segurança</strong></td>
+<td style="text-align: left;"><strong>Better Auth</strong> (e-mail/senha com hash, sessão persistida em banco e cookie HTTP validado a cada requisição via <code>preHandler autenticar</code>), controle por papéis (<code>autorizar</code>), bloqueio de contas desativadas e trilha em <code>admin_audit_logs</code>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Autenticação e Sessão</strong></td>
-<td style="text-align: left;">Token Bearer Stateless</td>
-<td style="text-align: left;">JSON Web Token (JWT) com assinatura simétrica secreta</td>
+<td style="text-align: left;"><strong>Persistência</strong></td>
+<td style="text-align: left;"><strong>MySQL 8</strong> com <strong>Drizzle ORM</strong> e migrações versionadas (<code>0000</code> a <code>0011</code>) aplicadas automaticamente na inicialização do back-end, com transações ACID em operações compostas.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Criptografia de Senhas</strong></td>
-<td style="text-align: left;">Hash unidirecional com salt</td>
-<td style="text-align: left;">Biblioteca <code>bcryptjs</code></td>
+<td style="text-align: left;"><strong>Pagamentos</strong></td>
+<td style="text-align: left;"><strong>AbacatePay API v2</strong>: cobrança Pix transparente com <em>split</em> automático entre plataforma e subcontas de artesãos, consulta de saldo, saques e confirmação assíncrona via webhook com validação de segredo (<code>X-Webhook-Secret</code>), assinatura <strong>HMAC-SHA256</strong> e controle de idempotência (<code>eventos_abacatepay</code>).</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Controle de Versão</strong></td>
-<td style="text-align: left;">Versionamento distribuído</td>
-<td style="text-align: left;">Git e GitHub</td>
+<td style="text-align: left;"><strong>Proteção de Dados</strong></td>
+<td style="text-align: left;">Dados pessoais e financeiros do artesão (CPF/CNPJ, endereço, chave Pix e conta bancária) cifrados com <strong>AES-256-GCM</strong> usando a chave obrigatória <code>ARTESAO_DADOS_ENCRYPTION_KEY</code>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Contêinerização</strong></td>
-<td style="text-align: left;">Virtualização em nível de SO</td>
-<td style="text-align: left;">Docker e Docker Compose</td>
+<td style="text-align: left;"><strong>Internacionalização</strong></td>
+<td style="text-align: left;">Desenvolvido inicialmente em português (<code>pt-BR</code>), com estrutura preparada para futura internacionalização (i18n).</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="4-visao-de-implantacao-fisica">4. Visão de Implantação Física</h2>
-<p>A topologia de implantação foi projetada para suportar tanto a execução em contêineres locais de desenvolvimento quanto o deploy em nuvem:</p>
+<h2 id="3-visao-logica-camadas-e-pacotes">3. Visão Lógica (Camadas e Pacotes)</h2>
+<p>O sistema adota <strong>Arquitetura em Camadas (<em>Layered Architecture</em>)</strong> com separação estrita entre cliente SPA e API RESTful:</p>
+<ol>
+<li><strong>Camada Cliente (Navegador — <code>Front-End/src</code>):</strong> SPA React 19 + Vite 6 organizada em <code>pages</code>, <code>componentes</code>, <code>context</code> (<code>AuthContext</code>, <code>CarrinhoContext</code>, <code>NotificacaoContext</code>, <code>ThemeContext</code>), <code>hooks</code> (<code>useBuscaProdutos</code>, <code>useFavoritosIds</code>) e <code>auth</code> (<code>auth-client</code>, <code>RotaProtegida</code>, <code>RotaAdmin</code>). As telas consomem a API via Axios com <code>withCredentials</code> (cookie de sessão).</li>
+<li><strong>Camada de API REST (<code>Back-End/src/routes</code> e <code>middleware</code>):</strong> servidor Fastify 5 (<code>app.ts</code>) com CORS, upload multipart até 10 MB (<code>/uploads/</code>), rotas REST (<code>produtos</code>, <code>usuarios</code>, <code>vendas</code>, <code>favoritos</code>, <code>banners</code>, <code>mensagens</code>, <code>upload</code>), receptor de webhooks (<code>/webhooks/abacatepay</code>) e <em>preHandlers</em> <code>autenticar</code> / <code>autorizar</code>.</li>
+<li><strong>Camada de Autenticação (Transversal — <code>Back-End/src/auth/better-auth.ts</code>):</strong> gestão de cadastro, login, hash de senha e sessões em <code>/api/auth/*</code>.</li>
+<li><strong>Camada de Negócio (<code>controllers</code> e <code>services</code>):</strong> regras de validação e serviços de integração externa (<code>abacatePayService</code> e <code>subcontaArtesaoService</code>).</li>
+<li><strong>Camada de Persistência (<code>models</code> e <code>database</code>):</strong> consultas parametrizadas com Drizzle ORM, transações, seed do Super Admin inicial e cifragem AES-256-GCM (não há camada de repositórios separada; os <em>models</em> cumprem esse papel).</li>
+</ol>
+<hr />
+<h2 id="4-visao-de-processo-concorrencia-e-assincronismo">4. Visão de Processo (Concorrência e Assincronismo)</h2>
+<p>O fluxo concorrente mais crítico do marketplace é o <strong>Checkout Pix com Split e Webhook</strong>:
+* A requisição síncrona <code>POST /vendas</code> recalcula os valores no banco, garante a subconta de cada artesão, cria a cobrança Pix na AbacatePay (validade de 15 min) e grava a venda como <code>pendente</code>.
+* Em seguida, <strong>dois processos correm em paralelo</strong>:
+    1. <strong>Consulta periódica (<em>polling</em>):</strong> o front-end consulta <code>GET /vendas/:id/pagamento</code> a cada <strong>5 segundos</strong>.
+    2. <strong>Confirmação assíncrona (<em>webhook</em>):</strong> a AbacatePay envia <code>POST /webhooks/abacatepay</code> (<code>transparent.completed</code>), validado por <code>X-Webhook-Secret</code>, assinatura <strong>HMAC-SHA256</strong> do corpo bruto e verificação de ambiente (<code>devMode</code>), gravando o evento em <code>eventos_abacatepay</code> dentro de uma transação para garantir <strong>idempotência</strong>.
+* Os <strong>saques de artesãos</strong> seguem o mesmo padrão assíncrono com os eventos <code>transfer.completed</code> e <code>transfer.failed</code>.</p>
+<hr />
+<h2 id="5-visao-de-implantacao-dimensionamento-e-performance">5. Visão de Implantação, Dimensionamento e Performance</h2>
+<h3 id="51-conteineres-docker-compose">5.1 Contêineres Docker Compose</h3>
 <ul>
-<li><strong>Nó Cliente (Navegador):</strong> Dispositivos desktop ou móveis executando navegadores modernos (Chrome, Edge, Firefox, Safari) consumindo os arquivos estáticos compilados da SPA.</li>
-<li><strong>Nó de Aplicação (Servidor Web / API Node.js):</strong> Contêiner Linux executando a runtime Node.js, escutando requisições HTTP na porta configurada (ex.: <code>:3000</code>), responsável pelo processamento da lógica de negócio.</li>
-<li><strong>Nó de Dados (Banco de Dados MySQL):</strong> Contêiner gerenciando o serviço MySQL 8.0 na porta dedicada (ex.: <code>:3307</code>), com armazenamento persistente via volumes Docker.</li>
+<li><code>sorriso_frontend</code> (<code>node:22</code>, porta <code>5173</code>): servidor Vite entregando a SPA React.</li>
+<li><code>sorriso_backend</code> (<code>node:22</code>, porta <code>3000</code>): API Fastify + Better Auth, volume <code>Back-End/uploads</code> para mídias, migrações automáticas e seed inicial.</li>
+<li><code>sorriso_mysql</code> (<code>mysql:8</code>, porta <code>3306</code> interna / <code>3307</code> externa): banco <code>sorrisodb</code> persistido no volume <code>mysql_data</code>.</li>
+<li><strong>Serviço externo:</strong> <code>api.abacatepay.com/v2</code> via HTTPS (443) com chave <code>abc_dev_</code> (testes) ou <code>abc_prod_</code> (produção).</li>
+</ul>
+<h3 id="52-estimativas-de-volume-e-performance">5.2 Estimativas de Volume e Performance</h3>
+<ul>
+<li><strong>Volume Inicial Estimado:</strong> 100 usuários cadastrados, 50 acessos/dia, 10 usuários simultâneos em pico, sessão média de 8 minutos, ~50 MB de dados e 30 produtos iniciais.</li>
+<li><strong>Metas de Performance:</strong> até <strong>3s</strong> para transações principais e escritas, <strong>2s</strong> em média para requisições simples e suporte a até <strong>30 usuários simultâneos</strong>.</li>
 </ul>
 <hr />
-<h2 id="5-atributos-de-qualidade-de-servico-qos">5. Atributos de Qualidade de Serviço (QoS)</h2>
-<ul>
-<li><strong>Segurança:</strong> As rotas que alteram dados do catálogo (<code>POST</code>, <code>PUT</code>, <code>DELETE /produtos</code>) exigem token JWT válido de usuário administrador. Rotas de favoritos e perfil exigem token de usuário autenticado.</li>
-<li><strong>Desempenho:</strong> Respostas de leitura da vitrine retornam em milissegundos através do uso de índices nas tabelas e consultas SQL otimizadas.</li>
-<li><strong>Disponibilidade:</strong> A arquitetura desacoplada permite que front-end e back-end sejam escalados ou reiniciados de forma independente.</li>
-</ul>
+<h2 id="6-matriz-de-qualidade-avaliacao-frente-ao-codigo">6. Matriz de Qualidade (Avaliação frente ao Código)</h2>
+<p>Na versão 2.0 do Documento de Arquitetura, cada mecanismo de qualidade foi auditado frente ao código real com os status <strong><code>[implementado]</code></strong>, <strong><code>[parcial]</code></strong> ou <strong><code>[planejado]</code></strong>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Atributo de Qualidade</th>
+<th style="text-align: left;">Status dos Mecanismos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Escalabilidade</strong></td>
+<td style="text-align: left;">Arquitetura em camadas <code>[implementado]</code>; Indexação <code>[parcial: PKs e UKs]</code>; Paginação <code>[planejado]</code>; Cache de imagens estáticas <code>[planejado]</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Adequação Funcional</strong></td>
+<td style="text-align: left;">Modularização do sistema em funções e domínios <code>[implementado]</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Confiabilidade</strong></td>
+<td style="text-align: left;">Transações no banco <code>[implementado]</code>; Tratamento de exceções <code>[implementado]</code>; Validação de dados <code>[parcial]</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Portabilidade</strong></td>
+<td style="text-align: left;">Tecnologias-padrão <code>[implementado]</code>; Variáveis de ambiente e Docker Compose <code>[implementado]</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Segurança</strong></td>
+<td style="text-align: left;">Hash de senhas, controle de permissões e controle de sessão <code>[implementado]</code>; Proteção contra injeção <code>[parcial: ORM parametrizado; upload sem validação de tipo]</code>; HTTPS em produção <code>[planejado]</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Usabilidade</strong></td>
+<td style="text-align: left;">Organização visual, simplificação dos fluxos, retorno visual de ações e responsividade <code>[implementado]</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Compatibilidade</strong></td>
+<td style="text-align: left;">Testes sistemáticos de suporte a múltiplos aparelhos <code>[planejado]</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Manutenibilidade</strong></td>
+<td style="text-align: left;">Arquitetura em camadas, separação front/back, controle de versão, padronização e documentação <code>[implementado]</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Desempenho</strong></td>
+<td style="text-align: left;">Indexação <code>[parcial]</code>; Cache de estáticos, compressão de imagem e <em>Lazy Loading</em> <code>[planejado]</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Integridade de Dados</strong></td>
+<td style="text-align: left;">Constraints no banco e Transações ACID <code>[implementado]</code>; Validação server-side <code>[parcial: cadastro de produto sem validação completa no back-end]</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Auditoria e Rastreabilidade</strong></td>
+<td style="text-align: left;">Registro de alterações administrativas (<code>admin_audit_logs</code>) e histórico de pedidos <code>[implementado]</code>; Logs de login <code>[planejado]</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Controle de Acesso</strong></td>
+<td style="text-align: left;">Proteção de rotas administrativas, autenticação com sessão e separação de perfis (<code>cliente</code>, <code>artisan</code>, <code>admin</code>, <code>super_admin</code>) <code>[implementado]</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Disponibilidade</strong></td>
+<td style="text-align: left;">Tratamento das páginas de erro <code>[parcial]</code>; Backups periódicos e hospedagem em servidor confiável <code>[planejado]</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Interoperabilidade</strong></td>
+<td style="text-align: left;">APIs REST e suporte a gateway de pagamento (AbacatePay) <code>[implementado]</code>; Exportação CSV/JSON <code>[planejado]</code>.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-riscos-e-pendencias-arquiteturais-identificados">7. Riscos e Pendências Arquiteturais Identificados</h2>
+<p>Transparência técnica registrada na auditoria de 24/11/2026 (Seção 12 do Documento de Arquitetura v2.0):</p>
+<ol>
+<li><strong>Estoque no checkout:</strong> o checkout ainda não confere nem reduz o estoque automaticamente após o pagamento (melhoria planejada: validar em <code>montarPedido</code> e baixar na transação do webhook).</li>
+<li><strong>Upload de arquivos:</strong> a rota <code>POST /upload</code> ainda não exige autenticação nem valida o MIME/tipo do arquivo, servindo arquivos na mesma origem da API.</li>
+<li><strong>Vínculo de pedidos ao e-mail:</strong> histórico e consulta de pagamento vinculam a venda pelo e-mail do cliente; recomenda-se gravar também o <code>user_id</code> na tabela <code>vendas</code>.</li>
+<li><strong>Produtos cadastrados por administrador:</strong> não possuem subconta de artesão vinculada, retornando HTTP <code>409</code> no checkout com split ativo.</li>
+<li><strong>URL fixa em telas do front-end:</strong> algumas telas ainda usam <code>http://localhost:3000</code> diretamente em vez de <code>VITE_API_URL</code>.</li>
+<li><strong>Modelos legados de artesão:</strong> <code>artesao_cadastros</code> (campo cifrado legado + subconta) e <code>artesao_perfis</code> coexistem e podem ser consolidados futuramente.</li>
+<li><strong>Default de data fixo no schema:</strong> <code>favoritos.data</code> e <code>vendas.data</code> utilizam <code>default(new Date())</code> na definição de migração.</li>
+<li><strong>Ambiente e HTTPS para produção:</strong> os contêineres rodam atualmente em modo desenvolvimento sem TLS/HTTPS configurado (obrigatório antes da ida a produção).</li>
+</ol>
 
 
 

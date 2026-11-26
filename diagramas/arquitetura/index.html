@@ -6,14 +6,14 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Documentação Completa de Engenharia de Software, Arquitetura, Requisitos e Testes do E-Commerce Sorriso do Cerrado">
+        <meta name="description" content="Documentação Oficial do Marketplace Sorriso do Cerrado — Soluções Computacionais 2026/2 (UCB)">
       
       
-        <meta name="author" content="Equipe Sorriso do Cerrado - Engenharia de Software UCB">
+        <meta name="author" content="Equipe Sorriso do Cerrado — Engenharia de Software UCB">
       
       
       
-        <link rel="prev" href="../classes-e-sequencia/">
+        <link rel="prev" href="../sequencia/">
       
       
         <link rel="next" href="../../prototipos/mockups/">
@@ -27,7 +27,7 @@
     
     
       
-        <title>Diagramas de Arquitetura - Sorriso do Cerrado</title>
+        <title>Arquitetura, Pacotes & Implantação - Sorriso do Cerrado</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#diagramas-de-arquitetura" class="md-skip">
+        <a href="#diagramas-de-arquitetura-pacotes-e-implantacao-v20" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Diagramas de Arquitetura
+              Arquitetura, Pacotes & Implantação
             
           </span>
         </div>
@@ -252,7 +252,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../engenharia/visao/" class="md-tabs__link">
+        <a href="../../engenharia/bmc/" class="md-tabs__link">
           
   
   
@@ -342,6 +342,26 @@
 
       </a>
     </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../semestre-anterior/" class="md-tabs__link">
+          
+  
+  
+  Material do Semestre Anterior
+
+        </a>
+      </li>
+    
   
 
       
@@ -477,6 +497,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../engenharia/bmc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Model Canvas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../engenharia/visao/" class="md-nav__link">
         
   
@@ -484,7 +532,7 @@
   <span class="md-ellipsis">
     
   
-    Documento de Visão
+    Documento de Visão (v2.1)
   
 
     
@@ -512,7 +560,7 @@
   <span class="md-ellipsis">
     
   
-    Requisitos de Software
+    Requisitos de Software (v3.0)
   
 
     
@@ -596,7 +644,35 @@
   <span class="md-ellipsis">
     
   
-    Arquitetura de Software
+    Arquitetura de Software (v2.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../engenharia/modelo-de-dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo de Dados
   
 
     
@@ -716,7 +792,7 @@
   <span class="md-ellipsis">
     
   
-    Casos de Uso (Geral)
+    Casos de Uso (v2.0)
   
 
     
@@ -772,7 +848,7 @@
   <span class="md-ellipsis">
     
   
-    Diagramas de Atividades
+    Diagramas de Atividades (12)
   
 
     
@@ -793,14 +869,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../classes-e-sequencia/" class="md-nav__link">
+      <a href="../classes/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Classes e Sequência
+    Diagramas de Classes (6)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sequencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagramas de Sequência (4)
   
 
     
@@ -837,7 +941,7 @@
   <span class="md-ellipsis">
     
   
-    Diagramas de Arquitetura
+    Arquitetura, Pacotes & Implantação
   
 
     
@@ -855,7 +959,7 @@
   <span class="md-ellipsis">
     
   
-    Diagramas de Arquitetura
+    Arquitetura, Pacotes & Implantação
   
 
     
@@ -881,10 +985,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-diagrama-de-camadas-da-aplicacao" class="md-nav__link">
+  <a href="#1-diagrama-de-arquitetura-do-sistema" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Diagrama de Camadas da Aplicação
+        1. Diagrama de Arquitetura do Sistema
       
     </span>
   </a>
@@ -903,21 +1007,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-diagrama-de-implantacao-fisica-deployment" class="md-nav__link">
+  <a href="#3-diagrama-de-implantacao-uml-docker-compose" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Diagrama de Implantação Física (Deployment)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-diagrama-de-componentes-de-interface" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Diagrama de Componentes de Interface
+        3. Diagrama de Implantação UML (Docker Compose)
       
     </span>
   </a>
@@ -1181,7 +1274,7 @@
   <span class="md-ellipsis">
     
   
-    Relatório e Defeitos
+    Relatório, Qualidade & Defeitos
   
 
     
@@ -1285,6 +1378,903 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Material do Semestre Anterior
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Material do Semestre Anterior
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sobre o Acervo Anterior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/visao-geral/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão Geral (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engenharia (Semestre Anterior)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engenharia (Semestre Anterior)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/engenharia/visao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documento de Visão (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/engenharia/requisitos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos de Software (v2.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/engenharia/historias-de-usuario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Histórias de Usuário (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/engenharia/casos-de-uso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Casos de Uso (v2.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/engenharia/arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura de Software (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/engenharia/interfaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interfaces & Usabilidade (v1.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagramas (Semestre Anterior)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Diagramas (Semestre Anterior)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/diagramas/casos-de-uso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Casos de Uso (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/diagramas/fluxos-de-navegacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fluxos de Navegação (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/diagramas/atividades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagramas de Atividades (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/diagramas/classes-e-sequencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes e Sequência (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/diagramas/arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protótipos & Telas (Semestre Anterior)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protótipos & Telas (Semestre Anterior)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/prototipos/mockups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protótipos de Alta Fidelidade (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/prototipos/telas-implementadas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telas Implementadas (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testes (Semestre Anterior)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Testes (Semestre Anterior)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/testes/plano-e-estrategia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plano e Estratégia (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/testes/casos-de-teste/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Casos de Teste (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/testes/relatorio-de-testes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Relatório e Defeitos (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/testes/evidencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidências (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/testes/codigos-testes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Códigos dos Testes (v1.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../semestre-anterior/downloads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Downloads (Semestre Anterior)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1312,10 +2302,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-diagrama-de-camadas-da-aplicacao" class="md-nav__link">
+  <a href="#1-diagrama-de-arquitetura-do-sistema" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Diagrama de Camadas da Aplicação
+        1. Diagrama de Arquitetura do Sistema
       
     </span>
   </a>
@@ -1334,21 +2324,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-diagrama-de-implantacao-fisica-deployment" class="md-nav__link">
+  <a href="#3-diagrama-de-implantacao-uml-docker-compose" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Diagrama de Implantação Física (Deployment)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-diagrama-de-componentes-de-interface" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Diagrama de Componentes de Interface
+        3. Diagrama de Implantação UML (Docker Compose)
       
     </span>
   </a>
@@ -1372,36 +2351,24 @@
 
 
 
-<h1 id="diagramas-de-arquitetura">Diagramas de Arquitetura</h1>
-<p>Esta seção consolida os diagramas estruturais que representam a arquitetura lógica, a divisão de pacotes, os nós de implantação física e os componentes visuais do <strong>Sorriso do Cerrado</strong>.</p>
+<h1 id="diagramas-de-arquitetura-pacotes-e-implantacao-v20">Diagramas de Arquitetura, Pacotes e Implantação (v2.0)</h1>
+<p>Esta seção reúne as visões estruturais e físicas atualizadas da arquitetura do marketplace <strong>Sorriso do Cerrado (v2.0)</strong>, refletindo a migração para <strong>React 19 + Vite 6</strong>, <strong>Node.js 22 + Fastify 5</strong>, <strong>Drizzle ORM + MySQL 8</strong>, <strong>Better Auth</strong>, <strong>AbacatePay API v2</strong> e <strong>Docker Compose</strong>.</p>
 <hr />
-<h2 id="1-diagrama-de-camadas-da-aplicacao">1. Diagrama de Camadas da Aplicação</h2>
-<p>Demonstra a hierarquia e o sentido de comunicação entre as camadas: Apresentação (React SPA), Serviços REST (Express), Regras de Negócio e Persistência (MySQL).</p>
-<p><img alt="Diagrama de Camadas" src="../../assets/diagramas/6-arquitetura/1-CamadasAplicacao.png" /></p>
-<ul>
-<li><a href="../../assets/diagramas/6-arquitetura/1-CamadasAplicacao.drawio">Baixar editável (.drawio)</a></li>
-</ul>
+<h2 id="1-diagrama-de-arquitetura-do-sistema">1. Diagrama de Arquitetura do Sistema</h2>
+<p>Apresenta a interação completa entre os atores (<strong>Artesão</strong>, <strong>Administrador</strong> e <strong>Cliente</strong>), as camadas do <strong>Front-End</strong> (páginas públicas/artesão/admin, contextos e Axios/auth-client), o <strong>Back-End</strong> (rotas REST, Better Auth, middlewares, controllers, services, models + Drizzle ORM e disco <code>/uploads</code>), o banco <strong>MySQL 8 (<code>sorrisodb</code>)</strong> e as integrações externas (<strong>AbacatePay</strong> com webhooks e link de contato <strong>WhatsApp</strong>).</p>
+<p><img alt="Diagrama de Arquitetura - Sorriso do Cerrado" src="../../assets/v2/diagramas/arquitetura/Diagrama_de_Arquitetura.jpg" /></p>
 <hr />
 <h2 id="2-diagrama-de-pacotes-da-aplicacao">2. Diagrama de Pacotes da Aplicação</h2>
-<p>Organização dos diretórios e módulos internos do projeto em dois grandes ecossistemas: <code>web</code> (front-end e controladores) e <code>core</code> (serviços, entidades e repositórios).</p>
-<p><img alt="Diagrama de Pacotes" src="../../assets/diagramas/6-arquitetura/2-PacotesAplicacao.png" /></p>
-<ul>
-<li><a href="../../assets/diagramas/6-arquitetura/2-PacotesAplicacao.drawio">Baixar editável (.drawio)</a></li>
-</ul>
+<p>Detalha a organização real dos diretórios e dependências entre <code>Front-End/src</code> (<code>main.tsx</code>/<code>App.tsx</code>, <code>pages</code>, <code>componentes</code>, <code>context</code>/<code>hooks</code>, <code>auth</code>) e <code>Back-End/src</code> (<code>app.ts</code>, <code>routes</code>, <code>auth</code>, <code>middleware</code>, <code>controllers</code>, <code>services</code>, <code>models</code>, <code>database</code>), destacando a comunicação HTTP/JSON e a integração HTTPS/webhook com a AbacatePay.</p>
+<p><img alt="Diagrama de Pacotes - Sorriso do Cerrado" src="../../assets/v2/diagramas/arquitetura/Diagrama_de_Pacotes.jpg" /></p>
 <hr />
-<h2 id="3-diagrama-de-implantacao-fisica-deployment">3. Diagrama de Implantação Física (Deployment)</h2>
-<p>Configuração dos nós físicos e ambientes de execução: Máquina Cliente executando o Navegador Web, Servidor Node.js executando a API REST e Servidor de Banco de Dados MySQL 8.0.</p>
-<p><img alt="Diagrama de Implantação" src="../../assets/diagramas/6-arquitetura/3-Implantacao.png" /></p>
-<ul>
-<li><a href="../../assets/diagramas/6-arquitetura/3-Implantacao.drawio">Baixar editável (.drawio)</a></li>
-</ul>
-<hr />
-<h2 id="4-diagrama-de-componentes-de-interface">4. Diagrama de Componentes de Interface</h2>
-<p>Mapeamento dos componentes React reutilizáveis que compõem o ecossistema visual da aplicação: Navbar, Footer, ProductCard, CartDrawer, HeroBanner e formulários de cadastro.</p>
-<p><img alt="Diagrama de Componentes" src="../../assets/diagramas/7-interfaces/1-Componentes.png" /></p>
-<ul>
-<li><a href="../../assets/diagramas/7-interfaces/1-Componentes.drawio">Baixar editável (.drawio)</a></li>
-</ul>
+<h2 id="3-diagrama-de-implantacao-uml-docker-compose">3. Diagrama de Implantação UML (Docker Compose)</h2>
+<p>Especifica os nós físicos e contêineres (<code>Estação do Usuário / Navegador Web</code>, <code>Host de Aplicação / Docker</code> executando <code>Node.js 22 (tsx / Fastify 5)</code> e <code>Servidor de Banco MySQL</code>, e nó externo <code>AbacatePay</code>), portas (<code>:5173</code>, <code>:3000</code>, <code>:3306</code> / <code>:3307</code>), diretório <code>/uploads/</code>, migrações <code>drizzle/0000..0011</code>, criptografia <code>AES-256-GCM</code> e protocolos de comunicação (HTTP/HTTPS, TCP/MySQL e Webhooks v2 com HMAC-SHA256).</p>
+<iframe src="../../assets/v2/diagramas/arquitetura/Diagrama_de_Implantacao_UML.pdf" width="100%" height="620" style="border: 1px solid rgba(141, 91, 76, 0.35); border-radius: 8px; background: #fff;">
+  Seu navegador não suporta visualização embutida de PDF. <a href="../../assets/v2/diagramas/arquitetura/Diagrama_de_Implantacao_UML.pdf">Clique aqui para abrir ou baixar o Diagrama de Implantação UML (PDF)</a>.
+</iframe>
+
+<p><a class="md-button md-button--primary" href="../../assets/v2/diagramas/arquitetura/Diagrama_de_Implantacao_UML.pdf">:material-file-pdf-box: Baixar Diagrama de Implantação UML (PDF)</a></p>
 
 
 
