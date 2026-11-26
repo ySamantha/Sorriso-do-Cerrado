@@ -1,119 +1,127 @@
-# Documento de Visão — Sorriso do Cerrado
+# Documento de Visão — Sorriso do Cerrado (v2.1)
 
-**Versão:** 2.0  
-**Data:** 27/10/2026  
-**Autores:** Pedro Henrique Cavalcante de Sousa, Samantha Yumi Tanaka, Samuel Batista Rennó, Vinicios Trindade Costa.
+**Versão:** 2.1 (Alinhada ao código do repositório)  
+**Data:** 24/11/2026  
+**Autores:** Gabriel Cézar Peres Matos, Pedro Henrique Cavalcante de Sousa, Samantha Yumi Tanaka, Samuel Batista Rennó e Vinicios Trindade Costa.
+
+[:material-file-pdf-box: Baixar Documento de Visão v2.1 (PDF)](../assets/v2/documentos/Documento_de_Visao_-_v2.1.pdf){ .md-button .md-button--primary }
+[:material-file-word-box: Baixar Versão 2.0 Editável (DOCX)](../assets/v2/documentos/Documento_de_Visao_-_v2.0.docx){ .md-button }
 
 ---
 
-## Revisões do Documento
+## Histórico de Revisões
 
 | Versão | Data | Autores | Observações |
 | :---: | :---: | :--- | :--- |
-| **1.0** | 14/03/2026 | Pedro Henrique Cavalcante de Sousa, Samantha Yumi Tanaka, Samuel Batista Rennó, Vinicios Trindade Costa, Wictor Emanoel Ponte Menezes | Consolidação da visão inicial do sistema Sorriso do Cerrado (vitrine virtual e monoprodutor). |
-| **2.0** | 27/10/2026 | Pedro Henrique Cavalcante de Sousa, Samantha Yumi Tanaka, Samuel Batista Rennó, Vinicios Trindade Costa | Evolução arquitetural e de escopo: transição de vitrine virtual para marketplace regional colaborativo. |
+| **1.0** | 14/03/2026 | Pedro Henrique Cavalcante de Sousa, Samantha Yumi Tanaka, Samuel Batista Rennó, Vinicios Trindade Costa, Wictor Emanoel Ponte Menezes | Consolidação da visão inicial do sistema Sorriso do Cerrado (vitrine virtual monoprodutor). |
+| **2.0** | 27/10/2026 | Gabriel Cézar Peres Matos, Pedro Henrique Cavalcante de Sousa, Samantha Yumi Tanaka, Samuel Batista Rennó, Vinicios Trindade Costa | Evolução arquitetural e de escopo: transição de vitrine virtual para marketplace. |
+| **2.1** | 24/11/2026 | Gabriel Cézar Peres Matos, Pedro Henrique Cavalcante de Sousa, Samantha Yumi Tanaka, Samuel Batista Rennó, Vinicios Trindade Costa | Alinhamento ao código do repositório: escopo do checkout com split, stakeholders, funcionalidades, prioridades, requisitos de segurança, restrições e mecanismos arquiteturais. |
 
 ---
 
 ## 1. Introdução
 
-### 1.1. Finalidade
-A finalidade deste documento é definir a visão estratégica do sistema **Sorriso do Cerrado**. O documento estabelece a expansão funcional para a transição de uma vitrine virtual para um **marketplace regional colaborativo de artesanato**, promovendo a autonomia digital, o empoderamento econômico e a visibilidade de múltiplos artesãos e comunidades.
+### 1.1 Finalidade
+Definir a visão estratégica do sistema **Sorriso do Cerrado**, estabelecendo a expansão funcional da antiga vitrine virtual para um **marketplace regional colaborativo de artesanato**, promovendo a autonomia digital, o empoderamento econômico e a visibilidade de múltiplos artesãos e comunidades.
 
-### 1.2. Escopo
-O **Sorriso do Cerrado** é uma aplicação web completa orientada ao modelo de marketplace de comércio. O escopo do sistema abrange a vitrine unificada de produtos artesanais, além de um gerenciamento administrativo de estoque e vendas autônomo, que inclui um carrinho de compras e a finalização de forma descentralizada para cada artesão parceiro.
+### 1.2 Escopo
+O Sorriso do Cerrado é uma aplicação web completa orientada ao modelo de marketplace de comércio eletrônico. O escopo abrange:
+* Vitrine unificada de produtos artesanais com **lojas públicas por artesão**.
+* Gestão autônoma de **catálogo, estoque, pedidos e recebimentos** por cada artesão.
+* **Carrinho de compras com checkout único via Pix**, cujo valor é dividido automaticamente (*split*) entre a plataforma e os artesãos parceiros.
+* **Central de mensagens** direta entre clientes e artesãos.
+* **Administração hierárquica** da plataforma (`admin` e `super_admin`).
 
-### 1.3. Definições, Acrônimos e Abreviações
-* **ODS:** Objetivos de Desenvolvimento Sustentável (ONU).
-* **CRUD:** *Create, Read, Update, Delete* (Criar, Ler, Atualizar e Excluir dados).
-* **API:** *Application Programming Interface* (Interface de Programação de Aplicações).
-* **SPA:** *Single Page Application* (Aplicação de Página Única).
-* **Marketplace:** Plataforma digital de comércio colaborativo em que múltiplos vendedores (artesãos) oferecem seus produtos em um ambiente compartilhado com gestão descentralizada.
-
-### 1.4. Referências e Especificações Suplementares
-* Documento de Regra de Negócio
-* Documento de Requisitos
-* Documento Manual do Usuário
-* Documento Dicionário de Dados
+### 1.3 Definições, Acrônimos e Abreviações
+* **ODS:** Objetivos de Desenvolvimento Sustentável.
+* **CRUD:** Criar, Ler, Atualizar e Excluir dados.
+* **Marketplace:** Plataforma virtual de comercialização com múltiplos vendedores.
+* **API:** Interface de Programação de Aplicações.
+* **Pix:** Meio de pagamento instantâneo brasileiro, usado no checkout por QR Code.
+* **Split:** Divisão automática do valor de uma venda entre a plataforma (comissão) e os artesãos.
+* **Subconta:** Conta de cada artesão na AbacatePay, que recebe o repasse das vendas e permite saques.
+* **Webhook:** Notificação enviada pela AbacatePay ao sistema quando um pagamento ou saque é concluído.
+* **Super Admin:** Administrador principal, que também gerencia as contas dos demais administradores.
 
 ---
 
 ## 2. Contextualização
 
-### 2.1. Descrição do Problema
+### 2.1 Descrição do Problema
 
 | Dimensão | Detalhamento |
 | :--- | :--- |
-| **Problemas** | Cerca de 25% dos microempreendedores brasileiros enfrentam barreiras digitais. Ausência de um canal estruturado para comercialização digital de artesanatos. |
-| **Pessoas Atingidas** | **Diretamente:** Dezenas de artesãos locais.<br>**Indiretamente:** Comunidade local e familiares dos artesãos. |
-| **Cujo Impacto é** | Limitação da fonte de renda, baixa visibilidade dos produtos, dependência de vendas informais, estagnação do empreendimento e impossibilidade de expansão. |
-| **Uma Solução Bem-sucedida Traria** | Marketplace que permita o cadastro e a venda de produtos de forma autônoma, sem necessidade de infraestrutura física. Sistema responsivo e acessível com interface simplificada e intuitiva. |
+| **Problemas** | • Cerca de 25% dos microempreendedores brasileiros enfrentam barreiras digitais.<br>• Ausência de um canal dedicado para comercialização digital de artesanatos. |
+| **Pessoas Atingidas** | • Diretamente: dezenas de artesãos.<br>• Indiretamente: comunidade local e familiares dos artesãos. |
+| **Impacto** | • Limitação da fonte de renda.<br>• Baixa visibilidade dos produtos.<br>• Dependência de vendas informais.<br>• Estagnação do empreendimento e impossibilidade de expansão. |
+| **Solução Bem-Sucedida** | • Marketplace que permita o cadastro e a venda de produtos de forma autônoma, sem necessidade de infraestrutura física.<br>• Sistema responsivo e acessível com interface simplificada e intuitiva. |
 
-### 2.2. Sentença de Posição do Produto
+### 2.2 Sentença de Posição do Produto
 
-| Elemento | Declaração |
+| Elemento | Definição |
 | :--- | :--- |
 | **Para** | Artesãos locais que buscam autonomia digital. |
 | **Que** | Buscam alcançar o mercado digital. |
-| **O** | **Sorriso do Cerrado** é uma plataforma de marketplace de artesanato regional. |
-| **Diferente de** | Marketplaces genéricos, que não possuem nicho nem identidade visual específica. |
-| **Nosso Produto** | Proporciona interface intuitiva, inclusiva e acolhedora, com controle total sobre o catálogo de produtos e valorização da identidade do Cerrado. |
+| **O** | Sorriso do Cerrado é uma plataforma de marketplace de artesanato. |
+| **Diferente de** | Marketplaces genéricos, que não possuem nicho e identidade visual específicos. |
+| **Nosso produto** | Proporciona interface intuitiva, inclusiva e acolhedora, com controle total sobre o catálogo de produtos. |
 
 ---
 
-## 3. Descrição dos Stakeholders e dos Usuários
+## 3. Stakeholders e Usuários
 
-### 3.1. Principais Stakeholders e Usuários
+### 3.1 Principais Stakeholders
 
 | Identificação | Responsabilidades | Stakeholders |
 | :--- | :--- | :--- |
-| **Administrador** | Desenvolver, testar e manter a plataforma. | Pedro, Samantha, Samuel e Vinicios. |
-| **Artesão / Vendedor** | Gerenciar dados, adicionar produtos, editar e excluir, além de definir preços e descrições. | Comerciantes e artesãos parceiros. |
-| **Cliente** | Visualizar produtos, utilizar o carrinho e finalizar compras. | Público geral. |
+| **Equipe de Desenvolvimento** | Desenvolver, testar e manter a plataforma. | Gabriel, Pedro, Samantha, Samuel e Vinicios |
+| **Administrador / Super Admin** | Gerenciar banners, acompanhar indicadores e gerenciar contas de clientes e artesãos; o Super Admin também cria, edita, desativa e exclui administradores. | Gestores da plataforma |
+| **Artesão / Vendedor** | Cadastrar o perfil profissional e a loja, gerenciar produtos (preços, estoque e descrições), dados de recebimento, pedidos, saques e mensagens. | Comerciantes, artesãos |
+| **Cliente** | Visualizar produtos e lojas, favoritar, utilizar o carrinho, pagar via Pix e conversar com os artesãos. | Público geral |
+| **Provedor de Pagamentos** | Processar cobranças Pix, subcontas, divisão de valores (*split*) e saques. | AbacatePay (sistema externo) |
 
-### 3.2. Necessidades-Chave dos Stakeholders e dos Usuários
+### 3.2 Necessidades-Chave
 
 | Nº | Descrição | Prioridade | Observações |
 | :---: | :--- | :---: | :--- |
-| 1 | Possibilidade de cadastrar e gerenciar produtos | **Crítico** | Essencial para a autonomia dos artesãos. |
-| 2 | Disponibilizar catálogo digital acessível a clientes | **Crítico** | Facilitar a divulgação dos produtos. |
-| 3 | Implementar carrinho de compras e gerenciamento do pedido | **Crítico** | Garante experiência completa de compra. |
-| 4 | Área administrativa para acompanhamento de vendas e do estoque | **Crítico** | Necessário para gestão eficiente. |
-| 5 | Interface simples e intuitiva para o uso | **Importante** | Considera o perfil de usuário com baixa familiaridade digital. |
-| 6 | Teste de usabilidade para garantir acessibilidade | **Importante** | Valida a experiência final do usuário. |
-| 7 | Treinamento para utilização da plataforma | **Importante** | Apoio inicial para adoção da solução. |
-| 8 | Documentação do sistema | **Útil** | Complementa o treinamento e facilita suporte futuro. |
+| **1** | Possibilidade de cadastrar e gerenciar produtos | Crítico | Essencial para autonomia dos artesãos |
+| **2** | Disponibilizar catálogo digital acessível a clientes | Crítico | Facilitar a divulgação dos produtos |
+| **3** | Implementar carrinho de compras e gerenciamento do pedido | Crítico | Garante experiência completa de compra |
+| **4** | Área administrativa para acompanhamento de vendas e estoque | Crítico | Necessário para gestão eficiente |
+| **5** | Interface simples e intuitiva para o uso | Importante | Considera perfil com baixa familiaridade digital |
+| **6** | Teste de usabilidade para garantir acessibilidade | Importante | Valida a experiência final do usuário |
+| **7** | Treinamento para utilização da plataforma | Importante | Apoio inicial para adoção da solução |
+| **8** | Documentação do sistema | Útil | Complementa o treinamento e facilita suporte futuro |
+| **9** | Recebimento dos pagamentos diretamente por cada artesão | Crítico | Viabiliza o modelo multi-artesãos sem repasse manual |
+| **10** | Comunicação direta entre clientes e artesãos | Importante | Tira dúvidas sobre peças e encomendas |
 
 ---
 
 ## 4. Visão Geral do Produto
 
-### 4.1. Perspectiva do Produto
+### 4.1 Resumo das Funcionalidades
 
-#### 4.1.1. Resumo das Funcionalidades do Produto
-
-| Necessidades | Funcionalidades Correspondentes |
+| Necessidade | Funcionalidades Correspondentes |
 | :--- | :--- |
-| Exposição digital dos produtos | Catálogo de produtos artesanais interativo com filtros e descrições. |
-| Realização de vendas online | Carrinho de compras e gerenciamento de pedidos. |
-| Gestão de estoque e pedidos | Área administrativa para acompanhamento de vendas. |
-| Autonomia na gestão do negócio para múltiplos vendedores | Interface administrativa individual para cadastrar e gerenciar produtos. |
-| Familiaridade digital | Interface simples e intuitiva voltada ao perfil do usuário. |
-| Apoio na adoção da solução | Treinamento e documentação do sistema. |
+| **Exposição digital dos produtos** | Catálogo interativo de produtos artesanais com busca, filtros e ordenação, banners na página inicial e páginas públicas de loja por artesão. |
+| **Realização de vendas online** | Carrinho de compras, checkout via Pix integrado à AbacatePay com divisão automática dos valores e gerenciamento de pedidos. |
+| **Gestão de estoque e pedidos** | Painel do artesão com resumo de vendas, gráfico de faturamento, lista de pedidos e repasses e edição manual do estoque de cada produto. |
+| **Autonomia para múltiplos vendedores** | Cadastro de artesão, configurações personalizadas da loja e gestão de dados de recebimento. |
+| **Recebimento dos valores** | Saldo da subconta do artesão na AbacatePay e solicitação de saque pelo painel. |
+| **Organização das compras** | Lista de favoritos salva na conta e perfil com histórico de pedidos, edição de dados e alteração de senha. |
+| **Comunicação direta** | Central de mensagens entre clientes e artesãos, com contagem de mensagens não lidas. |
+| **Administração da plataforma** | Painel administrativo com indicadores, gestão de contas e de administradores, auditoria e exclusão lógica (*soft delete*). |
+| **Familiaridade digital** | Interface simples, responsiva e intuitiva voltada ao perfil dos usuários. |
+| **Apoio na adoção da solução** | Treinamento e documentação do sistema. |
 
-### 4.2. Estimativa de Custo Inicial
-O desenvolvimento do sistema Sorriso do Cerrado é realizado como um projeto acadêmico sem fins lucrativos, o que resultará em um custo financeiro de execução nulo para os artesãos beneficiários. Em termos de infraestrutura operacional, os custos iniciais são baixos; o investimento a princípio seria em um domínio personalizado e, futuramente, em serviços de hospedagem.
+### 4.2 Estimativa de Custo Inicial
+Desenvolvido como projeto acadêmico sem fins lucrativos (custo nulo de desenvolvimento para os artesãos). Custos operacionais futuros envolvem domínio e hospedagem. Em produção, a plataforma retém uma comissão configurável sobre cada venda (**10% no ambiente de testes**), somada às taxas da AbacatePay sobre transações e saques.
 
-### 4.3. Suposições e Dependências
-O funcionamento pleno da aplicação dependerá do engajamento dos artesãos na manutenção regular de estoques e atualização de status de pedidos. O sistema possui dependência crítica de conectividade com a internet, devido a todas as operações realizadas por clientes e administradores, além da integridade do banco de dados para a persistência de informações de pedidos e produtos.
-
-### 4.4. Premissas e Dependências
-
-* **Desenvolvedor:**
-  * *Hardware:* Computadores pessoais.
-  * *Software:* Visual Studio Code, Node.js, React, Express, MySQL, Git/GitHub, Docker.
-* **Ambiente do Usuário:** Navegadores web modernos (Google Chrome, Microsoft Edge, Safari, Firefox).
-* **Máquina do Servidor:** Inicialmente, a aplicação e o banco de dados operam em ambiente de desenvolvimento local (ou em contêineres Docker), dependendo da execução simultânea dos serviços para o acesso via navegador.
+### 4.3 Premissas, Suposições e Dependências
+* **Desenvolvedor:** Visual Studio Code, Node.js, TypeScript, React (Vite), Fastify, Drizzle ORM, Better Auth, MySQL, Docker e Docker Compose, Git/GitHub.
+* **Serviços Externos:** AbacatePay API v2 (chave de teste para desenvolvimento).
+* **Ambiente do Usuário:** Navegadores modernos (Google Chrome, Microsoft Edge), sem exigência de instalação local.
+* **Servidor:** Orquestração em três contêineres Docker Compose (`sorriso_frontend`, `sorriso_backend` e `sorriso_mysql`). Para recebimento de webhooks em produção, o back-end requer endereço público acessível pela AbacatePay.
 
 ---
 
@@ -121,46 +129,46 @@ O funcionamento pleno da aplicação dependerá do engajamento dos artesãos na 
 
 | Nº | Funcionalidade | Prioridade | Entrega |
 | :---: | :--- | :---: | :---: |
-| 1 | Catálogo e Vitrine | **Crítico** | Versão 1.0 |
-| 2 | Área Administrativa (CRUD) | **Crítico** | Versão 1.0 |
-| 3 | Sistema de Carrinho | **Importante** | Versão 1.0 |
-| 4 | Modelagem e isolamento de produtos por artesão | **Crítico** | Versão 2.0 |
-| 5 | Páginas públicas de perfil do artesão | **Importante** | Versão 2.0 |
+| 1 | Catálogo e Vitrine | Crítico | Versão 1.0 |
+| 2 | Área Administrativa (CRUD) | Crítico | Versão 1.0 |
+| 3 | Sistema de Carrinho | Importante | Versão 1.0 |
+| 4 | Modelagem e isolamento de produtos por artesão | Crítico | Versão 2.0 |
+| 5 | Páginas públicas de perfil do artesão | Importante | Versão 2.0 |
+| 6 | Integração de pagamentos (AbacatePay) | Crítico | Versão 2.0 |
+| 7 | Central de mensagens e painel de resumo do artesão | Importante | Versão 2.0 |
+| 8 | Recebimentos do artesão (saldo e saque) | Importante | Versão 2.0 |
+| 9 | Administração hierárquica (`admin` e `super_admin`), auditoria e exclusão lógica | Importante | Versão 2.0 |
+| 10 | Validação e baixa automática de estoque no checkout | Importante | Planejada |
 
 ---
 
-## 6. Requisitos Não-Funcionais do Produto
+## 6. Requisitos Não-Funcionais e Segurança
 
-* **6.1. Usabilidade:** O sistema deverá ser simples e intuitivo, visando atender usuários com baixa familiaridade tecnológica. A aplicação deverá possuir fácil navegação, com elementos visuais que auxiliem os artesãos.
-* **6.2. Suportabilidade:** O sistema deverá ser compatível com navegadores web modernos, sem a necessidade de instalação local. O sistema deverá possuir design totalmente responsivo.
-* **6.3. Confiabilidade:** O software deverá garantir a integridade dos dados cadastrados no banco de dados. A aplicação deve possuir um tempo de resposta otimizado para o carregamento da vitrine de produtos e para as operações de filtragem no catálogo. O sistema deve ser capaz de lidar com erros e se recuperar deles sem perda de dados ou processamento incorreto.
-* **6.4. Disponibilidade:** O sistema deverá estar disponível 99,8% do tempo, continuamente.
-* **6.5. Segurança:** O painel administrativo deverá ter acesso restrito mediante autenticação (JWT) para garantir a integridade dos dados. Deverá ser garantido que apenas usuários autorizados possam realizar operações de alteração de preços, estoque e descrições dos produtos.
-* **6.6. Documentação:** Deverá ser elaborada uma documentação técnica e um manual do usuário para facilitar a manutenção e servir de guia para os usuários finais.
-
----
-
-## 7. Restrições Técnicas
-
-### 7.1. Padrões Aplicáveis
-O projeto, em linguagem **TypeScript** (compilada para JavaScript), deve seguir padrões de design responsivo, garantindo que o marketplace seja acessível e funcional tanto em desktops quanto em dispositivos móveis. Além disso, a implementação deve respeitar a acessibilidade digital, com uma interface simplificada para usuários com baixa familiaridade tecnológica.
-
-### 7.2. Restrições Aplicáveis
-* A implementação está restrita ao uso do **React.js** no front-end, **Node.js** com framework **Express** no back-end e **MySQL** para a gestão do banco de dados relacional.
-* Não é permitida a exigência de instalação de dependências ou softwares adicionais no hardware do usuário final.
+* **Usabilidade:** interface simples, intuitiva e acessível para usuários com baixa familiaridade digital.
+* **Suportabilidade:** compatibilidade com navegadores modernos e design responsivo, sem instalação local.
+* **Confiabilidade:** integridade no banco de dados, tempo de resposta otimizado na vitrine e filtros, recuperação segura de erros e **idempotência** no processamento de notificações de pagamento (cada confirmação processada uma única vez).
+* **Disponibilidade:** meta de 99,8% em produção (atualmente em execução local).
+* **Segurança:**
+    * Acesso restrito por autenticação e controle de papéis (`cliente`, `artisan`, `admin`, `super_admin`).
+    * Isolamento de propriedade: apenas o artesão dono do produto (ou administrador) altera preços, estoque e descrições.
+    * Senhas armazenadas em *hash* e sessões mantidas em cookie validado a cada requisição.
+    * Dados pessoais e financeiros dos artesãos cifrados em repouso com **AES-256-GCM**.
+    * Webhooks validados por segredo compartilhado e assinatura **HMAC-SHA256**.
+    * Trilha de auditoria administrativa e desativação de contas por exclusão lógica (*soft delete*).
 
 ---
 
-## 8. Manual de Arquitetura
+## 7. Mecanismos Arquiteturais
 
-### 8.1. Visão de Implementação
-O sistema adota uma arquitetura desacoplada baseada em **API RESTful**, onde o front-end atua como uma *Single Page Application* (**SPA**) que consome serviços de back-end. A comunicação é feita via protocolo **HTTP/HTTPS**, utilizando **JSON** para intercâmbio de dados. Esta estrutura permite uma manutenção simplificada e garante que a lógica de negócio seja processada de forma independente da interface.
-
-### 8.2. Mecanismos Arquiteturais
-
-| Mecanismo de Análise | Mecanismo de Design | Mecanismos de Implementação |
+| Mecanismo de Análise | Mecanismo de Design | Mecanismo de Implementação |
 | :--- | :--- | :--- |
-| **Persistência** | Banco de Dados Relacional | MySQL |
-| **Interface de Usuário** | SPA (Single Page Application) | React.js com TypeScript e Vite |
-| **Processamento Server-side** | API REST | Node.js / Express com TypeScript |
+| **Persistência** | Banco de Dados Relacional + ORM | MySQL + Drizzle ORM |
+| **Migração de dados** | Migrações versionadas | Drizzle Kit (`migrations`) |
+| **Interface de Usuário** | SPA (Single Page Application) | React.js + Vite |
+| **Processamento Server-side** | API REST | Node.js / Fastify |
+| **Autenticação** | Sessão em cookie e controle por papéis | Better Auth |
+| **Pagamentos** | Gateway com *split* e *webhooks* | AbacatePay API v2 |
+| **Proteção de dados sensíveis** | Criptografia simétrica autenticada | AES-256-GCM (`node:crypto`) |
+| **Armazenamento de imagens** | Upload multipart em disco | `@fastify/multipart` + `uploads/` |
+| **Implantação** | Contêineres | Docker / Docker Compose |
 | **Versionamento** | Controle de Versão | Git / GitHub |

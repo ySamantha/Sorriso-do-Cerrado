@@ -1,3 +1,6 @@
+!!! warning "Material do Semestre Anterior (Versão 1.0)"
+    Este documento faz parte do acervo produzido no **semestre anterior** (versão 1.0 — vitrine virtual monoprodutor com Express e JWT). Para consultar a documentação atualizada do **Marketplace Sorriso do Cerrado (2026/2)**, navegue pelas abas principais no topo da página.
+
 # Sorriso do Cerrado - Documentação do Sistema
 
 Bem-vindo à documentação oficial do projeto **Sorriso do Cerrado**, uma plataforma de comércio eletrônico (*e-commerce*) desenvolvida com foco no artesanato regional e sustentável, promovendo a autonomia digital e a inclusão produtiva de artesãos do Cerrado brasileiro.
@@ -66,5 +69,5 @@ A documentação está organizada nas seguintes seções temáticas para navega�
     * [Relatório e Defeitos](testes/relatorio-de-testes.md) — Métricas de aprovação (100%) e rastreabilidade de defeitos.
     * [Evidências dos Testes](testes/evidencias.md) — Registros visuais da execução dos testes.
     * [Códigos dos Testes](testes/codigos-testes.md) — Scripts automatizados em Jest e Cypress.
-* [**Central de Downloads**](downloads/index.md)
+* [**Central de Downloads**](downloads.md)
     * Acesso aos documentos originais em PDF, DOCX e diagramas editáveis Draw.io.

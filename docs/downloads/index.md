@@ -1,62 +1,79 @@
 # Central de Downloads
 
-Nesta página você pode baixar os documentos originais elaborados pela equipe acadêmica da Universidade Católica de Brasília (UCB) nos formatos **PDF**, **DOCX** e diagramas editáveis **Draw.io**.
+Nesta página estão disponíveis **todos os documentos oficiais, arquivos editáveis (`.docx` e `.drawio`) e diagramas em alta resolução** produzidos para o **Sorriso do Cerrado (2026/2)**, bem como acesso rápido ao acervo completo do semestre anterior.
 
 ---
 
-## Documentos de Análise e Projeto de Software
+## 1. Documentos Obrigatórios da Entrega (`docs/`)
 
-| Documento | Versão | Formato PDF | Formato DOCX |
+| Arquivo | Descrição | Download |
+| :--- | :--- | :---: |
+| **`BMC.pdf`** | Business Model Canvas atualizado do Marketplace Sorriso do Cerrado | [:material-file-pdf-box: Baixar BMC.pdf](../BMC.pdf) |
+| **`DADOS.pdf`** | Documentação Técnica Completa do Modelo de Dados (17 págs. + DER) | [:material-file-pdf-box: Baixar DADOS.pdf](../DADOS.pdf) |
+
+---
+
+## 2. Documentos de Engenharia de Software Atualizados (2026/2)
+
+| Documento | Versão | Formato PDF | Formato Editável (DOCX) |
 | :--- | :---: | :---: | :---: |
-| **Documento de Visão** | 1.0 | [Baixar PDF](../assets/documentos/analise-e-projeto/1-Documento-de-Visao-v1.0.pdf) | [Baixar DOCX](../assets/documentos/analise-e-projeto/Documento_de_Visao_-_v1.0.docx) |
-| **Documento de Requisitos** | 1.0 | [Baixar PDF](../assets/documentos/analise-e-projeto/2-Documento-de-Requisitos-v1.0.pdf) | [Baixar DOCX](../assets/documentos/analise-e-projeto/Documento_de_Requisitos_-_v1.0.docx) |
-| **Requisitos e Casos de Uso** | 2.0 | [Baixar PDF](../assets/documentos/analise-e-projeto/3-Documento-de-Requisitos-e-Casos-de-Uso-v2.0.pdf) | [Baixar DOCX](../assets/documentos/analise-e-projeto/Documento_de_Requisitos_de_Software_e_Especificacao_de_Casos_de_Uso_-_v2.0.docx) |
-| **Documento de Arquitetura de Software** | 1.0 | [Baixar PDF](../assets/documentos/analise-e-projeto/4-Documento-de-Arquitetura-v1.0.pdf) | [Baixar DOCX](../assets/documentos/analise-e-projeto/Documento_de_Arquitetura_de_Software_-_v1.0.docx) |
-| **Interface e Prototipação** | 1.0 | [Baixar PDF](../assets/documentos/analise-e-projeto/5-Documento-de-Interface-e-Prototipacao-v1.0.pdf) | [Baixar DOCX](../assets/documentos/analise-e-projeto/Documento_de_Interface_e_Prototipacao_-_v1.0.docx) |
-| **Interface e Prototipação** | 1.1 | [Baixar PDF](../assets/documentos/analise-e-projeto/5-Documento-de-Interface-e-Prototipacao-v1.1.pdf) | [Baixar DOCX](../assets/documentos/analise-e-projeto/Documento_de_Interface_e_Prototipacao_-_v1.1.docx) |
+| **Documento de Visão** *(principal — alinhado ao código)* | **2.1** | [Baixar PDF](../assets/v2/documentos/Documento_de_Visao_-_v2.1.pdf) | — |
+| **Documento de Visão** *(transição para marketplace)* | **2.0** | [Baixar PDF](../assets/v2/documentos/Documento_de_Visao_-_v2.0.pdf) | [Baixar DOCX](../assets/v2/documentos/Documento_de_Visao_-_v2.0.docx) |
+| **Documento de Requisitos e Especificação de Casos de Uso** | **3.0** | [Baixar PDF](../assets/v2/documentos/Documento_de_Requisitos_e_Casos_de_Uso_-_v3.0.pdf) | [Baixar DOCX](../assets/v2/documentos/Documento_de_Requisitos_e_Casos_de_Uso_-_v3.0.docx) |
+| **Documento de Arquitetura de Software (Visão 4+1)** | **2.0** | [Baixar PDF](../assets/v2/documentos/Documento_de_Arquitetura_de_Software_-_v2.0.pdf) | — |
+| **Diagrama de Implantação UML (Docker Compose)** | **2.0** | [Baixar PDF](../assets/v2/documentos/Diagrama_de_Implantacao_UML.pdf) | — |
 
 ---
 
-## Documentos de Teste e Garantia da Qualidade
+## 3. Diagramas Atualizados e Arquivos Editáveis (`.drawio` e Imagens)
 
-| Documento | Descrição | Formato PDF | Formato DOCX / CSV |
-| :--- | :--- | :---: | :---: |
-| **Relatório Completo de Testes** | Relatório de testes executados com Jest, Postman e Cypress | [Baixar PDF](../assets/documentos/teste-de-software/Relatorio_-_Testes_de_Software_-_Sorriso_do_Cerrado.pdf) | [Baixar DOCX](../assets/documentos/teste-de-software/Relatorio_-_Testes_de_Software_-_Sorriso_do_Cerrado.docx) |
-| **Documento de Visão de Testes** | Visão estratégica do plano de qualidade | [Baixar PDF](../assets/documentos/teste-de-software/Documento_de_Visao_-_Sorriso_do_Cerrado.pdf) | [Baixar DOCX](../assets/documentos/teste-de-software/Documento_de_Visao_-_Sorriso_do_Cerrado.docx) |
-| **Plano de Testes** | Plano detalhado de testes do sistema | [Baixar PDF](../assets/documentos/teste-de-software/outros/Plano-Teste-Sorriso-1.pdf) | [Baixar DOCX](../assets/documentos/teste-de-software/outros/Plano-Teste-Sorriso.docx) |
-| **Matriz de Defeitos** | Registro tabular de testes e auditorias | — | [Baixar CSV](../assets/documentos/teste-de-software/defeitos_sorriso_do_cerrado.csv) |
-| **Casos de Teste Detalhados** | Especificação dos casos de teste unitários e de integração | — | [Baixar DOCX](../assets/documentos/teste-de-software/outros/Casos_de_Teste_-_Sorriso_do_Cerrado.docx) |
-| **Histórias de Usuário** | Relação de User Stories formatadas | — | [Baixar DOCX](../assets/documentos/teste-de-software/outros/Historias_de_Usuario_-_Sorriso_do_Cerrado.docx) |
-| **Evidências dos Testes** | Documento consolidado de evidências visuais | — | [Baixar DOCX](../assets/documentos/teste-de-software/outros/Evidencias_dos_Testes_-_Sorriso_do_Cerrado.docx) |
+### 3.1 Diagramas de Atividades (12 Fluxos — PNG + `.drawio` Editável)
+
+| Nº | Diagrama de Atividades | Imagem (PNG) | Editável (Draw.io) |
+| :---: | :--- | :---: | :---: |
+| 1 | **Fazer Login** | [Ver PNG](../assets/v2/diagramas/atividades/1-FazerLogin.png) | [Baixar `.drawio`](../assets/v2/diagramas/atividades/1-FazerLogin.drawio) |
+| 2 | **Navegar no Catálogo** | [Ver PNG](../assets/v2/diagramas/atividades/2-NavegarCatalogo.png) | [Baixar `.drawio`](../assets/v2/diagramas/atividades/2-NavegarCatalogo.drawio) |
+| 3 | **Gerenciar Carrinho** | [Ver PNG](../assets/v2/diagramas/atividades/3-GerenciarCarrinho.png) | [Baixar `.drawio`](../assets/v2/diagramas/atividades/3-GerenciarCarrinho.drawio) |
+| 4 | **Visualizar Painel de Controle** | [Ver PNG](../assets/v2/diagramas/atividades/4-PainelControle.png) | [Baixar `.drawio`](../assets/v2/diagramas/atividades/4-PainelControle.drawio) |
+| 5 | **Adicionar Produto** | [Ver PNG](../assets/v2/diagramas/atividades/5-AdicionarProduto.png) | [Baixar `.drawio`](../assets/v2/diagramas/atividades/5-AdicionarProduto.drawio) |
+| 6 | **Favoritar Produto** | [Ver PNG](../assets/v2/diagramas/atividades/6-FavoritarProduto.png) | [Baixar `.drawio`](../assets/v2/diagramas/atividades/6-FavoritarProduto.drawio) |
+| 7 | **Gerenciar Produtos do Catálogo (Manter Catálogo)** | [Ver PNG](../assets/v2/diagramas/atividades/7-ManterCatalogo.png) | [Baixar `.drawio`](../assets/v2/diagramas/atividades/7-ManterCatalogo.drawio) |
+| 8 | **Pesquisar Produto** | [Ver PNG](../assets/v2/diagramas/atividades/8-PesquisarProduto.png) | [Baixar `.drawio`](../assets/v2/diagramas/atividades/8-PesquisarProduto.drawio) |
+| 9 | **Finalizar Compra** | [Ver PNG](../assets/v2/diagramas/atividades/9-FinalizarCompra.png) | [Baixar `.drawio`](../assets/v2/diagramas/atividades/9-FinalizarCompra.drawio) |
+| 10 | **Cadastro de Usuário / Cliente** | [Ver PNG](../assets/v2/diagramas/atividades/10-CadastroCliente.png) | [Baixar `.drawio`](../assets/v2/diagramas/atividades/10-CadastroCliente.drawio) |
+| 11 | **Enviar Mensagem para a Loja** | [Ver PNG](../assets/v2/diagramas/atividades/11-EnviarMensagem.png) | [Baixar `.drawio`](../assets/v2/diagramas/atividades/11-EnviarMensagem.drawio) |
+| 12 | **Gerenciar Loja e Recebimentos do Artesão** | [Ver PNG](../assets/v2/diagramas/atividades/12-GerenciarLojaRecebimento.png) | [Baixar `.drawio`](../assets/v2/diagramas/atividades/12-GerenciarLojaRecebimento.drawio) |
+
+### 3.2 Diagramas de Arquitetura, Pacotes e Fluxos de Navegação
+
+| Diagrama | Imagem / PDF | Editável (Draw.io) |
+| :--- | :---: | :---: |
+| **Diagrama de Arquitetura (v2.0)** | [Abrir JPG](../assets/v2/diagramas/arquitetura/Diagrama_de_Arquitetura.jpg) | — |
+| **Diagrama de Pacotes (v2.0)** | [Abrir JPG](../assets/v2/diagramas/arquitetura/Diagrama_de_Pacotes.jpg) | — |
+| **Diagrama de Implantação UML (v2.0)** | [Baixar PDF](../assets/v2/diagramas/arquitetura/Diagrama_de_Implantacao_UML.pdf) | — |
+| **Fluxo Geral de Navegação (User Flow)** | [Abrir JPG](../assets/v2/diagramas/fluxos-de-navegacao/1-FluxoGeral.jpg) | [Baixar `.drawio`](../assets/v2/diagramas/fluxos-de-navegacao/1-FluxoGeral.drawio) |
+| **Fluxo de Navegação do Cliente** | [Abrir JPG](../assets/v2/diagramas/fluxos-de-navegacao/2-FluxoCliente.jpg) | [Baixar `.drawio`](../assets/v2/diagramas/fluxos-de-navegacao/2-FluxoCliente.drawio) |
+
+### 3.3 Diagramas de Classes (6 Visões Modulares)
+
+* [Visão Geral da Arquitetura — Classes (PNG)](../assets/v2/diagramas/classes/0-VisaoGeralArquitetura.png)
+* [Módulo de Autenticação e Usuários (JPG)](../assets/v2/diagramas/classes/1-AutenticacaoUsuarios.jpg)
+* [Módulo de Gestão de Artesãos e Repasses Financeiros (PNG)](../assets/v2/diagramas/classes/2-GestaoArtesaosRepasses.png)
+* [Módulo de Catálogo, Vitrine e Favoritos (PNG)](../assets/v2/diagramas/classes/3-CatalogoVitrineFavoritos.png)
+* [Módulo de Vendas, Itens e Pagamentos (PNG)](../assets/v2/diagramas/classes/4-VendasItensPagamentos.png)
+* [Módulo de Mensageria — Cliente e Artesão (PNG)](../assets/v2/diagramas/classes/5-Mensageria.png)
+
+### 3.4 Diagramas de Sequência (4 Fluxos Críticos)
+
+* [UC001 — Fazer Login (JPG)](../assets/v2/diagramas/sequencia/UC001-FazerLogin.jpg)
+* [UC007 — Finalizar Compra Pix com Split e Webhook (JPG)](../assets/v2/diagramas/sequencia/UC007-FinalizarCompraPix.jpg)
+* [UC015 — Consultar Saldo e Sacar — Artesão (JPG)](../assets/v2/diagramas/sequencia/UC015-ConsultarSaldoSacar.jpg)
+* [UC017 — Desativar Conta de Usuário — Exclusão Lógica (JPG)](../assets/v2/diagramas/sequencia/UC017-DesativarContaUsuario.jpg)
 
 ---
 
-## Apresentações de Slides
+## 4. Materiais do Semestre Anterior (Versão 1.0)
 
-* [Baixar Slides — Apresentação de Análise & Projeto (Pitch)](../assets/apresentacoes/apresentacao-analise_projeto-pitch.pdf)
-* [Baixar Slides — Apresentação de Teste de Software](../assets/apresentacoes/apresentacao-teste-de-software.pdf)
+Todos os documentos originais da v1.0 (Análise e Projeto v1.0/v2.0, Relatórios e Planos de Testes, Matriz de Defeitos `.csv`, Apresentações de Slides em PDF e todos os arquivos `.drawio` do semestre anterior) estão preservados integralmente na página:
 
----
-
-## Diagramas Editáveis (.drawio)
-
-* [Casos de Uso Geral](../assets/diagramas/1-casos-de-uso/1-CasosdeUso.drawio)
-* [Fluxo Geral de Navegação](../assets/diagramas/2-fluxos-de-navegacao/1-FluxoGeral.drawio)
-* [Fluxo do Cliente](../assets/diagramas/2-fluxos-de-navegacao/2-FluxoCliente.drawio)
-* [Fluxo da Artesã](../assets/diagramas/2-fluxos-de-navegacao/3-FluxoArtesa.drawio)
-* [Fluxo de Compra](../assets/diagramas/2-fluxos-de-navegacao/4-FluxoCompra.drawio)
-* [Atividade: Login](../assets/diagramas/3-diagramas-de-atividades/1-FazerLogin.drawio)
-* [Atividade: Cadastro de Usuário e Artesão](../assets/diagramas/3-diagramas-de-atividades/10-CadastroCliente_Artesao.drawio)
-* [Atividade: Navegar no Catálogo](../assets/diagramas/3-diagramas-de-atividades/2-NavegarCatalogo.drawio)
-* [Atividade: Gerenciar Carrinho](../assets/diagramas/3-diagramas-de-atividades/3-GerenciarCarrinho.drawio)
-* [Atividade: Painel de Controle](../assets/diagramas/3-diagramas-de-atividades/4-PainelControle.drawio)
-* [Atividade: Adicionar Produto](../assets/diagramas/3-diagramas-de-atividades/5-AdicionarProduto.drawio)
-* [Atividade: Favoritar Produto](../assets/diagramas/3-diagramas-de-atividades/6-FavoritarProduto.drawio)
-* [Atividade: Manter Catálogo](../assets/diagramas/3-diagramas-de-atividades/7-ManterCatalogo.drawio)
-* [Atividade: Pesquisar Produto](../assets/diagramas/3-diagramas-de-atividades/8-PesquisarProduto.drawio)
-* [Atividade: Finalizar Intenção de Compra](../assets/diagramas/3-diagramas-de-atividades/9-FinalizarIntencaoCompra.drawio)
-* [Diagrama de Sequência de Login](../assets/diagramas/5-diagramas-de-sequencia/1-SequenciaLogin.drawio)
-* [Arquitetura: Camadas da Aplicação](../assets/diagramas/6-arquitetura/1-CamadasAplicacao.drawio)
-* [Arquitetura: Pacotes da Aplicação](../assets/diagramas/6-arquitetura/2-PacotesAplicacao.drawio)
-* [Arquitetura: Implantação Física](../assets/diagramas/6-arquitetura/3-Implantacao.drawio)
-* [Componentes da Interface](../assets/diagramas/7-interfaces/1-Componentes.drawio)
+[:material-archive-outline: Acessar Downloads do Semestre Anterior](../semestre-anterior/downloads.md){ .md-button }

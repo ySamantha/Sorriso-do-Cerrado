@@ -1,25 +1,80 @@
-# Códigos-Fonte dos Testes Automatizados
+# Códigos-Fonte dos Testes Automatizados (v2.0)
 
-Esta seção documenta a implementação técnica real dos scripts de teste automatizado desenvolvidos pela equipe com os frameworks **Jest** (backend) e **Cypress** (frontend E2E).
+Esta seção documenta os scripts automatizados do projeto, destacando os **novos testes de fluxo integrado em Python (Better Auth + Fastify + Docker Compose)** implementados na branch principal, além da suíte contínua em **Jest** e **Cypress**.
 
 ---
 
-## 1. Testes Unitários com Jest
+## 1. Testes Integrados v2.0 (Python + Docker Compose + Better Auth)
 
-### 1.1 Validação de E-mail (`validarEmail.js` e `validarEmail.test.js`)
-Função pura responsável por validar a estrutura de e-mails recebidos durante o cadastro e atualização de perfis:
+### 1.1 Fluxo Completo de Autenticação, Sessão, Favoritos, Vendas e RBAC (`testes/e2e_flow_test.py`)
 
-```javascript
-// Back-End/validarEmail.js
-function validarEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-}
-module.exports = validarEmail;
+O script sobe os contêineres via `docker compose up -d`, mantém os cookies de sessão com `http.cookiejar.CookieJar` e valida sequencialmente cadastro, login, alteração de e-mail (incluindo proteção contra enumeração de e-mails existentes), troca de senha com revogação de sessões, logout, re-login, favoritos, venda, bloqueio `403` de exclusão por cliente e limpeza administrativa:
+
+```python
+# Trecho ilustrativo de testes/e2e_flow_test.py
+status, res = requisicao("/api/auth/change-password", method="POST", body={
+    "currentPassword": senha_cliente,
+    "newPassword": nova_senha_cliente,
+    "revokeOtherSessions": True
+})
+assert status == 200, f"Erro ao alterar senha: {res}"
+
+# Logout e novo login com a nova senha
+status, res = requisicao("/api/auth/sign-out", method="POST")
+assert status == 200
+cookie_jar.clear()
+
+status, res = requisicao("/api/auth/sign-in/email", method="POST", body={
+    "email": email_cliente,
+    "password": nova_senha_cliente
+})
+assert status == 200
+
+# Rotas protegidas: Favoritos e Vendas
+status, res = requisicao("/favoritos", method="POST", body={"id_produto": id_produto})
+assert status == 201
+
+# Controle de acesso: cliente não pode excluir produto (HTTP 403)
+status, res = requisicao(f"/produtos/{id_produto}", method="DELETE")
+assert status == 403
 ```
 
+---
+
+### 1.2 Criação de Banners por URL e Upload Multipart (`testes/banner_creation_test.py`)
+
+Valida a autenticação administrativa via Better Auth e testa os dois modos de criação de banner na API Fastify (URL externa e upload binário PNG 1x1 via `multipart/form-data`), verificando o reflexo imediato em `GET /banners`:
+
+```python
+# Trecho ilustrativo de testes/banner_creation_test.py
+status, result = request(
+    "/api/auth/sign-in/email",
+    method="POST",
+    body={"email": ADMIN_EMAIL, "password": ADMIN_PASSWORD},
+)
+assert status == 200, f"Admin sign-in failed: {result}"
+
+status, result = request(
+    "/banners",
+    method="POST",
+    body={
+        "titulo": f"URL banner test {unique_id}",
+        "imagemURL": external_image_url,
+        "link": "https://example.com/",
+        "ordem": 901,
+    },
+)
+assert status == 201
+assert_banner_is_listed(result["id"], external_image_url)
+```
+
+---
+
+## 2. Suíte Contínua de Testes Unitários (Jest) e E2E (Cypress)
+
+### 2.1 Validação de E-mail (`validarEmail.test.js`)
+
 ```javascript
-// Back-End/validarEmail.test.js
 const validarEmail = require('./validarEmail');
 
 test('deve validar um e-mail correto', () => {
@@ -29,19 +84,11 @@ test('deve validar um e-mail correto', () => {
 test('deve invalidar um e-mail sem @', () => {
     expect(validarEmail('testeteste.com')).toBe(false);
 });
-
-test('deve invalidar um e-mail sem domínio', () => {
-    expect(validarEmail('teste@')).toBe(false);
-});
 ```
 
----
-
-### 1.2 Lógica do Carrinho de Compras (`carrinho.test.js`)
-Validação do comportamento de acúmulo de itens e incremento de quantidades:
+### 2.2 Lógica do Carrinho (`carrinho.test.js`)
 
 ```javascript
-// carrinho.test.js
 function adicionarAoCarrinho(carrinho, produto) {
     const itemExistente = carrinho.find(item => item.id === produto.id);
     if (itemExistente) {
@@ -51,58 +98,10 @@ function adicionarAoCarrinho(carrinho, produto) {
     }
     return carrinho;
 }
-
-test('adiciona produto novo ao carrinho', () => {
-    const carrinho = [];
-    const produto = { id: 1, nome: 'Vaso de Capim Dourado', preco: 50 };
-    const resultado = adicionarAoCarrinho(carrinho, produto);
-
-    expect(resultado.length).toBe(1);
-    expect(resultado[0].quantidade).toBe(1);
-});
-
-test('incrementa quantidade de produto existente no carrinho', () => {
-    const carrinho = [{ id: 1, nome: 'Vaso de Capim Dourado', preco: 50, quantidade: 1 }];
-    const produto = { id: 1, nome: 'Vaso de Capim Dourado', preco: 50 };
-    const resultado = adicionarAoCarrinho(carrinho, produto);
-
-    expect(resultado.length).toBe(1);
-    expect(resultado[0].quantidade).toBe(2);
-});
 ```
 
----
+### 2.3 Fluxo E2E de Carrinho e Favoritos (`Cypress`)
 
-### 1.3 Verificação de Administrador via Token (`login.test.js`)
-Validação da lógica de extração do perfil administrativo:
-
-```javascript
-// login.test.js
-function isAdmin(user) {
-    return user && user.isAdmin === true;
-}
-
-test('identifica usuário administrador com sucesso', () => {
-    const userAdmin = { id: 1, email: 'artesa@sorrisodocerrado.com.br', isAdmin: true };
-    expect(isAdmin(userAdmin)).toBe(true);
-});
-
-test('identifica usuário cliente comum sem privilégios', () => {
-    const userCliente = { id: 2, email: 'cliente@gmail.com', isAdmin: false };
-    expect(isAdmin(userCliente)).toBe(false);
-});
-
-test('rejeita objetos vazios ou indefinidos', () => {
-    expect(isAdmin(null)).toBe(false);
-    expect(isAdmin(undefined)).toBe(false);
-});
-```
-
----
-
-## 2. Testes End-to-End com Cypress
-
-### 2.1 Fluxo do Carrinho de Compras (`carrinho.cy.js`)
 ```javascript
 describe('Fluxo do Carrinho de Compras', () => {
   it('Adiciona produto ao carrinho e verifica total', () => {
@@ -115,32 +114,4 @@ describe('Fluxo do Carrinho de Compras', () => {
 });
 ```
 
-### 2.2 Navegação e Detalhes do Produto (`detalhesProduto.cy.js`)
-```javascript
-describe('Navegação e Detalhes do Produto', () => {
-  it('Navega da navbar para catálogo e abre detalhes', () => {
-    cy.visit('http://localhost:5173/');
-    cy.contains('Catálogo').click();
-    cy.url().should('include', '/catalogo');
-    cy.get('.product-card').first().click();
-    cy.url().should('include', '/detalhes');
-    cy.get('h1').should('be.visible');
-  });
-});
-```
-
-### 2.3 Persistência de Favoritos (`favoritos-copy-1.cy.js`)
-```javascript
-describe('Persistência de Favoritos', () => {
-  it('Adiciona item aos favoritos e valida na página Meus Favoritos', () => {
-    cy.visit('http://localhost:5173/login');
-    cy.get('input[type="email"]').type('cliente@teste.com');
-    cy.get('input[type="password"]').type('123456');
-    cy.get('button[type="submit"]').click();
-    cy.visit('http://localhost:5173/catalogo');
-    cy.get('[data-testid="btn-favorito"]').first().click();
-    cy.visit('http://localhost:5173/favoritos');
-    cy.get('.favorito-item').should('have.length.at.least', 1);
-  });
-});
-```
+*Os scripts originais completos em Jest e Cypress também podem ser consultados no [Acervo de Códigos de Teste (Semestre Anterior)](../semestre-anterior/testes/codigos-testes.md).*

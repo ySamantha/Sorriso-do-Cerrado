@@ -1,49 +1,46 @@
-# Plano e Estratégia de Testes de Software
+# Plano e Estratégia de Testes de Software (v2.0)
 
-**Documento Base:** Relatório de Testes de Software — Sorriso do Cerrado  
-**Objetivo:** Garantir a qualidade, segurança, estabilidade e conformidade funcional do e-commerce Sorriso do Cerrado.
+**Versão:** 2.0 (Marketplace Multi-Artesãos — 2026/2)  
+**Objetivo:** Garantir a integridade funcional, a segurança de autenticação/papéis, a confiabilidade financeira (Pix + split + webhooks) e a estabilidade do marketplace **Sorriso do Cerrado**.
 
 ---
 
 ## 1. Escopo dos Testes
 
-### 1.1 Dentro do Escopo (Testado)
-* Regras centrais de negócio (validação de formato de e-mail, restrição de preços estritamente positivos).
-* Lógica e estado do carrinho de compras (inserção de novo produto, incremento de quantidades, recálculo de totais).
-* Autenticação e autorização via API (geração de tokens JWT, bloqueio de rotas protegidas sem credenciais, verificação de perfil administrador).
-* Operações de atualização de perfil e garantia de unicidade de e-mail.
-* Fluxos ponta a ponta (E2E) no navegador: listagem de catálogo, persistência de favoritos após login e ciclo completo de carrinho.
+### 1.1 Dentro do Escopo (Validado na Versão 2.0)
+* **Autenticação e Sessão (Better Auth):** cadastro, login por e-mail/senha, cookie HTTP, alteração de nome/e-mail com verificação de unicidade, troca de senha com revogação de sessões, logout e re-autenticação (`testes/e2e_flow_test.py`).
+* **Controle de Acesso Baseado em Papéis (RBAC):** validação dos perfis `cliente`, `artisan`, `admin` e `super_admin`, bloqueio de rotas restritas com HTTP `401`/`403` e bloqueio de contas desativadas (*soft delete*).
+* **Gestão de Banners e Upload Multipart:** criação de banners com URL externa e via upload de arquivo PNG (`multipart/form-data`), verificação na listagem pública e limpeza (`testes/banner_creation_test.py`).
+* **Fluxos Comerciais e Multi-Artesãos:** catálogo, filtros, lojas públicas, favoritos persistidos, carrinho de compras, checkout Pix com *split* em ambiente de testes (`abc_dev_`) da AbacatePay, consulta de saldo/saques e central de mensagens.
+* **Regras de Negócio e Interface (Suíte Contínua):** testes unitários em **Jest** e testes ponta a ponta em **Cypress** oriundos da base v1.0.
 
-### 1.2 Fora do Escopo (Não Testado nesta Fase)
-* Testes de carga massiva com milhares de usuários simultâneos (cenário além da demanda inicial da artesã).
-* Gateway de pagamento bancário automatizado (substituído pelo canal direto de fechamento via WhatsApp).
+### 1.2 Fora do Escopo nesta Fase
+* Testes de carga massiva em produção (a execução atual opera em ambiente local containerizado).
+* Liquidação bancária real em ambiente produtivo da AbacatePay (utiliza-se a chave de teste `abc_dev_` com simulação de pagamento).
 
 ---
 
 ## 2. Pirâmide de Testes e Ferramentas
 
-A estratégia de testes seguiu o modelo clássico da pirâmide de testes para garantir cobertura ampla com excelente custo-benefício:
-
 ```mermaid
 graph TD
-    E2E[Testes End-to-End
-Cypress — 4 Cenários Chave] --> API[Testes de Integração & API
-Postman / Thunder Client — 3 Casos]
-    API --> UNIT[Testes Unitários
-Jest — 5 Casos de Regras de Negócio]
+    E2E["Testes E2E & Fluxo Completo<br/>Python (Docker + Better Auth) & Cypress"] --> API["Testes de Integração & API<br/>Fastify REST, Multipart & Webhooks (Postman / Python)"]
+    API --> UNIT["Testes Unitários & Regras<br/>Jest (validações de domínio e carrinho)"]
 ```
 
-| Nível de Teste | Ferramenta | Foco Principal |
+| Nível de Teste | Ferramentas | Foco Principal |
 | :--- | :--- | :--- |
-| **Unitário** | **Jest** | Validação isolada de funções críticas do back-end em milissegundos sem depender de banco de dados ou rede. |
-| **Integração / API** | **Postman / Thunder Client** | Validação dos contratos HTTP, cabeçalhos JWT, códigos de status (200, 201, 400, 403, 404) e payloads JSON. |
-| **End-to-End (E2E)** | **Cypress** | Simulação realista da interação do cliente no navegador (cliques, digitação, navegação entre páginas e persistência no localStorage). |
+| **Unitário** | **Jest** | Validação isolada de regras puras (formato de e-mail, preços positivos, lógica do carrinho e papéis). |
+| **Integração / API (v2.0)** | **Python (`urllib` + `CookieJar` + Docker Compose)** e **Postman** | Contratos HTTP do Fastify 5, cookies de sessão Better Auth, upload multipart, controle de papéis (`401`/`403`/`404`) e persistência no MySQL 8. |
+| **End-to-End (E2E)** | **Cypress** e **Validação Funcional Completa** | Navegação real do usuário no navegador, catálogo, favoritos, carrinho, lojas públicas, mensagens e painéis. |
 
 ---
 
-## 3. Ambiente e Matriz de Responsabilidades
+## 3. Ambiente e Responsabilidades (2026/2)
 
-* **Ambiente de Testes:** Sistema operacional Windows 11 com Node.js v20+, banco MySQL local em contêiner Docker e navegadores Chromium / Chrome.
-* **Responsabilidades:**
-    * **Samantha Yumi Tanaka & Vinicios Trindade Costa:** Criação dos planos, codificação dos testes automatizados em Jest e Cypress e execução dos cenários de API.
-    * **Pedro Henrique Cavalcante, Pedro Henrique Nunes, Samuel Batista e Wictor Emanoel:** Testes exploratórios manuais, elaboração de evidências, validação de usabilidade e documentação dos defeitos.
+* **Ambiente:** Contêineres Docker Compose (`sorriso_frontend` na porta `5173`, `sorriso_backend` na porta `3000`, `sorriso_mysql` na porta `3306`/`3307`), Node.js 22, Python 3 e navegadores Chrome/Edge.
+* **Equipe de Qualidade e Desenvolvimento (2026/2):** Gabriel Cézar Peres Matos, Pedro Henrique Cavalcante de Sousa, Samantha Yumi Tanaka, Samuel Batista Rennó e Vinicios Trindade Costa.
+
+---
+
+*Para consultar o plano original da Versão 1.0 (Express + JWT), acesse [Plano de Testes (Semestre Anterior)](../semestre-anterior/testes/plano-e-estrategia.md).*

@@ -1,81 +1,131 @@
 # Histórias de Usuário (User Stories)
 
-**Documento de Origem:** Documentação de Testes de Software — Sorriso do Cerrado  
-**Padrão:** Como [papel], eu quero [ação] para que [benefício/valor de negócio].
+**Padrão:** *Como [papel], eu quero [ação] para que [benefício / valor de negócio].*  
+**Escopo:** Marketplace colaborativo Sorriso do Cerrado (Versão 2.0 / 3.0 — consolidando as histórias originais da v1.0 e os novos fluxos multi-artesãos de 2026/2).
 
 ---
 
-## Módulo de Autenticação
+## 1. Módulo de Autenticação e Perfil
 
 ### HU01 — Login no Sistema
-* **Descrição:** Como usuário (cliente ou administrador), eu quero realizar login utilizando meu e-mail e senha cadastrados para acessar as funcionalidades exclusivas da plataforma de acordo com o meu perfil.
+* **Descrição:** Como usuário (cliente, artesão ou administrador), eu quero realizar login utilizando meu e-mail e senha cadastrados para acessar as funcionalidades correspondentes ao meu papel.
 * **Critérios de Aceitação:**
-    * Validar se os campos obrigatórios (e-mail e senha) foram preenchidos.
-    * Retornar mensagem clara de erro caso o e-mail não exista ou a senha seja incorreta.
-    * Redirecionar administradores para `/painel-de-controle` e clientes para a tela inicial.
-    * Gerar token JWT com payload contendo `id`, `email` e permissão de `isAdmin`.
+    * Validar o preenchimento obrigatório de e-mail e senha.
+    * Bloquear o acesso de contas desativadas ou excluídas logicamente (HTTP 403 — *"Esta conta está desativada"*).
+    * Criar sessão persistida na tabela `session` via Better Auth e retornar cookie HTTP seguro.
+    * Exibir no menu o painel compatível com o papel do usuário (`artisan` → `/admin`; `admin`/`super_admin` → `/painel-administrativo`).
 
-### HU02 — Cadastro de Usuário
-* **Descrição:** Como novo cliente, eu quero criar uma conta no sistema informando meus dados pessoais para poder salvar meus produtos favoritos e gerenciar meus pedidos.
+### HU02 — Cadastro de Conta de Cliente
+* **Descrição:** Como novo visitante, eu quero criar uma conta informando nome, e-mail e senha forte para poder favoritar produtos, conversar com lojas e finalizar compras.
 * **Critérios de Aceitação:**
-    * Validar formato válido de e-mail (presença de `@` e domínio válido).
-    * Impedir o cadastro de e-mails duplicados no banco de dados.
-    * Garantir tamanho mínimo seguro de senha (mínimo de 6 caracteres).
+    * Validar força mínima da senha (8+ caracteres, maiúscula, minúscula, número e caractere especial) e confirmação.
+    * Impedir cadastro de e-mail duplicado no banco de dados.
+    * Criar conta com papel padrão `cliente` e senha armazenada em hash seguro.
+
+### HU03 — Perfil Unificado do Usuário
+* **Descrição:** Como usuário autenticado, eu quero acessar minha página de perfil unificada para editar meus dados pessoais, alterar minha senha, gerenciar meus favoritos e consultar meu histórico de pedidos recentes.
+* **Critérios de Aceitação:**
+    * Permitir atualização de nome, foto e e-mail respeitando unicidade.
+    * Permitir troca segura de senha exigindo a senha atual.
+    * Listar pedidos recentes vinculados à conta com status de pagamento.
 
 ---
 
-## Módulo de Catálogo e Produtos
+## 2. Módulo de Vitrine, Catálogo e Lojas Públicas
 
-### HU03 — Visualização do Catálogo
-* **Descrição:** Como consumidor, eu quero visualizar todas as peças artesanais em uma grade organizada para conhecer as opções disponíveis para compra.
+### HU04 — Visualização do Catálogo e Página Explorar
+* **Descrição:** Como consumidor, eu quero explorar a página inicial e o catálogo com artesãos em destaque, categorias e produtos populares para descobrir peças artesanais da região.
 * **Critérios de Aceitação:**
-    * Exibir imagem, título, preço formatado em Real (R$) e botão de ação para cada card.
-    * Indicar visualmente itens esgotados sem interromper a navegação dos demais.
+    * Exibir banners promocionais ativos, cards de artesãos em destaque e grade responsiva de produtos com foto, nome, loja e preço em Real (`R$`).
 
-### HU04 — Pesquisa de Produtos
-* **Descrição:** Como cliente, eu quero pesquisar produtos digitando termos no campo de busca para encontrar rapidamente o artesanato desejado.
+### HU05 — Pesquisa, Filtros e Ordenação de Produtos
+* **Descrição:** Como cliente, eu quero pesquisar por termo (nome, categoria ou artesão), filtrar por categoria/faixa de preço e ordenar os resultados para encontrar rapidamente o artesanato desejado.
 * **Critérios de Aceitação:**
-    * Filtrar produtos com correspondência insensível a maiúsculas/minúsculas.
-    * Exibir mensagem amigável *"Nenhum produto encontrado"* caso a busca não retorne itens.
+    * Validar parâmetros no back-end (`GET /produtos`).
+    * Suportar ordenação por recentes, antigos, menor preço e maior preço.
+    * Exibir mensagem amigável *"Nenhum produto encontrado"* quando não houver resultados.
 
-### HU05 — Ver Detalhes do Produto
-* **Descrição:** Como cliente, eu quero clicar em um produto e ver sua página de detalhes para conhecer suas dimensões, materiais do Cerrado utilizados e disponibilidade.
+### HU06 — Detalhes do Produto e Visita à Loja Pública do Artesão
+* **Descrição:** Como cliente, eu quero abrir a página de detalhes de uma peça e visitar a loja pública do artesão responsável para conhecer sua história, prazo de produção, envio e demais peças disponíveis.
 * **Critérios de Aceitação:**
-    * Exibir foto ampliada, descrição completa e valor unitário.
-    * Permitir adicionar a peça ao carrinho diretamente a partir dessa tela.
+    * Exibir foto ampliada, descrição completa, estoque, preço e link direto para a loja do artesão.
+    * Na loja pública (`/artesaos/:id`), exibir capa, logo, descrição, informações de envio/produção, botão de enviar mensagem e catálogo exclusivo daquele artesão.
+
+### HU07 — Favoritar Produto
+* **Descrição:** Como cliente autenticado, eu quero favoritar e desfavoritar peças artesanais para montar minha lista pessoal de desejos persistida no banco.
+* **Critérios de Aceitação:**
+    * Redirecionar visitantes não logados para a tela de login.
+    * Alternar o estado do favorito e manter a lista sincronizada em novos logins.
 
 ---
 
-## Módulo de Favoritos
+## 3. Módulo de Carrinho e Checkout Pix (AbacatePay)
 
-### HU06 — Favoritar Produto
-* **Descrição:** Como cliente autenticado, eu quero clicar no ícone de coração de um produto para adicioná-lo à minha lista pessoal de favoritos.
+### HU08 — Gerenciar Carrinho de Compras
+* **Descrição:** Como cliente, eu quero adicionar peças ao carrinho, alterar quantidades e remover itens para organizar minha compra antes do pagamento.
 * **Critérios de Aceitação:**
-    * Alternar estado do ícone (preenchido/vazio) ao clicar.
-    * Se o usuário não estiver logado, redirecionar para a tela de login.
-    * Persistir a lista de favoritos no banco de dados, recuperando-a em novos acessos.
+    * Incrementar quantidade ao adicionar item repetido, recalcular o valor total dinamicamente e exibir estado *"Carrinho Vazio"* quando sem itens.
+
+### HU09 — Finalizar Compra via Pix com Split Automático
+* **Descrição:** Como cliente autenticado, eu quero finalizar minha compra com pagamento via QR Code Pix para pagar itens de um ou mais artesãos em uma única transação segura.
+* **Critérios de Aceitação:**
+    * Recalcular preços no back-end a partir do banco de dados.
+    * Garantir a subconta AbacatePay de cada artesão envolvido e calcular os repasses descontando a comissão da plataforma.
+    * Exibir QR Code e código Pix copia-e-cola com validade de 15 minutos e atualização periódica de status (a cada 5s).
+    * Confirmar a venda automaticamente via webhook assinado (HMAC-SHA256) com controle de idempotência.
 
 ---
 
-## Módulo de Carrinho e Checkout
+## 4. Módulo de Comunicação (Mensageria)
 
-### HU07 — Adicionar ao Carrinho
-* **Descrição:** Como cliente, eu quero adicionar produtos ao carrinho de compras para acumular várias peças em uma mesma compra.
+### HU10 — Enviar Mensagem Direta para a Loja
+* **Descrição:** Como cliente autenticado, eu quero clicar em *"Enviar mensagem para a loja"* e conversar diretamente com o artesão pela Central de Mensagens para tirar dúvidas sobre peças ou encomendas.
 * **Critérios de Aceitação:**
-    * Se o produto for novo no carrinho, inseri-lo com quantidade 1.
-    * Se o produto já estiver no carrinho, incrementar sua quantidade.
-    * Atualizar dinamicamente o contador numérico de itens no ícone do cabeçalho.
+    * Reutilizar a conversa única existente para o par `(cliente, artesão)` ou iniciar nova conversa automaticamente.
+    * Impedir envio de mensagem para a própria loja e rejeitar textos vazios ou acima de 5.000 caracteres.
+    * Exibir contagem de mensagens não lidas e marcar como lidas ao abrir a conversa.
 
-### HU08 — Gerenciar Carrinho
-* **Descrição:** Como cliente, eu quero alterar as quantidades ou remover itens do meu carrinho para ajustar meu pedido antes da finalização.
-* **Critérios de Aceitação:**
-    * Recalcular o valor total imediatamente após qualquer alteração de quantidade.
-    * Exibir botão para remoção individual de itens.
-    * Apresentar estado amigável de *"Carrinho Vazio"* com botão para retornar ao catálogo.
+---
 
-### HU09 — Finalizar Intenção de Compra
-* **Descrição:** Como cliente, eu quero concluir meu pedido gerando um resumo com valor total para combinar o pagamento e a entrega diretamente com a artesã.
+## 5. Módulo do Artesão (Vendedor)
+
+### HU11 — Cadastrar Perfil Profissional de Artesão ("Quero Vender")
+* **Descrição:** Como cliente, eu quero preencher o formulário de cadastro de artesão com meus dados pessoais, endereço, apresentação da loja e dados de recebimento para me tornar vendedor na plataforma.
 * **Critérios de Aceitação:**
-    * Validar se todos os itens possuem estoque disponível.
-    * Montar mensagem detalhada com os itens, quantidades e valor total.
-    * Encaminhar o pedido com canal direto de confirmação.
+    * Validar CPF/CNPJ, CEP e chave Pix/dados bancários no servidor.
+    * Cifrar os dados sensíveis com **AES-256-GCM** antes de gravar no banco.
+    * Promover o papel da conta para `artisan` e provisionar a subconta na AbacatePay.
+
+### HU12 — Gerenciar Catálogo Próprio (CRUD Isolado)
+* **Descrição:** Como artesão autenticado, eu quero adicionar, editar e excluir produtos da minha loja no Painel do Artesão para manter meu catálogo e estoque atualizados.
+* **Critérios de Aceitação:**
+    * Permitir upload de imagem do produto (`/upload`) e vínculo automático ao `id_usuario` do artesão.
+    * Garantir isolamento: um artesão só pode editar ou excluir produtos de sua própria autoria.
+
+### HU13 — Configurar Loja Pública e Dados de Recebimento
+* **Descrição:** Como artesão, eu quero personalizar logo, capa, nome público, descrição, prazo de produção e dados bancários/Pix da minha loja para apresentar meu trabalho profissionalmente e receber meus pagamentos.
+* **Critérios de Aceitação:**
+    * Persistir configurações públicas e cifrar dados financeiros atualizados com feedback visual imediato.
+
+### HU14 — Acompanhar Resumo, Pedidos, Saldo e Solicitar Saques
+* **Descrição:** Como artesão, eu quero visualizar na aba Resumo minhas métricas de vendas, pedidos recebidos, saldo disponível/bloqueado na subconta AbacatePay e solicitar saques para minha conta.
+* **Critérios de Aceitação:**
+    * Exibir resumo de vendas no mês, produtos ativos, mensagens não lidas, gráfico de faturamento e lista de pedidos com valor de repasse.
+    * Validar valor mínimo de saque (`R$ 3,50`) e saldo disponível antes de registrar a transferência na AbacatePay.
+    * Atualizar o status do saque (`concluido` ou `falhou`) via webhook assinado.
+
+---
+
+## 6. Módulo Administrativo (`admin` e `super_admin`)
+
+### HU15 — Gerenciar Banners e Contas de Usuários
+* **Descrição:** Como administrador, eu quero gerenciar os banners da página inicial (até 10 banners), acompanhar indicadores globais e consultar/editar contas de clientes e artesãos para manter a operação organizada.
+* **Critérios de Aceitação:**
+    * Restringir o acesso ao `/painel-administrativo` apenas a perfis `admin` e `super_admin`.
+    * Permitir criação, edição, ordenação, ativação/desativação e remoção de banners.
+
+### HU16 — Gerenciar Administradores e Desativação Lógica (Super Admin)
+* **Descrição:** Como Super Admin, eu quero criar/gerenciar contas administrativas e desativar contas de usuários por exclusão lógica com trilha de auditoria para manter governança e integridade histórica.
+* **Critérios de Aceitação:**
+    * Exigir confirmação explícita na desativação e bloquear autoexclusão ou exclusão indevida de administradores.
+    * Executar em transação: marcar `is_active = false` e `deleted_at`, encerrar todas as sessões ativas do alvo e gravar registro em `admin_audit_logs`.

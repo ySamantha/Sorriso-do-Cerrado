@@ -1,3 +1,6 @@
+!!! warning "Material do Semestre Anterior (Versão 1.0)"
+    Este documento faz parte do acervo produzido no **semestre anterior** (versão 1.0 — vitrine virtual monoprodutor com Express e JWT). Para consultar a documentação atualizada do **Marketplace Sorriso do Cerrado (2026/2)**, navegue pelas abas principais no topo da página.
+
 # Diagramas de Classes e Sequência
 
 A modelagem estática e comportamental do sistema aprofunda o funcionamento técnico das rotas mais críticas da aplicação, com ênfase especial na **Autenticação e Sessão (UC001)**.
@@ -8,7 +11,7 @@ A modelagem estática e comportamental do sistema aprofunda o funcionamento téc
 
 O Diagrama de Classes abaixo mapeia as entidades, componentes React, rotas Express, middlewares de segurança e estruturas de persistência que tornam viável o processo de login seguro e controle de acesso por papéis.
 
-![Diagrama de Classes Login](../assets/diagramas/4-diagramas-de-classe/1-ClasseLogin.png)
+![Diagrama de Classes Login](../../assets/diagramas/4-diagramas-de-classe/1-ClasseLogin.png)
 
 ### Principais Componentes e Responsabilidades:
 * `LoginPage`: Componente visual React responsável pela captura de e-mail e senha e validação preliminar de interface.
@@ -23,7 +26,7 @@ O Diagrama de Classes abaixo mapeia as entidades, componentes React, rotas Expre
 
 O Diagrama de Sequência ilustra a troca de mensagens ao longo do tempo entre o usuário, os módulos front-end, a API back-end e o banco de dados durante a operação de login.
 
-![Diagrama de Sequência Login](../assets/diagramas/5-diagramas-de-sequencia/1-SequenciaLogin.png)
+![Diagrama de Sequência Login](../../assets/diagramas/5-diagramas-de-sequencia/1-SequenciaLogin.png)
 
 ### Etapas do Fluxo:
 1. O usuário preenche credenciais e clica em *"Entrar"*.
@@ -34,4 +37,4 @@ O Diagrama de Sequência ilustra a troca de mensagens ao longo do tempo entre o 
 6. O servidor responde com código HTTP 200 (OK) e o payload contendo o token e os dados básicos do usuário.
 7. O front-end salva o token no `localStorage`, atualiza o `AuthContext` e redireciona o usuário (para o painel administrativo se for artesã ou para a home se for cliente).
 
-* [Baixar editável do Diagrama de Sequência (.drawio)](../assets/diagramas/5-diagramas-de-sequencia/1-SequenciaLogin.drawio)
+* [Baixar editável do Diagrama de Sequência (.drawio)](../../assets/diagramas/5-diagramas-de-sequencia/1-SequenciaLogin.drawio)
