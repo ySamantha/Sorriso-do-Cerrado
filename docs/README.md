@@ -22,7 +22,13 @@
 
 ## Vídeo de Apresentação do Projeto
 
-[Apresentação do projeto Sorriso do Cerrado disponível no YouTube](https://youtu.be/uac34t2DagU)
+<a href="https://youtu.be/uac34t2DagU" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 500;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 17" width="24" height="17" aria-hidden="true" style="flex-shrink: 0;">
+    <path fill="#FF0000" d="M23.5 2.7a3 3 0 0 0-2.1-2.1C19.5 0 12 0 12 0S4.5 0 2.6.6A3 3 0 0 0 .5 2.7C0 4.6 0 8.5 0 8.5s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 17 12 17 12 17s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8z"/>
+    <path fill="#FFFFFF" d="M9.6 12.1V4.9L15.9 8.5l-6.3 3.6z"/>
+  </svg>
+  <span>Apresentação do projeto Sorriso do Cerrado disponível no YouTube</span>
+</a>
 
 !!! tip "Demonstração Funcional"
     Assista ao vídeo acima para acompanhar a demonstração completa das telas e dos fluxos de navegação da plataforma **Sorriso do Cerrado** em funcionamento.

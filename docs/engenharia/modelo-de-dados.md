@@ -4,7 +4,7 @@
 **Camada de Persistência:** MySQL 8 + `mysql2/promise` + Drizzle ORM + Better Auth  
 **Escopo:** Especificação lógica, física, relacional, chaves primárias/estrangeiras, criptografia em repouso e regras de integridade mapeadas diretamente do código-fonte.
 
-[:material-file-pdf-box: Baixar Documentação Completa do Modelo de Dados (`DADOS.pdf` — 17 págs.)](../DADOS.pdf){ .md-button .md-button--primary }
+[:material-file-pdf-box: Baixar Documentação Completa do Modelo de Dados (PDF — 17 págs.)](../DADOS.pdf){ .md-button .md-button--primary }
 
 ---
 

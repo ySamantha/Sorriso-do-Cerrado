@@ -7,13 +7,11 @@ O **Business Model Canvas (BMC)** consolida a proposta de valor, os segmentos de
 
 ---
 
-## Visualização do Canvas (`BMC.pdf`)
+## Visualização do Canvas
 
-<iframe src="../../BMC.pdf" width="100%" height="620" style="border: 1px solid rgba(141, 91, 76, 0.35); border-radius: 8px; background: #fff;">
-  Seu navegador não suporta visualização embutida de PDF. <a href="../../BMC.pdf">Clique aqui para abrir ou baixar o BMC.pdf</a>.
-</iframe>
+![Business Model Canvas — Sorriso do Cerrado](../assets/v2/documentos/BMC.png)
 
-[:material-file-pdf-box: Baixar Business Model Canvas (`BMC.pdf`)](../BMC.pdf){ .md-button .md-button--primary }
+[:material-file-pdf-box: Baixar Business Model Canvas (PDF)](../BMC.pdf){ .md-button .md-button--primary }
 
 ---
 

@@ -24,8 +24,6 @@ Detalha a organização real dos diretórios e dependências entre `Front-End/sr
 
 Especifica os nós físicos e contêineres (`Estação do Usuário / Navegador Web`, `Host de Aplicação / Docker` executando `Node.js 22 (tsx / Fastify 5)` e `Servidor de Banco MySQL`, e nó externo `AbacatePay`), portas (`:5173`, `:3000`, `:3306` / `:3307`), diretório `/uploads/`, migrações `drizzle/0000..0011`, criptografia `AES-256-GCM` e protocolos de comunicação (HTTP/HTTPS, TCP/MySQL e Webhooks v2 com HMAC-SHA256).
 
-<iframe src="../../assets/v2/diagramas/arquitetura/Diagrama_de_Implantacao_UML.pdf" width="100%" height="620" style="border: 1px solid rgba(141, 91, 76, 0.35); border-radius: 8px; background: #fff;">
-  Seu navegador não suporta visualização embutida de PDF. <a href="../../assets/v2/diagramas/arquitetura/Diagrama_de_Implantacao_UML.pdf">Clique aqui para abrir ou baixar o Diagrama de Implantação UML (PDF)</a>.
-</iframe>
+![Diagrama de Implantação UML - Projeto Sorriso do Cerrado](../assets/v2/diagramas/arquitetura/Diagrama_de_Implantacao_UML.png)
 
 [:material-file-pdf-box: Baixar Diagrama de Implantação UML (PDF)](../assets/v2/diagramas/arquitetura/Diagrama_de_Implantacao_UML.pdf){ .md-button .md-button--primary }
