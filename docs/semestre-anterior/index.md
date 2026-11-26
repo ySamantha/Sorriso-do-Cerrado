@@ -45,10 +45,3 @@
 ### Protótipos & Telas (Semestre Anterior)
 * [Protótipos de Alta Fidelidade (v1.0)](prototipos/mockups.md)
 * [Telas Implementadas (v1.0)](prototipos/telas-implementadas.md)
-
-### Testes de Software (Semestre Anterior)
-* [Plano e Estratégia de Testes (v1.0)](testes/plano-e-estrategia.md)
-* [Casos de Teste Detalhados (v1.0)](testes/casos-de-teste.md)
-* [Relatório de Execução e Defeitos (v1.0)](testes/relatorio-de-testes.md)
-* [Galeria de Evidências dos Testes (v1.0)](testes/evidencias.md)
-* [Códigos dos Testes Automatizados (v1.0)](testes/codigos-testes.md)

@@ -63,11 +63,5 @@ A documentação está organizada nas seguintes seções temáticas para navega�
 * [**Protótipos & Telas**](prototipos/mockups.md)
     * [Protótipos de Alta Fidelidade](prototipos/mockups.md) — Mockups conceituais de todas as páginas da plataforma.
     * [Telas Implementadas](prototipos/telas-implementadas.md) — Capturas de tela do sistema em pleno funcionamento.
-* [**Testes de Software**](testes/plano-e-estrategia.md)
-    * [Plano e Estratégia de Testes](testes/plano-e-estrategia.md) — Metodologia, ambiente e matriz de responsabilidade.
-    * [Casos de Teste](testes/casos-de-teste.md) — Casos de teste unitários, de API e ponta a ponta (E2E).
-    * [Relatório e Defeitos](testes/relatorio-de-testes.md) — Métricas de aprovação (100%) e rastreabilidade de defeitos.
-    * [Evidências dos Testes](testes/evidencias.md) — Registros visuais da execução dos testes.
-    * [Códigos dos Testes](testes/codigos-testes.md) — Scripts automatizados em Jest e Cypress.
 * [**Central de Downloads**](downloads.md)
     * Acesso aos documentos originais em PDF, DOCX e diagramas editáveis Draw.io.

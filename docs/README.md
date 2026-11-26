@@ -81,6 +81,5 @@ graph LR
 | [**Engenharia de Software**](engenharia/bmc.md) | Business Model Canvas, Documento de Visão v2.1, Requisitos v3.0, Histórias de Usuário, Casos de Uso, Arquitetura 4+1 v2.0, Modelo de Dados e Interfaces. |
 | [**Diagramas do Sistema**](diagramas/casos-de-uso.md) | Casos de Uso v2.0, Fluxos de Navegação, 12 Diagramas de Atividades (com `.drawio`), 6 Diagramas de Classes, 4 Diagramas de Sequência, Arquitetura, Pacotes e Implantação UML. |
 | [**Protótipos & Telas**](prototipos/mockups.md) | Novos protótipos do Marketplace (Explorar, Loja do Artesão, Painel do Vendedor e Configurações da Loja) integrados aos protótipos e telas implementadas contínuas. |
-| [**Testes de Software**](testes/plano-e-estrategia.md) | Estratégia de testes atualizada (Better Auth, Docker Compose, Banners, Jest e Cypress), matriz de qualidade v2.0, evidências e códigos-fonte. |
 | [**Central de Downloads**](downloads/index.md) | Todos os arquivos PDF, DOCX editáveis e diagramas `.drawio` organizados para consulta e download. |
 | [**Material do Semestre Anterior**](semestre-anterior/index.md) | Acervo histórico completo dos documentos, diagramas, protótipos e testes produzidos no semestre anterior (Versão 1.0). |
