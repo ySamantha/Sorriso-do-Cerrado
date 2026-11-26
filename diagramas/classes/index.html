@@ -2000,26 +2000,32 @@
 <h2 id="1-visao-geral-da-arquitetura-diagrama-de-classes-consolidado">1. Visão Geral da Arquitetura (Diagrama de Classes Consolidado)</h2>
 <p>Integra todos os cinco módulos do sistema (<strong>Autenticação e Usuários</strong>, <strong>Gestão de Artesãos</strong>, <strong>Catálogo e Vitrine</strong>, <strong>Vendas e Repasses</strong> e <strong>Mensageria</strong>) e suas associações principais.</p>
 <p><img alt="Diagrama de Classes - Visão Geral da Arquitetura" src="../../assets/v2/diagramas/classes/0-VisaoGeralArquitetura.png" /></p>
+<p><a class="md-button" download="" href="../../assets/v2/diagramas/classes/0-VisaoGeralArquitetura.png"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> Baixar diagrama</a></p>
 <hr />
 <h2 id="2-modulo-de-autenticacao-e-usuarios">2. Módulo de Autenticação e Usuários</h2>
 <p>Modela <code>Usuario</code>, a enumeração <code>PapelUsuario</code> (<code>admin</code>, <code>super_admin</code>, <code>artesa</code>, <code>cliente</code>) e as composições com <code>Session</code> (validação e revogação de sessões Better Auth) e <code>Account</code> (provedores e credenciais).</p>
 <p><img alt="Diagrama de Classes - Módulo de Autenticação e Usuários" src="../../assets/v2/diagramas/classes/1-AutenticacaoUsuarios.jpg" /></p>
+<p><a class="md-button" download="" href="../../assets/v2/diagramas/classes/1-AutenticacaoUsuarios.jpg"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> Baixar diagrama</a></p>
 <hr />
 <h2 id="3-modulo-de-gestao-de-artesaos-e-repasses-financeiros">3. Módulo de Gestão de Artesãos e Repasses Financeiros</h2>
 <p>Detalha a relação de <code>Usuario</code> com <code>ArtesaoCadastro</code> (cadastro fiscal e <code>subcontaId</code> AbacatePay), <code>ArtesaoPerfil</code> (dados da loja e recebimento cifrados) e <code>SaqueArtesao</code> (com a enumeração <code>StatusSaque</code>: <code>concluido</code>, <code>falhou</code>).</p>
 <p><img alt="Diagrama de Classes - Módulo de Gestão de Artesãos e Repasses Financeiros" src="../../assets/v2/diagramas/classes/2-GestaoArtesaosRepasses.png" /></p>
+<p><a class="md-button" download="" href="../../assets/v2/diagramas/classes/2-GestaoArtesaosRepasses.png"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> Baixar diagrama</a></p>
 <hr />
 <h2 id="4-modulo-de-catalogo-vitrine-e-favoritos">4. Módulo de Catálogo, Vitrine e Favoritos</h2>
 <p>Apresenta o vínculo de <code>Usuario</code> com <code>Produto</code> (cadastro, busca com filtros, gerenciamento e CRUD), <code>Favorito</code> (lista de desejos persistida) e a entidade independente <code>Banner</code> (gestão da vitrine principal).</p>
 <p><img alt="Diagrama de Classes - Módulo de Catálogo, Vitrine e Favoritos" src="../../assets/v2/diagramas/classes/3-CatalogoVitrineFavoritos.png" /></p>
+<p><a class="md-button" download="" href="../../assets/v2/diagramas/classes/3-CatalogoVitrineFavoritos.png"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> Baixar diagrama</a></p>
 <hr />
 <h2 id="5-modulo-de-vendas-itens-e-pagamentos">5. Módulo de Vendas, Itens e Pagamentos</h2>
 <p>Modela <code>Venda</code> com a enumeração <code>StatusVenda</code> (<code>pendente</code>, <code>confirmada</code>, <code>cancelada</code>), registro de eventos AbacatePay e composição com <code>ItemVenda</code> (referenciando <code>Produto</code> e o <code>Usuario</code> artesão beneficiário do <code>valorRepasse</code>).</p>
 <p><img alt="Diagrama de Classes - Módulo de Vendas, Itens e Pagamentos" src="../../assets/v2/diagramas/classes/4-VendasItensPagamentos.png" /></p>
+<p><a class="md-button" download="" href="../../assets/v2/diagramas/classes/4-VendasItensPagamentos.png"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> Baixar diagrama</a></p>
 <hr />
 <h2 id="6-modulo-de-mensageria-cliente-e-artesao">6. Módulo de Mensageria (Cliente e Artesão)</h2>
 <p>Detalha a estrutura de <code>Conversa</code> (associando <code>Usuario</code> como cliente e como artesão em conversa única por par) e sua composição com <code>Mensagem</code> (envio, listagem e marcação de leitura).</p>
 <p><img alt="Diagrama de Classes - Módulo de Mensageria" src="../../assets/v2/diagramas/classes/5-Mensageria.png" /></p>
+<p><a class="md-button" download="" href="../../assets/v2/diagramas/classes/5-Mensageria.png"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> Baixar diagrama</a></p>
 
 
 

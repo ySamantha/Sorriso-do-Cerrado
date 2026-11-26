@@ -1956,18 +1956,22 @@
 <h2 id="1-uc001-fazer-login">1. UC001 — Fazer Login</h2>
 <p>Detalha o envio de credenciais via <code>authClient.signIn.email</code>, bloqueio preventivo de contas desativadas (<code>403</code>), conferência de hash pelo <strong>Better Auth</strong>, gravação de sessão na tabela <code>session</code>, retorno do cookie HTTP e atualização do <code>AuthContext</code> com cálculo do papel (<code>isAdmin</code>, <code>isArtisan</code>, etc.).</p>
 <p><img alt="Diagrama de Sequência - UC001 Fazer Login" src="../../assets/v2/diagramas/sequencia/UC001-FazerLogin.jpg" /></p>
+<p><a class="md-button" download="" href="../../assets/v2/diagramas/sequencia/UC001-FazerLogin.jpg"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> Baixar diagrama</a></p>
 <hr />
 <h2 id="2-uc007-finalizar-compra-pix-com-split-e-webhook">2. UC007 — Finalizar Compra (Pix com Split e Webhook)</h2>
 <p>Documenta todo o ciclo de checkout transparente: recálculo de preços no banco, garantia da subconta de cada artesão (<code>subcontaArtesaoService.garantirSubconta</code>), cálculo de <code>valor_repasse</code> com desconto da comissão, criação da cobrança Pix com <code>splits[]</code> (<code>POST /transparents/create</code>), exibição do QR Code e os dois fluxos paralelos de confirmação — <em>polling</em> a cada 5s (<code>GET /vendas/:id/pagamento</code>) e webhook assíncrono <code>transparent.completed</code> com validação de <code>X-Webhook-Secret</code>, assinatura <strong>HMAC-SHA256</strong> e idempotência em <code>eventos_abacatepay</code>.</p>
 <p><img alt="Diagrama de Sequência - UC007 Finalizar Compra Pix" src="../../assets/v2/diagramas/sequencia/UC007-FinalizarCompraPix.jpg" /></p>
+<p><a class="md-button" download="" href="../../assets/v2/diagramas/sequencia/UC007-FinalizarCompraPix.jpg"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> Baixar diagrama</a></p>
 <hr />
 <h2 id="3-uc015-consultar-saldo-e-sacar-artesao">3. UC015 — Consultar Saldo e Sacar (Artesão)</h2>
 <p>Mostra a consulta de saldo disponível/bloqueado e histórico de saques (<code>GET /usuarios/artesao/saldo</code> e <code>GET /saques</code>), validação do valor mínimo de <strong><code>R$ 3,50</code></strong> e do saldo disponível, solicitação de saque via <code>POST /sub-accounts/withdraw</code> com <code>externalId</code> UUID, registro em <code>saques_artesao</code> e atualização assíncrona via webhook (<code>transfer.completed</code> / <code>transfer.failed</code>) com validação HMAC.</p>
 <p><img alt="Diagrama de Sequência - UC015 Consultar Saldo e Sacar" src="../../assets/v2/diagramas/sequencia/UC015-ConsultarSaldoSacar.jpg" /></p>
+<p><a class="md-button" download="" href="../../assets/v2/diagramas/sequencia/UC015-ConsultarSaldoSacar.jpg"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> Baixar diagrama</a></p>
 <hr />
 <h2 id="4-uc017-desativar-conta-de-usuario-exclusao-logica">4. UC017 — Desativar Conta de Usuário (Exclusão Lógica)</h2>
 <p>Detalha o fluxo exclusivo do <strong>Super Admin</strong> para desativação de contas (<code>DELETE /usuarios/:id</code>): exigência de confirmação explícita, bloqueio de autoexclusão e proteção de contas administrativas, transação com <code>SELECT ... FOR UPDATE</code>, marcação lógica (<code>is_active = false</code>, <code>deleted_at</code>), encerramento de sessões (<code>DELETE FROM session</code>), registro em <code>admin_audit_logs</code> (<code>user_soft_deleted</code>) e bloqueio subsequente em tentativas de login (<code>403</code>).</p>
 <p><img alt="Diagrama de Sequência - UC017 Desativar Conta de Usuário" src="../../assets/v2/diagramas/sequencia/UC017-DesativarContaUsuario.jpg" /></p>
+<p><a class="md-button" download="" href="../../assets/v2/diagramas/sequencia/UC017-DesativarContaUsuario.jpg"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> Baixar diagrama</a></p>
 
 
 
