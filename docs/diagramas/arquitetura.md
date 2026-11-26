@@ -10,6 +10,8 @@ Apresenta a interação completa entre os atores (**Artesão**, **Administrador*
 
 ![Diagrama de Arquitetura - Sorriso do Cerrado](../assets/v2/diagramas/arquitetura/Diagrama_de_Arquitetura.jpg)
 
+[:material-download: Baixar diagrama](../assets/v2/diagramas/arquitetura/Diagrama_de_Arquitetura.jpg){ .md-button download="" }
+
 ---
 
 ## 2. Diagrama de Pacotes da Aplicação
@@ -17,6 +19,8 @@ Apresenta a interação completa entre os atores (**Artesão**, **Administrador*
 Detalha a organização real dos diretórios e dependências entre `Front-End/src` (`main.tsx`/`App.tsx`, `pages`, `componentes`, `context`/`hooks`, `auth`) e `Back-End/src` (`app.ts`, `routes`, `auth`, `middleware`, `controllers`, `services`, `models`, `database`), destacando a comunicação HTTP/JSON e a integração HTTPS/webhook com a AbacatePay.
 
 ![Diagrama de Pacotes - Sorriso do Cerrado](../assets/v2/diagramas/arquitetura/Diagrama_de_Pacotes.jpg)
+
+[:material-download: Baixar diagrama](../assets/v2/diagramas/arquitetura/Diagrama_de_Pacotes.jpg){ .md-button download="" }
 
 ---
 
@@ -26,4 +30,5 @@ Especifica os nós físicos e contêineres (`Estação do Usuário / Navegador W
 
 ![Diagrama de Implantação UML - Projeto Sorriso do Cerrado](../assets/v2/diagramas/arquitetura/Diagrama_de_Implantacao_UML.png)
 
-[:material-file-pdf-box: Baixar Diagrama de Implantação UML (PDF)](../assets/v2/diagramas/arquitetura/Diagrama_de_Implantacao_UML.pdf){ .md-button .md-button--primary }
+[:material-download: Baixar imagem](../assets/v2/diagramas/arquitetura/Diagrama_de_Implantacao_UML.png){ .md-button download="" }
+[:material-file-pdf-box: Baixar PDF](../assets/v2/diagramas/arquitetura/Diagrama_de_Implantacao_UML.pdf){ .md-button download="" }

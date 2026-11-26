@@ -10,7 +10,8 @@ Apresenta a visão unificada de navegação compartilhada, fluxo do cliente (cat
 
 ![Diagrama Geral de Fluxo de Navegação](../assets/v2/diagramas/fluxos-de-navegacao/1-FluxoGeral.jpg)
 
-[:material-download: Baixar arquivo editável (`1-FluxoGeral.drawio`)](../assets/v2/diagramas/fluxos-de-navegacao/1-FluxoGeral.drawio){ .md-button }
+[:material-download: Baixar imagem](../assets/v2/diagramas/fluxos-de-navegacao/1-FluxoGeral.jpg){ .md-button download="" }
+[:material-download: Baixar (.drawio)](../assets/v2/diagramas/fluxos-de-navegacao/1-FluxoGeral.drawio){ .md-button download="" }
 
 ---
 
@@ -20,7 +21,8 @@ Detalha a jornada completa do consumidor desde a página inicial até a confirma
 
 ![Diagrama de Fluxo de Navegação do Cliente](../assets/v2/diagramas/fluxos-de-navegacao/2-FluxoCliente.jpg)
 
-[:material-download: Baixar arquivo editável (`2-FluxoCliente.drawio`)](../assets/v2/diagramas/fluxos-de-navegacao/2-FluxoCliente.drawio){ .md-button }
+[:material-download: Baixar imagem](../assets/v2/diagramas/fluxos-de-navegacao/2-FluxoCliente.jpg){ .md-button download="" }
+[:material-download: Baixar (.drawio)](../assets/v2/diagramas/fluxos-de-navegacao/2-FluxoCliente.drawio){ .md-button download="" }
 
 ---
 

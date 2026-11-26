@@ -10,6 +10,8 @@ Integra todos os cinco módulos do sistema (**Autenticação e Usuários**, **Ge
 
 ![Diagrama de Classes - Visão Geral da Arquitetura](../assets/v2/diagramas/classes/0-VisaoGeralArquitetura.png)
 
+[:material-download: Baixar diagrama](../assets/v2/diagramas/classes/0-VisaoGeralArquitetura.png){ .md-button download="" }
+
 ---
 
 ## 2. Módulo de Autenticação e Usuários
@@ -17,6 +19,8 @@ Integra todos os cinco módulos do sistema (**Autenticação e Usuários**, **Ge
 Modela `Usuario`, a enumeração `PapelUsuario` (`admin`, `super_admin`, `artesa`, `cliente`) e as composições com `Session` (validação e revogação de sessões Better Auth) e `Account` (provedores e credenciais).
 
 ![Diagrama de Classes - Módulo de Autenticação e Usuários](../assets/v2/diagramas/classes/1-AutenticacaoUsuarios.jpg)
+
+[:material-download: Baixar diagrama](../assets/v2/diagramas/classes/1-AutenticacaoUsuarios.jpg){ .md-button download="" }
 
 ---
 
@@ -26,6 +30,8 @@ Detalha a relação de `Usuario` com `ArtesaoCadastro` (cadastro fiscal e `subco
 
 ![Diagrama de Classes - Módulo de Gestão de Artesãos e Repasses Financeiros](../assets/v2/diagramas/classes/2-GestaoArtesaosRepasses.png)
 
+[:material-download: Baixar diagrama](../assets/v2/diagramas/classes/2-GestaoArtesaosRepasses.png){ .md-button download="" }
+
 ---
 
 ## 4. Módulo de Catálogo, Vitrine e Favoritos
@@ -33,6 +39,8 @@ Detalha a relação de `Usuario` com `ArtesaoCadastro` (cadastro fiscal e `subco
 Apresenta o vínculo de `Usuario` com `Produto` (cadastro, busca com filtros, gerenciamento e CRUD), `Favorito` (lista de desejos persistida) e a entidade independente `Banner` (gestão da vitrine principal).
 
 ![Diagrama de Classes - Módulo de Catálogo, Vitrine e Favoritos](../assets/v2/diagramas/classes/3-CatalogoVitrineFavoritos.png)
+
+[:material-download: Baixar diagrama](../assets/v2/diagramas/classes/3-CatalogoVitrineFavoritos.png){ .md-button download="" }
 
 ---
 
@@ -42,6 +50,8 @@ Modela `Venda` com a enumeração `StatusVenda` (`pendente`, `confirmada`, `canc
 
 ![Diagrama de Classes - Módulo de Vendas, Itens e Pagamentos](../assets/v2/diagramas/classes/4-VendasItensPagamentos.png)
 
+[:material-download: Baixar diagrama](../assets/v2/diagramas/classes/4-VendasItensPagamentos.png){ .md-button download="" }
+
 ---
 
 ## 6. Módulo de Mensageria (Cliente e Artesão)
@@ -49,3 +59,5 @@ Modela `Venda` com a enumeração `StatusVenda` (`pendente`, `confirmada`, `canc
 Detalha a estrutura de `Conversa` (associando `Usuario` como cliente e como artesão em conversa única por par) e sua composição com `Mensagem` (envio, listagem e marcação de leitura).
 
 ![Diagrama de Classes - Módulo de Mensageria](../assets/v2/diagramas/classes/5-Mensageria.png)
+
+[:material-download: Baixar diagrama](../assets/v2/diagramas/classes/5-Mensageria.png){ .md-button download="" }

@@ -8,8 +8,8 @@ O **Diagrama de Casos de Uso Geral (v2.0)** consolida todos os **19 casos de uso
 
 ![Diagrama de Casos de Uso Geral do Sistema Sorriso do Cerrado (v2.0)](../assets/v2/diagramas/casos-de-uso/Casos_de_Uso_Geral_v2.png)
 
-[:material-download: Abrir imagem em alta resolução (PNG)](../assets/v2/diagramas/casos-de-uso/Casos_de_Uso_Geral_v2.png){ .md-button .md-button--primary }
-[:material-file-pdf-box: Ver no Documento de Arquitetura v2.0 (PDF)](../assets/v2/documentos/Documento_de_Arquitetura_de_Software_-_v2.0.pdf){ .md-button }
+[:material-download: Baixar diagrama (PNG)](../assets/v2/diagramas/casos-de-uso/Casos_de_Uso_Geral_v2.png){ .md-button download="" }
+[:material-file-pdf-box: Arquitetura v2.0 (PDF)](../assets/v2/documentos/Documento_de_Arquitetura_de_Software_-_v2.0.pdf){ .md-button }
 
 ---
 

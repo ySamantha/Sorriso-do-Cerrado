@@ -150,3 +150,19 @@
   background-color: #382D25 !important;
 }
 
+/* Botões compactos e discretos */
+.md-typeset .md-button {
+  padding: 0.32rem 0.78rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  border-radius: 6px;
+  border-width: 1px;
+  line-height: 1.4;
+}
+
+.md-typeset .md-button .twemoji {
+  height: 1em;
+  vertical-align: -0.15em;
+}
+
+

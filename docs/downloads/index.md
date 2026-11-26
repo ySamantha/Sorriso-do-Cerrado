@@ -6,10 +6,10 @@ Nesta página estão disponíveis **todos os documentos oficiais, arquivos edit�
 
 ## 1. Documentos Obrigatórios da Entrega (`docs/`)
 
-| Arquivo | Descrição | Download |
-| :--- | :--- | :---: |
-| **`BMC.pdf`** | Business Model Canvas atualizado do Marketplace Sorriso do Cerrado | [:material-file-pdf-box: Baixar BMC.pdf](../BMC.pdf) |
-| **`DADOS.pdf`** | Documentação Técnica Completa do Modelo de Dados (17 págs. + DER) | [:material-file-pdf-box: Baixar DADOS.pdf](../DADOS.pdf) |
+| Arquivo | Descrição | Formato PDF | Formato Editável (DOCX) |
+| :--- | :--- | :---: | :---: |
+| **`BMC.pdf`** | Business Model Canvas atualizado do Marketplace Sorriso do Cerrado | [Baixar PDF](../BMC.pdf) | — |
+| **`DADOS.pdf`** | Documentação Técnica Completa do Modelo de Dados (17 págs. + DER) | [Baixar PDF](../DADOS.pdf) | — |
 
 ---
 
